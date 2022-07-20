@@ -1,0 +1,71 @@
+@import '../Theme/variables';
+
+.table {
+	text-align: left;
+	// border-radius: 5px;
+	border: 1px solid grey;
+	border-collapse: collapse;
+	font-family: 'Segoe UI', sans-serif;
+	-webkit-box-shadow: 0px 0px 10px 1px rgba(172, 172, 172, 0.5);
+	-moz-box-shadow: 0px 0px 10px 1px rgba(172, 172, 172, 0.5);
+	box-shadow: 0px 0px 10px 1px rgba(172, 172, 172, 0.5);
+
+	&__row {
+		border: 1px solid lightgrey;
+		border-collapse: collapse;
+	}
+
+	&__headerRow {
+		color: grey;
+		font-weight: 600;
+
+		border: 1px solid lightgrey;
+	}
+
+	&__headerCell {
+		background-color: $second_bg;
+	}
+
+	&__cell {
+		background-color: #ffffff;
+		font-size: 14px;
+	}
+
+	&__headerCell,
+	&__cell {
+		padding: 8px 15px;
+		border-collapse: collapse;
+	}
+}
+
+.button {
+	width: 30px;
+	height: 30px;
+	margin-left: 3px;
+	margin-right: 3px;
+	border-radius: 2px;
+	border: none;
+	background-repeat: no-repeat;
+	background-size: 18px 18px;
+	background-position: center;
+	background-color: rgba(211, 211, 211, 0.5);
+
+	&:hover {
+		cursor: pointer;
+		box-shadow: 0px 0px 2px 0px rgb(190, 190, 190);
+	}
+
+	&_save {
+		margin-left: 0;
+		background-image: url(../../../public/images/check-solid.svg);
+	}
+
+	&_edit {
+		background-image: url(../../../public/images/pencil-solid.svg);
+	}
+
+	&_delete {
+		background-image: url(../../../public/images/trash-can-solid.svg);
+		margin-right: 0;
+	}
+}

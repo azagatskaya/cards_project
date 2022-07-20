@@ -1,0 +1,34 @@
+@import '../Theme/variables';
+
+.header {
+  width: 100%;
+  height: $header_height;
+  padding: 5px 30px;
+  background-color: $second_bg;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @media screen and (max-width: $small_screen_width) {
+    height: $header_footer_small;
+  }
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  background-image: url("../../../public/images/flash-cards_colored.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 0 2px #af52bf99);
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: $small_screen_width) {
+    width: 32px;
+    height: 32px;
+  }
+}

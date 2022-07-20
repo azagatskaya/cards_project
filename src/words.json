@@ -1,0 +1,250 @@
+[
+  {
+    "id": 0,
+    "name": "english_nouns",
+    "rus_name": "Существительные",
+    "date": "2022-05-15",
+    "data": [
+      {
+        "id": 11346,
+        "word": "street",
+        "transcription": "[stri:t]",
+        "value": "улица",
+        "tags": "овощи",
+        "tags_json": "[\"u043eu0432u043eu0449u0438\"]"
+      },
+      {
+        "id": 11347,
+        "word": "car",
+        "transcription": "[ kɑ: ]",
+        "value": "автомобиль",
+        "tags": "транспорт",
+        "tags_json": "[\"u0442u0440u0430u043du0441u043fu043eu0440u0442\"]"
+      },
+      {
+        "id": 11350,
+        "word": "arm",
+        "transcription": "[ ɑ:m ]",
+        "value": "рука",
+        "tags": "часть тела",
+        "tags_json": "[\"u0447u0430u0441u0442u044c u0442u0435u043bu0430\"]"
+      },
+      {
+        "id": 11354,
+        "word": "air",
+        "transcription": "[  eər ]",
+        "value": "воздух",
+        "tags": "природа",
+        "tags_json": "[\"u043fu0440u0438u0440u043eu0434u0430\"]"
+      },
+      {
+        "id": 11397,
+        "word": "tea",
+        "transcription": "[ tiː ]",
+        "value": "чай",
+        "tags": "напиток",
+        "tags_json": "[\"u043du0430u043fu0438u0442u043eu043a\"]"
+      },
+      {
+        "id": 11448,
+        "word": "cat ",
+        "transcription": "[kæt]",
+        "value": "кот",
+        "tags": "животное",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
+      },
+      {
+        "id": 11449,
+        "word": "sun",
+        "transcription": "[sʌn]",
+        "value": "солнце",
+        "tags": "природа",
+        "tags_json": "[\"u043fu0440u0438u0440u043eu0434u0430\"]"
+      },
+      {
+        "id": 11450,
+        "word": "summer",
+        "transcription": "[ˈsʌmər]",
+        "value": "лето",
+        "tags": "время года",
+        "tags_json": "[\"u0432u0440u0435u043cu044f u0433u043eu0434u0430\"]"
+      },
+      {
+        "id": 11451,
+        "word": "rest",
+        "transcription": "[rest]",
+        "value": "отдых",
+        "tags": "занятия",
+        "tags_json": "[\"u0437u0430u043du044fu0442u0438u044f\"]"
+      },
+      {
+        "id": 11452,
+        "word": "beach",
+        "transcription": "[biːtʃ]",
+        "value": "пляж",
+        "tags": "места",
+        "tags_json": "[\"u043cu0435u0441u0442u0430\"]"
+      },
+      {
+        "id": 11504,
+        "word": " flower",
+        "transcription": "[ˈflaʊə]",
+        "value": "цветок",
+        "tags": "",
+        "tags_json": "[]"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "english_verbs",
+    "rus_name": "Глаголы",
+    "date": "2022-04-01",
+    "data": [
+      {
+        "id": 11346,
+        "word": "street",
+        "transcription": "[stri:t]",
+        "value": "улица",
+        "tags": "овощи",
+        "tags_json": "[\"u043eu0432u043eu0449u0438\"]"
+      },
+      {
+        "id": 11347,
+        "word": "car",
+        "transcription": "[ kɑ: ]",
+        "value": "автомобиль",
+        "tags": "транспорт",
+        "tags_json": "[\"u0442u0440u0430u043du0441u043fu043eu0440u0442\"]"
+      },
+      {
+        "id": 11350,
+        "word": "arm",
+        "transcription": "[ ɑ:m ]",
+        "value": "рука",
+        "tags": "часть тела",
+        "tags_json": "[\"u0447u0430u0441u0442u044c u0442u0435u043bu0430\"]"
+      },
+      {
+        "id": 11354,
+        "word": "air",
+        "transcription": "[  eər ]",
+        "value": "воздух",
+        "tags": "природа",
+        "tags_json": "[\"u043fu0440u0438u0440u043eu0434u0430\"]"
+      },
+      {
+        "id": 11397,
+        "word": "tea",
+        "transcription": "[ tiː ]",
+        "value": "чай",
+        "tags": "напиток",
+        "tags_json": "[\"u043du0430u043fu0438u0442u043eu043a\"]"
+      },
+      {
+        "id": 11448,
+        "word": "cat ",
+        "transcription": "[kæt]",
+        "value": "кот",
+        "tags": "животное",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
+      },
+      {
+        "id": 11449,
+        "word": "sun",
+        "transcription": "[sʌn]",
+        "value": "солнце",
+        "tags": "природа",
+        "tags_json": "[\"u043fu0440u0438u0440u043eu0434u0430\"]"
+      },
+      {
+        "id": 11450,
+        "word": "summer",
+        "transcription": "[ˈsʌmər]",
+        "value": "лето",
+        "tags": "время года",
+        "tags_json": "[\"u0432u0440u0435u043cu044f u0433u043eu0434u0430\"]"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "english_adjectives",
+    "rus_name": "Прилагательные",
+    "date": "2022-03-23",
+    "data": [
+      {
+        "id": 11346,
+        "word": "street",
+        "transcription": "[stri:t]",
+        "value": "улица",
+        "tags": "овощи",
+        "tags_json": "[\"u043eu0432u043eu0449u0438\"]"
+      },
+      {
+        "id": 11347,
+        "word": "car",
+        "transcription": "[ kɑ: ]",
+        "value": "автомобиль",
+        "tags": "транспорт",
+        "tags_json": "[\"u0442u0440u0430u043du0441u043fu043eu0440u0442\"]"
+      },
+      {
+        "id": 11350,
+        "word": "arm",
+        "transcription": "[ ɑ:m ]",
+        "value": "рука",
+        "tags": "часть тела",
+        "tags_json": "[\"u0447u0430u0441u0442u044c u0442u0435u043bu0430\"]"
+      },
+      {
+        "id": 11354,
+        "word": "air",
+        "transcription": "[  eər ]",
+        "value": "воздух",
+        "tags": "природа",
+        "tags_json": "[\"u043fu0440u0438u0440u043eu0434u0430\"]"
+      },
+      {
+        "id": 11397,
+        "word": "tea",
+        "transcription": "[ tiː ]",
+        "value": "чай",
+        "tags": "напиток",
+        "tags_json": "[\"u043du0430u043fu0438u0442u043eu043a\"]"
+      },
+      {
+        "id": 11448,
+        "word": "cat ",
+        "transcription": "[kæt]",
+        "value": "кот",
+        "tags": "животное",
+        "tags_json": "[\"u0436u0438u0432u043eu0442u043du043eu0435\"]"
+      },
+      {
+        "id": 11449,
+        "word": "sun",
+        "transcription": "[sʌn]",
+        "value": "солнце",
+        "tags": "природа",
+        "tags_json": "[\"u043fu0440u0438u0440u043eu0434u0430\"]"
+      },
+      {
+        "id": 11450,
+        "word": "summer",
+        "transcription": "[ˈsʌmər]",
+        "value": "лето",
+        "tags": "время года",
+        "tags_json": "[\"u0432u0440u0435u043cu044f u0433u043eu0434u0430\"]"
+      },
+      {
+        "id": 11451,
+        "word": "rest",
+        "transcription": "[rest]",
+        "value": "отдых",
+        "tags": "занятия",
+        "tags_json": "[\"u0437u0430u043du044fu0442u0438u044f\"]"
+      }
+    ]
+  }
+]
