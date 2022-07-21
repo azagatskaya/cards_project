@@ -64,8 +64,17 @@
 		background-image: url(../../../public/images/pencil-solid.svg);
 	}
 
+	&_cancel {
+		background-image: url(../../../public/images/xmark-solid.svg);
+	}
+
 	&_delete {
 		background-image: url(../../../public/images/trash-can-solid.svg);
 		margin-right: 0;
 	}
+}
+
+.input {
+	border: none;
+	border-bottom: 1px solid grey;
 }

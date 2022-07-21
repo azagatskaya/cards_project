@@ -1,11 +1,12 @@
 import React from "react";
-import styles from "../Table/Table.module.scss";
-import TableCell from "../TableCell/TableCell.jsx";
+import styles from "./Table.module.scss";
+import TableCell from "./TableCell.jsx";
 
-export default function TableRow({ rowData, tableType }) {
+export default function TableRow({ rowData, tableType, rowId }) {
   const [isRowEditable, setIsRowEditable] = React.useState(false);
 
   const handleEditClick = () => {
+    console.log("edit click");
     setIsRowEditable((prevState) => !prevState);
   };
 
@@ -17,15 +18,15 @@ export default function TableRow({ rowData, tableType }) {
   }
   return (
     <tr className={styles.table__row}>
-      {cells.map((cell, index) => (
-        <TableCell
-          value={cell}
-          rowId={index}
-          onEditClick={handleEditClick}
-          isEditable={isRowEditable}
-        />
+      {cells.map((cell) => (
+        <TableCell cellValue={cell} id={rowId} isEditable={isRowEditable} />
       ))}
-      <TableCell value="actions"></TableCell>
+      <TableCell
+        cellValue="actions"
+        onEditClick={handleEditClick}
+        id={rowId}
+        isEditable={isRowEditable}
+      />
     </tr>
   );
 }

@@ -10,7 +10,6 @@ function Card({
   id,
   cardsCount,
 }) {
-  console.log(word, transcription, value);
   const [isRotated, setIsRotated] = React.useState(false);
   const handleRotateClick = () => {
     setIsRotated((prevState) => !prevState);
@@ -55,6 +54,9 @@ function Card({
         ></button>
       </button>
       <button className={backClasses} onClick={handleRotateClick}>
+        <div>
+          {id + 1}/{cardsCount}
+        </div>
         <div className={styles.card__text}>
           <div className={styles.value}>{value}</div>
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Table.module.scss";
-import TableRow from "../TableRow/TableRow.jsx";
+import TableRow from "./TableRow.jsx";
 
 function getHeaders(tableDataType) {
   let headCells = [];
@@ -95,8 +95,8 @@ export default function Table({ tableDataType, data }) {
   return (
     <table className={styles.table}>
       <TableHeader dataType={tableDataType} />
-      {rows.map((row) => (
-        <TableRow rowData={row} tableType={tableDataType} />
+      {rows.map((row, index) => (
+        <TableRow rowData={row} tableType={tableDataType} rowId={index} />
       ))}
     </table>
   );
