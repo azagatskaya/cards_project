@@ -27,7 +27,7 @@ function getHeaders(tableDataType) {
       },
       {
         id: "transcription",
-        label: "Транскрипция",
+        label: "[...]",
       },
       {
         id: "value",
@@ -49,6 +49,7 @@ function getRows(tableDataType, data) {
   if (tableDataType === "sets") {
     rows = data.map((set) => {
       const container = {};
+      container.id = set.id;
       container.rus_name = set.rus_name;
       container.date = set.date;
       container.numberOfCards = set.data.length;
@@ -58,6 +59,7 @@ function getRows(tableDataType, data) {
   } else if (tableDataType === "words") {
     rows = data.map((set) => {
       const container = {};
+      container.id = set.id;
       container.word = set.word;
       container.transcription = set.transcription;
       container.value = set.value;
@@ -70,17 +72,25 @@ function getRows(tableDataType, data) {
   return rows;
 }
 
-export default function Table({ tableDataType, data }) {
-  const rows = getRows(tableDataType, data);
+export default function Table({ tableDataType, tableData }) {
+  const [data, setData] = React.useState(tableData);
 
+  const rows = getRows(tableDataType, tableData);
+  const handleRowDelete = (rowId) => {};
   const TableHeader = ({ dataType }) => {
     return (
-      <tr className={styles.table__headerRow}>
-        {getHeaders(dataType).map((header) => (
-          <TableHeaderCell id={header.id} label={header.label} />
-        ))}
-        <TableHeaderCell id="actions" />
-      </tr>
+      <thead>
+        <tr className={styles.table__headerRow}>
+          {getHeaders(dataType).map((header) => (
+            <TableHeaderCell
+              key={header.id.toString()}
+              id={header.id}
+              label={header.label}
+            />
+          ))}
+          <TableHeaderCell key={"actions"} id="actions" />
+        </tr>
+      </thead>
     );
   };
 
@@ -94,10 +104,18 @@ export default function Table({ tableDataType, data }) {
 
   return (
     <table className={styles.table}>
-      <TableHeader dataType={tableDataType} />
-      {rows.map((row, index) => (
-        <TableRow rowData={row} tableType={tableDataType} rowId={index} />
-      ))}
+      <TableHeader dataType={tableDataType} key={"header"} />
+      <tbody>
+        {rows.map((row) => (
+          <TableRow
+            rowData={row}
+            tableType={tableDataType}
+            key={row.id.toString()}
+            rowId={row.id}
+            onDelete={handleRowDelete}
+          />
+        ))}
+      </tbody>
     </table>
   );
 }

@@ -42,7 +42,11 @@ const Home = () => {
         <div className={styles.wrapper}>
           <div className={styles.buttons}>
             {items.map((el) => (
-              <CardSetButton {...el} handleSetSelect={setActiveSetId} />
+              <CardSetButton
+                {...el}
+                key={el.id.toString()}
+                handleSetSelect={setActiveSetId}
+              />
             ))}
           </div>
         </div>
@@ -52,6 +56,7 @@ const Home = () => {
             {...items[0].data[activeWordId]}
             onNextClick={handleNextClick}
             onPrevClick={handlePrevClick}
+            key={items[0].data[activeWordId].id}
             id={activeWordId}
             cardsCount={items[0].data.length}
           />
@@ -60,9 +65,9 @@ const Home = () => {
       )}
 
       {activeSetId === null ? (
-        <Table tableDataType="sets" data={items} />
+        <Table tableDataType="sets" key={"sets"} tableData={items} />
       ) : (
-        <Table tableDataType="words" data={items[0].data} />
+        <Table tableDataType="words" key={"words"} tableData={items[0].data} />
       )}
     </>
   );

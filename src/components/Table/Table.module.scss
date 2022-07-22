@@ -1,8 +1,8 @@
 @import '../Theme/variables';
 
 .table {
+	max-width: 500px;
 	text-align: left;
-	// border-radius: 5px;
 	border: 1px solid grey;
 	border-collapse: collapse;
 	font-family: 'Segoe UI', sans-serif;
@@ -26,16 +26,22 @@
 		background-color: $second_bg;
 	}
 
+	&__headerCell,
+	&__cell {
+		padding: 8px 6px;
+		border-collapse: collapse;
+	}
+
 	&__cell {
 		background-color: #ffffff;
 		font-size: 14px;
+
+		&Buttons {
+			// padding: 0;
+			min-width: 115px;
+		}
 	}
 
-	&__headerCell,
-	&__cell {
-		padding: 8px 15px;
-		border-collapse: collapse;
-	}
 }
 
 .button {
@@ -76,5 +82,9 @@
 
 .input {
 	border: none;
-	border-bottom: 1px solid grey;
+	font-family: 'Segoe UI', sans-serif;
+
+	&__editable {
+		border-bottom: 1px solid grey;
+	}
 }

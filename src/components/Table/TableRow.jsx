@@ -1,13 +1,28 @@
 import React from "react";
 import styles from "./Table.module.scss";
 import TableCell from "./TableCell.jsx";
+import TableCellActions from "./TableCellActions.jsx";
 
-export default function TableRow({ rowData, tableType, rowId }) {
+export default function TableRow({ rowData, tableType, rowId, onDelete }) {
   const [isRowEditable, setIsRowEditable] = React.useState(false);
 
   const handleEditClick = () => {
     console.log("edit click");
     setIsRowEditable((prevState) => !prevState);
+  };
+  const handleSaveClick = () => {
+    console.log("save click");
+    setIsRowEditable((prevState) => !prevState);
+  };
+  const handleDeleteClick = (rowId) => {
+    console.log("delete click");
+    onDelete(rowId);
+  };
+  const handleInputChange = (newValue) => {
+    console.log("input change");
+  };
+  const handleInputFocus = (oldValue) => {
+    console.log("input focus");
   };
 
   let cells;
@@ -19,12 +34,21 @@ export default function TableRow({ rowData, tableType, rowId }) {
   return (
     <tr className={styles.table__row}>
       {cells.map((cell) => (
-        <TableCell cellValue={cell} id={rowId} isEditable={isRowEditable} />
+        <TableCell
+          cellValue={cell}
+          key={cell.toString()}
+          isEditable={isRowEditable}
+          onInputChange={handleInputChange}
+          onInputFocus={handleInputFocus}
+        />
       ))}
-      <TableCell
+      <TableCellActions
+        key={rowId.toString()}
         cellValue="actions"
         onEditClick={handleEditClick}
-        id={rowId}
+        onSaveClick={handleSaveClick}
+        onDeleteClick={handleDeleteClick}
+        rowId={rowId}
         isEditable={isRowEditable}
       />
     </tr>
