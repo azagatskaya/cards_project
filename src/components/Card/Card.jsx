@@ -35,7 +35,7 @@ function Card({
   }
   return (
     <div className={styles.card__wrapper}>
-      <button className={cardClasses} onClick={handleRotateClick}>
+      <div className={cardClasses} onClick={handleRotateClick}>
         <button
           className={styles.prev}
           onClick={(event) => handlePrevClick(event, id - 1)}
@@ -52,8 +52,8 @@ function Card({
           className={styles.next}
           onClick={(event) => handleNextClick(event, id + 1)}
         ></button>
-      </button>
-      <button className={backClasses} onClick={handleRotateClick}>
+      </div>
+      <div className={backClasses} onClick={handleRotateClick}>
         <div>
           {id + 1}/{cardsCount}
         </div>
@@ -61,7 +61,7 @@ function Card({
           <div className={styles.value}>{value}</div>
         </div>
         <button className={styles.button_rotate}></button>
-      </button>
+      </div>
     </div>
   );
 }

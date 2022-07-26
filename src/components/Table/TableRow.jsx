@@ -6,13 +6,16 @@ import TableCellActions from "./TableCellActions.jsx";
 export default function TableRow({ rowData, tableType, rowId, onDelete }) {
   const [isRowEditable, setIsRowEditable] = React.useState(false);
 
-  const handleEditClick = () => {
+  const handleEditClick = (id) => {
     console.log("edit click");
     setIsRowEditable((prevState) => !prevState);
   };
-  const handleSaveClick = () => {
+  const handleSaveClick = (id) => {
     console.log("save click");
     setIsRowEditable((prevState) => !prevState);
+    // if (isCellValueChanged) {
+    // setNewValue;
+    // }
   };
   const handleDeleteClick = (rowId) => {
     console.log("delete click");

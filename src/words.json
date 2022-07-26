@@ -246,5 +246,85 @@
         "tags_json": "[\"u0437u0430u043du044fu0442u0438u044f\"]"
       }
     ]
+  },
+  {
+    "id": 3,
+    "name": "chemical_elements",
+    "rus_name": "Химические элементы",
+    "date": "2022-07-23",
+    "data": [
+      {
+        "id": "11949",
+        "word": "neon",
+        "transcription": "[ ˈniːɒn ]",
+        "value": "неон",
+        "tags": "химические элементы",
+        "tags_json": "[\"u0445u0438u043cu0438u0447u0435u0441u043au0438u0435 u044du043bu0435u043cu0435u043du0442u044b\"]"
+      },
+      {
+        "id": "11950",
+        "word": "domestic market",
+        "transcription": "[ dəˈmestɪk ˈmɑːkɪt ]",
+        "value": "внутренний рынок",
+        "tags": "экономика",
+        "tags_json": "[\"u044du043au043eu043du043eu043cu0438u043au0430\"]"
+      },
+      {
+        "id": "11951",
+        "word": "turbot brill",
+        "transcription": "[ ˈtɜːbət brɪl ]",
+        "value": "камбала",
+        "tags": "рыбы",
+        "tags_json": "[\"u0440u044bu0431u044b\"]"
+      },
+      {
+        "id": "11995",
+        "word": "mortgage",
+        "transcription": "[ ˈmɔːɡɪdʒ ]",
+        "value": "ипотека",
+        "tags": "экономика",
+        "tags_json": "[\"u044du043au043eu043du043eu043cu0438u043au0430\"]"
+      },
+      {
+        "id": "11996",
+        "word": "sodium",
+        "transcription": "[ ˈsəʊdɪəm ]",
+        "value": "натрий",
+        "tags": "химические элементы",
+        "tags_json": "[\"u0445u0438u043cu0438u0447u0435u0441u043au0438u0435 u044du043bu0435u043cu0435u043du0442u044b\"]"
+      },
+      {
+        "id": "11997",
+        "word": "flute",
+        "transcription": "[ fluːt ]",
+        "value": "флейта",
+        "tags": "музыка",
+        "tags_json": "[\"u043cu0443u0437u044bu043au0430\"]"
+      },
+      {
+        "id": "11998",
+        "word": "grand piano",
+        "transcription": "[ grænd pɪˈænəʊ ]",
+        "value": "рояль",
+        "tags": "музыка",
+        "tags_json": "[\"u043cu0443u0437u044bu043au0430\"]"
+      },
+      {
+        "id": "11999",
+        "word": "guitar",
+        "transcription": "[ gɪˈtɑː ]",
+        "value": "гитара",
+        "tags": "музыка",
+        "tags_json": "[\"u043cu0443u0437u044bu043au0430\"]"
+      },
+      {
+        "id": "12000",
+        "word": "harp",
+        "transcription": "[ hɑːp ]",
+        "value": "арфа",
+        "tags": "музыка",
+        "tags_json": "[\"u043cu0443u0437u044bu043au0430\"]"
+      }
+    ]
   }
 ]

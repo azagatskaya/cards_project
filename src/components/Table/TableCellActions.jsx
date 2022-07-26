@@ -37,7 +37,7 @@ export default function TableCell({
     <td className={`${styles.table__cell} ${styles.table__cellButtons}`}>
       <button
         className={styles.button + " " + styles.button_save}
-        onClick={(e) => handleSaveClick(e)}
+        onClick={(e) => handleSaveClick(e, rowId)}
       ></button>
       <button
         className={editBtnClasses}
