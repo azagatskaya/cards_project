@@ -5,22 +5,20 @@ export default function TableCell({
   cellValue,
   rowId,
   onEditClick,
+  onCancelClick,
   onSaveClick,
   onDeleteClick,
   isEditable,
 }) {
-  const [newCellValue, setNewCellValue] = React.useState(cellValue);
-  const [prevCellValue, setPrevCellValue] = React.useState(cellValue);
+  // const [newCellValue, setNewCellValue] = React.useState(cellValue);
+  // const [prevCellValue, setPrevCellValue] = React.useState(cellValue);
 
   const handleSaveClick = (e) => {
     onSaveClick();
   };
   const handleEditClick = (e) => {
-    console.log(prevCellValue);
-    console.log(newCellValue);
     console.log(isEditable);
-    isEditable ? setNewCellValue(prevCellValue) : setNewCellValue(newCellValue);
-    onEditClick();
+    isEditable ? onCancelClick() : onEditClick();
   };
   const handleDeleteClick = (e) => {
     onDeleteClick();
@@ -38,14 +36,17 @@ export default function TableCell({
       <button
         className={styles.button + " " + styles.button_save}
         onClick={(e) => handleSaveClick(e, rowId)}
+        data-btn-action={"save"}
       ></button>
       <button
         className={editBtnClasses}
         onClick={(e) => handleEditClick(e)}
+        data-btn-action={"edit"}
       ></button>
       <button
         className={styles.button + " " + styles.button_delete}
         onClick={(e) => handleDeleteClick(e)}
+        data-btn-action={"delete"}
       ></button>
     </td>
   );

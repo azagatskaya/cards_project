@@ -73,15 +73,17 @@ function getRows(tableDataType, data) {
 }
 
 export default function Table({ tableDataType, tableData }) {
+  console.log(tableDataType);
   const [data, setData] = React.useState(tableData);
 
   const rows = getRows(tableDataType, tableData);
   const handleRowDelete = (rowId) => {};
-  const TableHeader = ({ dataType }) => {
+  const headers = getHeaders(tableDataType);
+  const TableHeader = () => {
     return (
       <thead>
         <tr className={styles.table__headerRow}>
-          {getHeaders(dataType).map((header) => (
+          {headers.map((header) => (
             <TableHeaderCell
               key={header.id.toString()}
               id={header.id}
@@ -104,10 +106,11 @@ export default function Table({ tableDataType, tableData }) {
 
   return (
     <table className={styles.table}>
-      <TableHeader dataType={tableDataType} key={"header"} />
+      <TableHeader key={"header"} />
       <tbody>
         {rows.map((row) => (
           <TableRow
+            headers={headers}
             rowData={row}
             tableType={tableDataType}
             key={row.id.toString()}

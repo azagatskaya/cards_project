@@ -3,12 +3,45 @@ import styles from "./Table.module.scss";
 import TableCell from "./TableCell.jsx";
 import TableCellActions from "./TableCellActions.jsx";
 
-export default function TableRow({ rowData, tableType, rowId, onDelete }) {
+export default function TableRow({
+  rowData,
+  tableType,
+  rowId,
+  onDelete,
+  headers,
+}) {
   const [isRowEditable, setIsRowEditable] = React.useState(false);
+  const [visibleRowData, setVisibleRowData] = React.useState(rowData);
+  let cells;
+  function getCells(tableType) {
+    if (tableType === "sets") {
+      return [
+        visibleRowData.rus_name,
+        visibleRowData.data.length,
+        visibleRowData.date,
+      ];
+    } else if (tableType === "words") {
+      return [
+        visibleRowData.word,
+        visibleRowData.transcription,
+        visibleRowData.value,
+        visibleRowData.tags,
+      ];
+    }
+  }
+  React.useEffect(() => {
+    cells = getCells(tableType);
+  }, [visibleRowData]);
 
-  const handleEditClick = (id) => {
+  const handleEditClick = () => {
     console.log("edit click");
-    setIsRowEditable((prevState) => !prevState);
+    setIsRowEditable(true);
+  };
+  const handleCancelClick = () => {
+    console.log(rowData);
+    console.log("cancel click");
+    setIsRowEditable(false);
+    setVisibleRowData(rowData);
   };
   const handleSaveClick = (id) => {
     console.log("save click");
@@ -21,37 +54,34 @@ export default function TableRow({ rowData, tableType, rowId, onDelete }) {
     console.log("delete click");
     onDelete(rowId);
   };
-  const handleInputChange = (newValue) => {
+  const handleInputChange = (newValue, header) => {
     console.log("input change");
   };
-  const handleInputFocus = (oldValue) => {
-    console.log("input focus");
-  };
+  // const handleInputFocus = (oldValue) => {
+  //   console.log("input focus");
+  // };
 
-  let cells;
-  if (tableType === "sets") {
-    cells = [rowData.rus_name, rowData.data.length, rowData.date];
-  } else if (tableType === "words") {
-    cells = [rowData.word, rowData.transcription, rowData.value, rowData.tags];
-  }
   return (
     <tr className={styles.table__row}>
-      {cells.map((cell) => (
+      {cells.map((cell, index) => (
         <TableCell
-          cellValue={cell}
+          header={headers[index]}
           key={cell.toString()}
+          cellValue={cell}
+          rowId={rowId}
           isEditable={isRowEditable}
           onInputChange={handleInputChange}
-          onInputFocus={handleInputFocus}
+          // onInputFocus={handleInputFocus}
         />
       ))}
       <TableCellActions
         key={rowId.toString()}
+        rowId={rowId}
         cellValue="actions"
         onEditClick={handleEditClick}
+        onCancelClick={handleCancelClick}
         onSaveClick={handleSaveClick}
         onDeleteClick={handleDeleteClick}
-        rowId={rowId}
         isEditable={isRowEditable}
       />
     </tr>

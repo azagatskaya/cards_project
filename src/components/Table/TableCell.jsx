@@ -2,23 +2,24 @@ import React from "react";
 import styles from "./Table.module.scss";
 
 export default function TableCell({
+  header,
   cellValue,
   onInputChange,
-  onInputFocus,
+  // onInputFocus,
   isEditable,
 }) {
   const [newCellValue, setNewCellValue] = React.useState(cellValue);
-  const [prevCellValue, setPrevCellValue] = React.useState(cellValue);
+  // const [prevCellValue, setPrevCellValue] = React.useState(cellValue);
   const handleInputChange = (newValue) => {
-    onInputChange(newValue);
+    onInputChange(newValue, header);
     setNewCellValue(newValue);
-    // console.log(newCellValue);
+    console.log("new", newCellValue);
   };
-  const handleInputFocus = (oldValue) => {
-    onInputFocus(oldValue);
-    setPrevCellValue(oldValue);
-    // console.log("saved", oldValue);
-  };
+  // const handleInputFocus = (oldValue) => {
+  //   onInputFocus(oldValue);
+  //   setPrevCellValue(oldValue);
+  //   console.log("old", oldValue);
+  // };
 
   return (
     <td className={styles.table__cell}>
@@ -31,7 +32,7 @@ export default function TableCell({
         type="text"
         value={newCellValue}
         // value={isEditable ? newCellValue : cellValue}
-        onFocus={(e) => handleInputFocus(newCellValue)}
+        // onFocus={(e) => handleInputFocus(newCellValue)}
         onInput={(e) => handleInputChange(e.target.value)}
         size={isNaN(newCellValue.length) ? 4 : newCellValue.length - 1}
       />

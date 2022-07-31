@@ -3,9 +3,9 @@ import styles from "./Footer.module.scss";
 
 function Footer() {
   return (
-    <div className={styles.footer}>
+    <footer className={styles.footer}>
       <div className={styles.logo}></div>
-    </div>
+    </footer>
   );
 }
 export default Footer;
