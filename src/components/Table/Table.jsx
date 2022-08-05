@@ -73,7 +73,7 @@ function getRows(tableDataType, data) {
 }
 
 export default function Table({ tableDataType, tableData }) {
-  console.log(tableDataType);
+  console.log("tableData", tableData);
   const [data, setData] = React.useState(tableData);
 
   const rows = getRows(tableDataType, tableData);

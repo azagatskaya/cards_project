@@ -5,11 +5,13 @@ export default function TableCell({
   header,
   cellValue,
   onInputChange,
-  // onInputFocus,
+  prevCellValue,
   isEditable,
+  isCanceled,
 }) {
   const [newCellValue, setNewCellValue] = React.useState(cellValue);
   // const [prevCellValue, setPrevCellValue] = React.useState(cellValue);
+
   const handleInputChange = (newValue) => {
     onInputChange(newValue, header);
     setNewCellValue(newValue);
@@ -20,22 +22,28 @@ export default function TableCell({
   //   setPrevCellValue(oldValue);
   //   console.log("old", oldValue);
   // };
-
+  // console.log("cell", isCanceled);
+  // console.log("new", newCellValue);
+  // console.log("old", prevCellValue);
   return (
     <td className={styles.table__cell}>
-      <input
+      <div
+        contentEditable={isEditable}
         className={
           isEditable && !isNaN(newCellValue.length)
             ? `${styles.input} ${styles.input__editable}`
             : styles.input
         }
         type="text"
-        value={newCellValue}
+        // value={newCellValue}
         // value={isEditable ? newCellValue : cellValue}
         // onFocus={(e) => handleInputFocus(newCellValue)}
-        onInput={(e) => handleInputChange(e.target.value)}
+        // onInput={(e) => handleInputChange(e.target.value)}
+        // onClick={(e) => handleInputChange(e.target.value)}
         size={isNaN(newCellValue.length) ? 4 : newCellValue.length - 1}
-      />
+      >
+        {isCanceled ? prevCellValue : newCellValue}
+      </div>
     </td>
   );
 }

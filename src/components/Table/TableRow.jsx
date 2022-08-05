@@ -10,9 +10,11 @@ export default function TableRow({
   onDelete,
   headers,
 }) {
+  console.log(rowData);
   const [isRowEditable, setIsRowEditable] = React.useState(false);
   const [visibleRowData, setVisibleRowData] = React.useState(rowData);
-  let cells;
+  const [isCanceled, setIsCanceled] = React.useState(false);
+  let cells = getCells(tableType);
   function getCells(tableType) {
     if (tableType === "sets") {
       return [
@@ -29,19 +31,21 @@ export default function TableRow({
       ];
     }
   }
-  React.useEffect(() => {
-    cells = getCells(tableType);
-  }, [visibleRowData]);
+  // React.useEffect(() => {
+  //   cells = getCells(tableType);
+  // }, [visibleRowData]);
 
   const handleEditClick = () => {
     console.log("edit click");
     setIsRowEditable(true);
+    setIsCanceled(false);
   };
   const handleCancelClick = () => {
     console.log(rowData);
     console.log("cancel click");
     setIsRowEditable(false);
-    setVisibleRowData(rowData);
+    setIsCanceled(true);
+    // setVisibleRowData(rowData);
   };
   const handleSaveClick = (id) => {
     console.log("save click");
@@ -67,9 +71,11 @@ export default function TableRow({
         <TableCell
           header={headers[index]}
           key={cell.toString()}
+          initialValue={rowData}
           cellValue={cell}
           rowId={rowId}
           isEditable={isRowEditable}
+          isCanceled={isCanceled}
           onInputChange={handleInputChange}
           // onInputFocus={handleInputFocus}
         />

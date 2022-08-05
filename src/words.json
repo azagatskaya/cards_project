@@ -326,5 +326,165 @@
         "tags_json": "[\"u043cu0443u0437u044bu043au0430\"]"
       }
     ]
+  },
+  {
+    "id": 4,
+    "name": "colors",
+    "rus_name": "Цвета",
+    "date": "2022-08-23",
+    "data": [
+      {
+        "id": "12074",
+        "word": "turquoise",
+        "transcription": "[ ˈtɜːkwɔɪz ]",
+        "value": "бирюзовый",
+        "tags": "Array",
+        "tags_json": "null"
+      },
+      {
+        "id": "12076",
+        "word": "yellow",
+        "transcription": "[ ˈjeləʊ ]",
+        "value": "желтый",
+        "tags": "цвета",
+        "tags_json": "[\"u0446u0432u0435u0442u0430\"]"
+      },
+      {
+        "id": "12077",
+        "word": "pearl",
+        "transcription": "[ pɜːl ]",
+        "value": "жемчужный",
+        "tags": "цвета",
+        "tags_json": "[\"u0446u0432u0435u0442u0430\"]"
+      },
+      {
+        "id": "12079",
+        "word": "indigo",
+        "transcription": "[ ˈɪndɪɡəʊ ]",
+        "value": "индиго",
+        "tags": "цвета",
+        "tags_json": "[\"u0446u0432u0435u0442u0430\"]"
+      },
+      {
+        "id": "12080",
+        "word": "olive",
+        "transcription": "[ ˈɒlɪv ]",
+        "value": "оливковый",
+        "tags": "цвета",
+        "tags_json": "[\"u0446u0432u0435u0442u0430\"]"
+      },
+      {
+        "id": "12081",
+        "word": "sky blue",
+        "transcription": "[ skaɪ bluː ]",
+        "value": "небесно-голубой",
+        "tags": "цвета",
+        "tags_json": "[\"u0446u0432u0435u0442u0430\"]"
+      },
+      {
+        "id": "12082",
+        "word": "honeydew",
+        "transcription": "[ ˈhʌnɪdjuː ]",
+        "value": "медовый",
+        "tags": "цвета",
+        "tags_json": "[\"u0446u0432u0435u0442u0430\"]"
+      },
+      {
+        "id": "12083",
+        "word": "lime green",
+        "transcription": "[ laɪm ɡriːn ]",
+        "value": "лимонно-зеленый",
+        "tags": "цвета",
+        "tags_json": "[\"u0446u0432u0435u0442u0430\"]"
+      },
+      {
+        "id": "12084",
+        "word": "palm",
+        "transcription": "[pa:m]",
+        "value": "пальма",
+        "tags": "деревья",
+        "tags_json": "[\"u0434u0435u0440u0435u0432u044cu044f\"]"
+      },
+      {
+        "id": "12085",
+        "word": "bay",
+        "transcription": "[bei]",
+        "value": "лавр",
+        "tags": "деревья",
+        "tags_json": "[\"u0434u0435u0440u0435u0432u044cu044f\"]"
+      },
+      {
+        "id": "12086",
+        "word": "larch",
+        "transcription": "[la:t∫]",
+        "value": "лиственница",
+        "tags": "деревья",
+        "tags_json": "[\"u0434u0435u0440u0435u0432u044cu044f\"]"
+      },
+      {
+        "id": "12087",
+        "word": "abdomen",
+        "transcription": "[ ˈæbdəmən ]\t",
+        "value": "живот",
+        "tags": "анатомия",
+        "tags_json": "[\"u0430u043du0430u0442u043eu043cu0438u044f\"]"
+      },
+      {
+        "id": "12088",
+        "word": "ankle",
+        "transcription": "[ ˈæŋkl̩ ]",
+        "value": "голеностоп",
+        "tags": "анатомия",
+        "tags_json": "[\"u0430u043du0430u0442u043eu043cu0438u044f\"]"
+      },
+      {
+        "id": "12089",
+        "word": "appendix",
+        "transcription": "[ əˈpendɪks ]",
+        "value": "аппендикс",
+        "tags": "анатомия",
+        "tags_json": "[\"u0430u043du0430u0442u043eu043cu0438u044f\"]"
+      },
+      {
+        "id": "12091",
+        "word": "artery",
+        "transcription": "[ ˈɑːtəri ]",
+        "value": "артерия",
+        "tags": "анатомия",
+        "tags_json": "[\"u0430u043du0430u0442u043eu043cu0438u044f\"]"
+      },
+      {
+        "id": "12092",
+        "word": "backbone",
+        "transcription": "[ ˈbækbəʊn ]",
+        "value": "позвоночник",
+        "tags": "анатомия",
+        "tags_json": "[\"u0430u043du0430u0442u043eu043cu0438u044f\"]"
+      },
+      {
+        "id": "12093",
+        "word": "biceps",
+        "transcription": "[ ˈbaɪseps ]",
+        "value": "бицепс",
+        "tags": "анатомия",
+        "tags_json": "[\"u0430u043du0430u0442u043eu043cu0438u044f\"]"
+      },
+      {
+        "id": "12094",
+        "word": "bowels",
+        "transcription": "[ ˈbaʊəlz ]",
+        "value": "кишечник",
+        "tags": "анатомия",
+        "tags_json": "[\"u0430u043du0430u0442u043eu043cu0438u044f\"]"
+      },
+      {
+        "id": "12095",
+        "word": "brain",
+        "transcription": "[ breɪn ]",
+        "value": "мозг",
+        "tags": "анатомия",
+        "tags_json": "[\"u0430u043du0430u0442u043eu043cu0438u044f\"]"
+      }
+    ]
   }
 ]
