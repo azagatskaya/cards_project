@@ -44,39 +44,41 @@ function getHeaders(tableDataType) {
   return headCells;
 }
 
-function getRows(tableDataType, data) {
-  let rows;
+function getRows(tableDataType) {
+  let cellNames;
   if (tableDataType === "sets") {
-    rows = data.map((set) => {
-      const container = {};
-      container.id = set.id;
-      container.rus_name = set.rus_name;
-      container.date = set.date;
-      container.numberOfCards = set.data.length;
-      container.data = set.data;
-      return container;
-    });
+    cellNames = ["id", "rus_name", "date", "numberOfCards", "data"];
+    // rows = data.map((set) => {
+    //   const container = {};
+    //   container.id = set.id;
+    //   container.rus_name = set.rus_name;
+    //   container.date = set.date;
+    //   container.numberOfCards = set.data.length;
+    //   container.data = set.data;
+    //   return container;
+    // });
   } else if (tableDataType === "words") {
-    rows = data.map((set) => {
-      const container = {};
-      container.id = set.id;
-      container.word = set.word;
-      container.transcription = set.transcription;
-      container.value = set.value;
-      container.tags = set.tags;
-      return container;
-    });
+    cellNames = ["id", "word", "transcription", "value", "tags"];
+    // rows = data.map((set) => {
+    //   const container = {};
+    //   container.id = set.id;
+    //   container.word = set.word;
+    //   container.transcription = set.transcription;
+    //   container.value = set.value;
+    //   container.tags = set.tags;
+    //   return container;
+    // });
   } else {
     throw new Error("unknown table data type");
   }
-  return rows;
+  return cellNames;
 }
 
 export default function Table({ tableDataType, tableData }) {
   console.log("tableData", tableData);
   const [data, setData] = React.useState(tableData);
 
-  const rows = getRows(tableDataType, tableData);
+  const cellNames = getRows(tableDataType);
   const handleRowDelete = (rowId) => {};
   const headers = getHeaders(tableDataType);
   const TableHeader = () => {
@@ -108,7 +110,7 @@ export default function Table({ tableDataType, tableData }) {
     <table className={styles.table}>
       <TableHeader key={"header"} />
       <tbody>
-        {rows.map((row) => (
+        {data.map((row) => (
           <TableRow
             headers={headers}
             rowData={row}
