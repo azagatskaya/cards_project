@@ -7,6 +7,10 @@ function getHeaders(tableDataType) {
   if (tableDataType === "sets") {
     headCells = [
       {
+        id: "id",
+        label: "ID",
+      },
+      {
         id: "rus_name",
         label: "Название",
       },
@@ -21,6 +25,10 @@ function getHeaders(tableDataType) {
     ];
   } else if (tableDataType === "words") {
     headCells = [
+      {
+        id: "id",
+        label: "ID",
+      },
       {
         id: "word",
         label: "Слово",
@@ -45,9 +53,9 @@ function getHeaders(tableDataType) {
 }
 
 function getRows(tableDataType) {
-  let cellNames;
+  let cellPropNames;
   if (tableDataType === "sets") {
-    cellNames = ["id", "rus_name", "date", "numberOfCards", "data"];
+    cellPropNames = ["id", "rus_name", "numberOfCards", "date"];
     // rows = data.map((set) => {
     //   const container = {};
     //   container.id = set.id;
@@ -58,7 +66,7 @@ function getRows(tableDataType) {
     //   return container;
     // });
   } else if (tableDataType === "words") {
-    cellNames = ["id", "word", "transcription", "value", "tags"];
+    cellPropNames = ["id", "word", "transcription", "value", "tags"];
     // rows = data.map((set) => {
     //   const container = {};
     //   container.id = set.id;
@@ -71,14 +79,14 @@ function getRows(tableDataType) {
   } else {
     throw new Error("unknown table data type");
   }
-  return cellNames;
+  return cellPropNames;
 }
 
 export default function Table({ tableDataType, tableData }) {
   console.log("tableData", tableData);
   const [data, setData] = React.useState(tableData);
 
-  const cellNames = getRows(tableDataType);
+  const cellPropNames = getRows(tableDataType);
   const handleRowDelete = (rowId) => {};
   const headers = getHeaders(tableDataType);
   const TableHeader = () => {
@@ -110,9 +118,9 @@ export default function Table({ tableDataType, tableData }) {
     <table className={styles.table}>
       <TableHeader key={"header"} />
       <tbody>
-        {data.map((row) => (
+        {tableData.map((row) => (
           <TableRow
-            headers={headers}
+            cellPropNames={cellPropNames}
             rowData={row}
             tableType={tableDataType}
             key={row.id.toString()}

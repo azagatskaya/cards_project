@@ -5,10 +5,11 @@ export default function TableCell({
   header,
   cellValue,
   onInputChange,
-  prevCellValue,
+  initialValue,
   isEditable,
   isCanceled,
 }) {
+  console.log(cellValue);
   const [newCellValue, setNewCellValue] = React.useState(cellValue);
   // const [prevCellValue, setPrevCellValue] = React.useState(cellValue);
 
@@ -42,7 +43,8 @@ export default function TableCell({
         // onClick={(e) => handleInputChange(e.target.value)}
         size={isNaN(newCellValue.length) ? 4 : newCellValue.length - 1}
       >
-        {isCanceled ? prevCellValue : newCellValue}
+        {isCanceled ? initialValue : newCellValue}
+        {/* {newCellValue} */}
       </div>
     </td>
   );

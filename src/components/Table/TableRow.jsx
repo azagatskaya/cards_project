@@ -8,29 +8,31 @@ export default function TableRow({
   tableType,
   rowId,
   onDelete,
-  headers,
+  cellPropNames,
 }) {
   console.log(rowData);
   const [isRowEditable, setIsRowEditable] = React.useState(false);
-  const [visibleRowData, setVisibleRowData] = React.useState(rowData);
+  // const [visibleRowData, setVisibleRowData] = React.useState(rowData);
   const [isCanceled, setIsCanceled] = React.useState(false);
-  let cells = getCells(tableType);
-  function getCells(tableType) {
-    if (tableType === "sets") {
-      return [
-        visibleRowData.rus_name,
-        visibleRowData.data.length,
-        visibleRowData.date,
-      ];
-    } else if (tableType === "words") {
-      return [
-        visibleRowData.word,
-        visibleRowData.transcription,
-        visibleRowData.value,
-        visibleRowData.tags,
-      ];
-    }
-  }
+  // let cells = getCells(tableType);
+
+  // function getCells(tableType) {
+  //   if (tableType === "sets") {
+  //     return [
+  //       visibleRowData.rus_name,
+  //       visibleRowData.data.length,
+  //       visibleRowData.date,
+  //     ];
+  //   } else if (tableType === "words") {
+  //     return [
+  //       visibleRowData.word,
+  //       visibleRowData.transcription,
+  //       visibleRowData.value,
+  //       visibleRowData.tags,
+  //     ];
+  //   }
+  // }
+
   // React.useEffect(() => {
   //   cells = getCells(tableType);
   // }, [visibleRowData]);
@@ -67,19 +69,40 @@ export default function TableRow({
 
   return (
     <tr className={styles.table__row}>
-      {cells.map((cell, index) => (
-        <TableCell
-          header={headers[index]}
-          key={cell.toString()}
-          initialValue={rowData}
-          cellValue={cell}
-          rowId={rowId}
-          isEditable={isRowEditable}
-          isCanceled={isCanceled}
-          onInputChange={handleInputChange}
-          // onInputFocus={handleInputFocus}
-        />
-      ))}
+      {cellPropNames.map((cell) => {
+        console.log("cell", cell);
+        console.log("hasProp", rowData.hasOwnProperty(cell));
+        console.log("rowData[cell]", rowData[cell]);
+        if (cell === "numberOfCard") {
+          return (
+            <TableCell
+              cellPropName={cell}
+              key={cell.toString()}
+              initialValue={rowData.data.length}
+              cellValue={rowData.data.length}
+              rowId={rowId}
+              isEditable={isRowEditable}
+              isCanceled={isCanceled}
+              onInputChange={handleInputChange}
+              // onInputFocus={handleInputFocus}
+            />
+          );
+        } else if (rowData.hasOwnProperty(cell)) {
+          return (
+            <TableCell
+              cellPropName={cell}
+              key={cell.toString()}
+              initialValue={rowData[cell]}
+              cellValue={rowData[cell]}
+              rowId={rowId}
+              isEditable={isRowEditable}
+              isCanceled={isCanceled}
+              onInputChange={handleInputChange}
+              // onInputFocus={handleInputFocus}
+            />
+          );
+        }
+      })}
       <TableCellActions
         key={rowId.toString()}
         rowId={rowId}
