@@ -5,56 +5,52 @@ import TableCellActions from "./TableCellActions.jsx";
 
 export default function TableRow({
   rowData,
-  tableType,
+  // tableType,
   rowId,
   onDelete,
+  onSaveChanges,
   cellPropNames,
 }) {
-  console.log(rowData);
   const [isRowEditable, setIsRowEditable] = React.useState(false);
-  // const [visibleRowData, setVisibleRowData] = React.useState(rowData);
   const [isCanceled, setIsCanceled] = React.useState(false);
-  // let cells = getCells(tableType);
+  const makeCounter = () => {
+    let count = 0;
 
-  // function getCells(tableType) {
-  //   if (tableType === "sets") {
-  //     return [
-  //       visibleRowData.rus_name,
-  //       visibleRowData.data.length,
-  //       visibleRowData.date,
-  //     ];
-  //   } else if (tableType === "words") {
-  //     return [
-  //       visibleRowData.word,
-  //       visibleRowData.transcription,
-  //       visibleRowData.value,
-  //       visibleRowData.tags,
-  //     ];
-  //   }
-  // }
+    return function () {
+      return count++; // есть доступ к внешней переменной "count"
+    };
+  };
+  let counter = makeCounter();
 
-  // React.useEffect(() => {
-  //   cells = getCells(tableType);
-  // }, [visibleRowData]);
+  const getCellValues = () => {
+    let res = {};
+    cellPropNames.map((cell) => {
+      if (rowData.hasOwnProperty(cell) || cell === "numberOfCards") {
+        const initialValue =
+          cell === "numberOfCards" ? rowData.data.length : rowData[cell];
+        res = { ...res, [counter()]: initialValue };
+      }
+    });
+    return res;
+  };
 
+  const [cellValues, setCellValues] = React.useState(() => getCellValues());
+
+  console.log(cellValues);
   const handleEditClick = () => {
     console.log("edit click");
     setIsRowEditable(true);
     setIsCanceled(false);
   };
   const handleCancelClick = () => {
-    console.log(rowData);
     console.log("cancel click");
     setIsRowEditable(false);
     setIsCanceled(true);
-    // setVisibleRowData(rowData);
   };
-  const handleSaveClick = (id) => {
+  const handleSaveClick = (e) => {
     console.log("save click");
     setIsRowEditable((prevState) => !prevState);
-    // if (isCellValueChanged) {
-    // setNewValue;
-    // }
+    onSaveChanges(e);
   };
   const handleDeleteClick = (rowId) => {
     console.log("delete click");
@@ -63,42 +59,27 @@ export default function TableRow({
   const handleInputChange = (newValue, header) => {
     console.log("input change");
   };
-  // const handleInputFocus = (oldValue) => {
-  //   console.log("input focus");
-  // };
+  const handleInputBlur = (newValue) => {
+    console.log("input blur");
+    console.log(newValue);
+  };
 
   return (
     <tr className={styles.table__row}>
       {cellPropNames.map((cell) => {
-        console.log("cell", cell);
-        console.log("hasProp", rowData.hasOwnProperty(cell));
-        console.log("rowData[cell]", rowData[cell]);
-        if (cell === "numberOfCard") {
+        if (rowData.hasOwnProperty(cell) || cell === "numberOfCards") {
+          const initialValue =
+            cell === "numberOfCards" ? rowData.data.length : rowData[cell];
           return (
             <TableCell
               cellPropName={cell}
               key={cell.toString()}
-              initialValue={rowData.data.length}
-              cellValue={rowData.data.length}
+              initialValue={initialValue}
               rowId={rowId}
               isEditable={isRowEditable}
               isCanceled={isCanceled}
               onInputChange={handleInputChange}
-              // onInputFocus={handleInputFocus}
-            />
-          );
-        } else if (rowData.hasOwnProperty(cell)) {
-          return (
-            <TableCell
-              cellPropName={cell}
-              key={cell.toString()}
-              initialValue={rowData[cell]}
-              cellValue={rowData[cell]}
-              rowId={rowId}
-              isEditable={isRowEditable}
-              isCanceled={isCanceled}
-              onInputChange={handleInputChange}
-              // onInputFocus={handleInputFocus}
+              handleInputBlur={handleInputBlur}
             />
           );
         }

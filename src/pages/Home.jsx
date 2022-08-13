@@ -35,7 +35,17 @@ const Home = () => {
         setItems(arr);
       });
   }, [activeSetId]);
-
+  const onSaveChanges = (e) => {
+    console.log("onSaveChanges");
+    console.log(e);
+    const childCount = e.currentTarget.parentNode.parentNode.childElementCount;
+    console.log(childCount);
+    for (let i = 0; i < childCount - 1; i++) {
+      console.log(
+        e.target.parentNode.parentNode.childNodes[i].firstChild.value
+      );
+    }
+  };
   return (
     <>
       {activeSetId === null ? (
@@ -67,7 +77,12 @@ const Home = () => {
       {activeSetId === null ? (
         <Table tableDataType="sets" key={"sets"} tableData={items} />
       ) : (
-        <Table tableDataType="words" key={"words"} tableData={items[0].data} />
+        <Table
+          tableDataType="words"
+          key={"words"}
+          tableData={items[0].data}
+          onSaveChanges={onSaveChanges}
+        />
       )}
     </>
   );

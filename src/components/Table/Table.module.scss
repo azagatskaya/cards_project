@@ -36,6 +36,8 @@
 		background-color: #ffffff;
 		font-size: 14px;
 
+
+
 		&Buttons {
 			// padding: 0;
 			min-width: 115px;
@@ -86,5 +88,9 @@
 
 	&__editable {
 		border-bottom: 1px solid grey;
+	}
+
+	&:disabled {
+		color: black;
 	}
 }

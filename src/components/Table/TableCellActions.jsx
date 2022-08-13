@@ -10,11 +10,8 @@ export default function TableCell({
   onDeleteClick,
   isEditable,
 }) {
-  // const [newCellValue, setNewCellValue] = React.useState(cellValue);
-  // const [prevCellValue, setPrevCellValue] = React.useState(cellValue);
-
   const handleSaveClick = (e) => {
-    onSaveClick();
+    onSaveClick(e);
   };
   const handleEditClick = (e) => {
     console.log(isEditable);

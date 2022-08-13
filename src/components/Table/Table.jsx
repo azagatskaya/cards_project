@@ -56,36 +56,15 @@ function getRows(tableDataType) {
   let cellPropNames;
   if (tableDataType === "sets") {
     cellPropNames = ["id", "rus_name", "numberOfCards", "date"];
-    // rows = data.map((set) => {
-    //   const container = {};
-    //   container.id = set.id;
-    //   container.rus_name = set.rus_name;
-    //   container.date = set.date;
-    //   container.numberOfCards = set.data.length;
-    //   container.data = set.data;
-    //   return container;
-    // });
   } else if (tableDataType === "words") {
     cellPropNames = ["id", "word", "transcription", "value", "tags"];
-    // rows = data.map((set) => {
-    //   const container = {};
-    //   container.id = set.id;
-    //   container.word = set.word;
-    //   container.transcription = set.transcription;
-    //   container.value = set.value;
-    //   container.tags = set.tags;
-    //   return container;
-    // });
   } else {
     throw new Error("unknown table data type");
   }
   return cellPropNames;
 }
 
-export default function Table({ tableDataType, tableData }) {
-  console.log("tableData", tableData);
-  const [data, setData] = React.useState(tableData);
-
+export default function Table({ tableDataType, tableData, onSaveChanges }) {
   const cellPropNames = getRows(tableDataType);
   const handleRowDelete = (rowId) => {};
   const headers = getHeaders(tableDataType);
@@ -122,10 +101,11 @@ export default function Table({ tableDataType, tableData }) {
           <TableRow
             cellPropNames={cellPropNames}
             rowData={row}
-            tableType={tableDataType}
+            // tableType={tableDataType}
             key={row.id.toString()}
             rowId={row.id}
             onDelete={handleRowDelete}
+            onSaveChanges={onSaveChanges}
           />
         ))}
       </tbody>
