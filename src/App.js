@@ -3,6 +3,7 @@ import styles from "./App.module.scss";
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Home from "./pages/Home.jsx";
+import StudyPage from "./pages/StudyPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <div className={styles.main__wrapper}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/study" element={<StudyPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

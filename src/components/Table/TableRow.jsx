@@ -17,7 +17,7 @@ export default function TableRow({
     let count = 0;
 
     return function () {
-      return count++; // есть доступ к внешней переменной "count"
+      return count++;
     };
   };
   let counter = makeCounter();
@@ -36,7 +36,7 @@ export default function TableRow({
 
   const [cellValues, setCellValues] = React.useState(() => getCellValues());
 
-  console.log(cellValues);
+  // console.log(cellValues);
   const handleEditClick = () => {
     console.log("edit click");
     setIsRowEditable(true);
@@ -50,7 +50,7 @@ export default function TableRow({
   const handleSaveClick = (e) => {
     console.log("save click");
     setIsRowEditable((prevState) => !prevState);
-    onSaveChanges(e);
+    onSaveChanges(cellValues);
   };
   const handleDeleteClick = (rowId) => {
     console.log("delete click");
@@ -66,23 +66,19 @@ export default function TableRow({
 
   return (
     <tr className={styles.table__row}>
-      {cellPropNames.map((cell) => {
-        if (rowData.hasOwnProperty(cell) || cell === "numberOfCards") {
-          const initialValue =
-            cell === "numberOfCards" ? rowData.data.length : rowData[cell];
-          return (
-            <TableCell
-              cellPropName={cell}
-              key={cell.toString()}
-              initialValue={initialValue}
-              rowId={rowId}
-              isEditable={isRowEditable}
-              isCanceled={isCanceled}
-              onInputChange={handleInputChange}
-              handleInputBlur={handleInputBlur}
-            />
-          );
-        }
+      {Object.entries(cellValues).map(([key, value]) => {
+        return (
+          <TableCell
+            cellPropName={cellPropNames[key]}
+            key={value.toString()}
+            initialValue={value}
+            rowId={rowId}
+            isEditable={isRowEditable}
+            isCanceled={isCanceled}
+            onInputChange={handleInputChange}
+            handleInputBlur={handleInputBlur}
+          />
+        );
       })}
       <TableCellActions
         key={rowId.toString()}

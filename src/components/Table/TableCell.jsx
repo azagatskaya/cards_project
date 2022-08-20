@@ -14,12 +14,15 @@ export default function TableCell({
   const handleInputChange = (e) => {
     setNewCellValue(e.target.value);
   };
+  React.useEffect(() => {
+    setNewCellValue(initialValue);
+  }, [isCanceled]);
   const handleBlur = () => {
     console.log("new", newCellValue);
     console.log(handleInputBlur);
     handleInputBlur(newCellValue);
   };
-  const value = isCanceled ? initialValue : newCellValue;
+  // const value = isCanceled ? initialValue : newCellValue;
   return (
     <td className={styles.table__cell}>
       <input
@@ -31,7 +34,7 @@ export default function TableCell({
         }
         onChange={handleInputChange}
         onBlur={handleBlur}
-        value={value}
+        value={newCellValue}
         type="text"
         size={isNaN(newCellValue.length) ? 4 : newCellValue.length - 1}
       />
