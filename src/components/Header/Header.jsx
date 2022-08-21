@@ -5,12 +5,12 @@ import Authentication from "../Auth/Auth.jsx";
 
 function Header() {
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <Link to="/">
         <div className={styles.logo}></div>
       </Link>
       <Authentication />
-    </div>
+    </header>
   );
 }
 export default Header;

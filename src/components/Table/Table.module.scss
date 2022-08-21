@@ -1,7 +1,7 @@
 @import '../Theme/variables';
 
 .table {
-	max-width: 500px;
+	max-width: 650px;
 	text-align: left;
 	border: 1px solid grey;
 	border-collapse: collapse;
@@ -35,6 +35,8 @@
 	&__cell {
 		background-color: #ffffff;
 		font-size: 14px;
+
+
 
 		&Buttons {
 			// padding: 0;
@@ -86,5 +88,9 @@
 
 	&__editable {
 		border-bottom: 1px solid grey;
+	}
+
+	&:disabled {
+		color: black;
 	}
 }
