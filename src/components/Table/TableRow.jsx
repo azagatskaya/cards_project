@@ -4,6 +4,7 @@ import TableCell from "./TableCell.jsx";
 import TableCellActions from "./TableCellActions.jsx";
 
 export default function TableRow({
+  // rows,
   rowData,
   // tableType,
   rowId,
