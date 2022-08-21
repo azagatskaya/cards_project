@@ -5,7 +5,7 @@ import TableCellActions from "./TableCellActions.jsx";
 
 export default function TableRow({
   // rows,
-  rowData,
+  row,
   // tableType,
   rowId,
   onDelete,
@@ -14,28 +14,6 @@ export default function TableRow({
 }) {
   const [isRowEditable, setIsRowEditable] = React.useState(false);
   const [isCanceled, setIsCanceled] = React.useState(false);
-  const makeCounter = () => {
-    let count = 0;
-
-    return function () {
-      return count++;
-    };
-  };
-  let counter = makeCounter();
-
-  const getCellValues = () => {
-    let res = {};
-    cellPropNames.map((cell) => {
-      if (rowData.hasOwnProperty(cell) || cell === "numberOfCards") {
-        const initialValue =
-          cell === "numberOfCards" ? rowData.data.length : rowData[cell];
-        res = { ...res, [counter()]: initialValue };
-      }
-    });
-    return res;
-  };
-
-  const [cellValues, setCellValues] = React.useState(() => getCellValues());
 
   // console.log(cellValues);
   const handleEditClick = () => {
@@ -51,7 +29,7 @@ export default function TableRow({
   const handleSaveClick = (e) => {
     console.log("save click");
     setIsRowEditable((prevState) => !prevState);
-    onSaveChanges(cellValues);
+    onSaveChanges(row);
   };
   const handleDeleteClick = (rowId) => {
     console.log("delete click");
@@ -67,7 +45,7 @@ export default function TableRow({
 
   return (
     <tr className={styles.table__row}>
-      {Object.entries(cellValues).map(([key, value]) => {
+      {Object.entries(row).map(([key, value]) => {
         return (
           <TableCell
             cellPropName={cellPropNames[key]}

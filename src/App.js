@@ -10,27 +10,27 @@ import NotFound from "./pages/NotFound.jsx";
 let url = "";
 
 function App() {
-  const [items, setItems] = useState([]);
+  const [rows, setRows] = useState([]);
   const [activeSetId, setActiveSetId] = useState(null);
   const [activeWordId, setActiveWordId] = useState(0);
   const [tableDataType, setTableDataType] = useState("sets");
   const [headers, setHeaders] = useState([]);
-  // const [rows, setRows] = useState([]);
   const [cellPropNames, setCellPropNames] = useState([]);
 
   const handleNextClick = (id) => {
-    if (id > items[0].data.length - 1) {
+    if (id > rows.length - 1) {
       id = 0;
     }
     setActiveWordId(id);
   };
   const handlePrevClick = (id) => {
     if (id < 0) {
-      id = items[0].data.length - 1;
+      id = rows.length - 1;
     }
     setActiveWordId(id);
   };
   useEffect(() => {
+    console.log("useEffect activeSetId");
     url =
       activeSetId === null
         ? "https://62d2e89181cb1ecafa67c833.mockapi.io/setsOfWords/setsOfWords"
@@ -39,9 +39,34 @@ function App() {
     fetch(url)
       .then((res) => res.json())
       .then((arr) => {
-        setItems(arr);
+        const propNames = getCellPropNames(
+          activeSetId === null ? "sets" : "words"
+        );
+        let res = [];
+        let data = activeSetId === null ? arr : arr[0].data;
+        data.map((elem) => {
+          let newRow = {};
+          propNames.map((cell) => {
+            if (elem.hasOwnProperty(cell) || cell === "numberOfCards") {
+              const initialValue =
+                cell === "numberOfCards" ? elem.data.length : elem[cell];
+              newRow = { ...newRow, [cell]: initialValue };
+            }
+          });
+          res = [...res, newRow];
+        });
+        setRows(res);
       });
   }, [activeSetId]);
+  // const makeCounter = () => {
+  //   let count = 0;
+
+  //   return function () {
+  //     return count++;
+  //   };
+  // };
+  // let counter = makeCounter();
+
   const onSaveChanges = (e) => {
     console.log("onSaveChanges");
     console.log(e);
@@ -53,7 +78,7 @@ function App() {
       );
     }
   };
-  const getHeaders = (tableDataType) => {
+  function getHeaders(tableDataType) {
     let headCells = [];
     if (tableDataType === "sets") {
       headCells = [
@@ -101,9 +126,10 @@ function App() {
       throw new Error("unknown table data type");
     }
     return headCells;
-  };
+  }
 
-  const getRows = (tableDataType) => {
+  function getCellPropNames(tableDataType) {
+    console.log(tableDataType);
     if (tableDataType === "sets") {
       return ["id", "rus_name", "numberOfCards", "date"];
     } else if (tableDataType === "words") {
@@ -111,21 +137,27 @@ function App() {
     } else {
       throw new Error("unknown table data type");
     }
-  };
+  }
   const handleSetSelect = (id) => {
+    console.log("handleSetSelect");
     setActiveSetId(id);
     setTableDataType("words");
   };
-  useEffect(() => {
-    setHeaders(getHeaders(tableDataType));
-    setCellPropNames(getRows(tableDataType));
-  }, [tableDataType]);
-  console.log("cellPropNames", cellPropNames);
-  console.log("tableDataType", tableDataType);
 
+  useEffect(() => {
+    console.log("useEffect tableDataType");
+    setHeaders(() => getHeaders(tableDataType));
+    setCellPropNames(() => getCellPropNames(tableDataType));
+  }, [tableDataType]);
+
+  const onReturnToHomePage = () => {
+    setActiveSetId(null);
+    setTableDataType("sets");
+    setActiveWordId(0);
+  };
   return (
     <div className={styles.App}>
-      <Header />
+      <Header onReturnToHomePage={onReturnToHomePage} />
       <main className={styles.main}>
         <div className={styles.main__wrapper}>
           <Routes>
@@ -137,7 +169,7 @@ function App() {
                   // items={items}
                   headers={headers}
                   cellPropNames={cellPropNames}
-                  rows={items}
+                  rows={rows}
                   onSaveChanges={onSaveChanges}
                   handleSetSelect={handleSetSelect}
                 />
@@ -151,7 +183,7 @@ function App() {
                   // items={items}
                   headers={headers}
                   cellPropNames={cellPropNames}
-                  rows={items}
+                  rows={rows}
                   onSaveChanges={onSaveChanges}
                   activeWordId={activeWordId}
                   handleNextClick={handleNextClick}

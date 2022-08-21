@@ -11,23 +11,22 @@ const StudyPage = ({
   handlePrevClick,
   onSaveChanges,
 }) => {
-  console.log(rows);
   return (
     <>
       <Card
-        {...rows[0].data[activeWordId]}
+        {...rows[activeWordId]}
         onNextClick={handleNextClick}
         onPrevClick={handlePrevClick}
-        key={rows[0].data[activeWordId].id}
+        key={rows[activeWordId].id}
         id={activeWordId}
-        cardsCount={rows[0].data.length}
+        cardsCount={rows.length}
       />
       <div className={styles.card_buttons__wrapper}></div>
       <Table
         key={"words"}
         headers={headers}
         cellPropNames={cellPropNames}
-        rows={rows[0].data}
+        rows={rows}
         onSaveChanges={onSaveChanges}
       />
     </>

@@ -28,14 +28,13 @@ export default function Table({ headers, cellPropNames, rows, onSaveChanges }) {
       </td>
     );
   };
-  console.log("rows", rows);
   return (
     <table className={styles.table}>
       <TableHeader key={"header"} />
       <tbody>
         {rows.map((row) => (
           <TableRow
-            rowData={row}
+            row={row}
             key={row.id.toString()}
             rowId={row.id}
             onDelete={handleRowDelete}
