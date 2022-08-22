@@ -18,13 +18,8 @@ export default function TableCell({
   }, [isCanceled]);
 
   const handleBlur = (e) => {
-    console.log("new", newCellValue);
-    console.log(handleInputBlur);
-    // if (!isCanceled) {
     handleInputBlur({ [cellPropName]: e.target.value });
-    // }
   };
-  // const value = isCanceled ? initialValue : newCellValue;
   return (
     <td className={styles.table__cell}>
       <input
@@ -38,7 +33,11 @@ export default function TableCell({
         onBlur={handleBlur}
         value={newCellValue}
         type="text"
-        size={isNaN(newCellValue.length) ? 4 : newCellValue.length - 1}
+        size={
+          newCellValue.length < 4 || isNaN(newCellValue.length)
+            ? 4
+            : newCellValue.length - 1
+        }
       />
     </td>
   );

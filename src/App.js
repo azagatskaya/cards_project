@@ -9,8 +9,6 @@ import NotFound from "./pages/NotFound.jsx";
 
 import words from "./words.json";
 
-let url = "";
-
 function App() {
   const [data, setData] = useState(words);
   const [rows, setRows] = useState([]);
@@ -80,10 +78,8 @@ function App() {
             return { ...row, ...changedRow };
           });
         }
-        // let setData = set.data;
-        // console.log("changedData", changedData);
         return changedData.length === 0
-          ? { ...set } //, ["data"]: [...setData] }
+          ? { ...set }
           : { ...set, ["data"]: [...changedData] };
       });
     });
@@ -217,8 +213,6 @@ function App() {
     setTableDataType("sets");
     setActiveWordId(0);
   };
-  // console.log("rows", rows);
-  // console.log("activeWordId", activeWordId);
   return (
     <div className={styles.App}>
       <Header onReturnToHomePage={onReturnToHomePage} />

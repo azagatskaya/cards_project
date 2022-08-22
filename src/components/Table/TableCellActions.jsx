@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Table.module.scss";
 
 export default function TableCell({
-  cellValue,
   rowId,
   handleEditClick,
   handleCancelClick,
@@ -11,7 +10,6 @@ export default function TableCell({
   isEditable,
 }) {
   const onEditClick = (e) => {
-    console.log(isEditable);
     isEditable ? handleCancelClick() : handleEditClick();
   };
 
