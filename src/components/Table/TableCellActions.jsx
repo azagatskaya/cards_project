@@ -4,21 +4,15 @@ import styles from "./Table.module.scss";
 export default function TableCell({
   cellValue,
   rowId,
-  onEditClick,
-  onCancelClick,
-  onSaveClick,
-  onDeleteClick,
+  handleEditClick,
+  handleCancelClick,
+  handleSaveClick,
+  handleDelete,
   isEditable,
 }) {
-  const handleSaveClick = (e) => {
-    onSaveClick();
-  };
-  const handleEditClick = (e) => {
+  const onEditClick = (e) => {
     console.log(isEditable);
-    isEditable ? onCancelClick() : onEditClick();
-  };
-  const handleDeleteClick = (e) => {
-    onDeleteClick();
+    isEditable ? handleCancelClick() : handleEditClick();
   };
 
   let editBtnClasses;
@@ -37,12 +31,12 @@ export default function TableCell({
       ></button>
       <button
         className={editBtnClasses}
-        onClick={(e) => handleEditClick(e)}
+        onClick={(e) => onEditClick(e)}
         data-btn-action={"edit"}
       ></button>
       <button
         className={styles.button + " " + styles.button_delete}
-        onClick={(e) => handleDeleteClick(e)}
+        onClick={() => handleDelete(rowId)}
         data-btn-action={"delete"}
       ></button>
     </td>

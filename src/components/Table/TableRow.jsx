@@ -6,10 +6,10 @@ import TableCellActions from "./TableCellActions.jsx";
 export default function TableRow({
   row,
   rowId,
-  onDelete,
+  handleDelete,
   handleSaveChanges,
-  cellPropNames,
 }) {
+  const [initialCellValues, setInitialCellValues] = useState(row);
   const [cellValues, setCellValues] = useState(row);
   const [isRowEditable, setIsRowEditable] = useState(false);
   const [isCanceled, setIsCanceled] = useState(false);
@@ -18,21 +18,20 @@ export default function TableRow({
     console.log("edit click");
     setIsRowEditable(true);
     setIsCanceled(false);
+    console.log("isCanceled", isCanceled);
   };
   const handleCancelClick = () => {
     console.log("cancel click");
     setIsRowEditable(false);
     setIsCanceled(true);
+    setCellValues({ ...initialCellValues });
   };
-  const handleSaveClick = (newValue) => {
+  const handleSaveClick = () => {
     console.log("save click");
     setIsRowEditable((prevState) => !prevState);
     handleSaveChanges(rowId, cellValues);
   };
-  const handleDeleteClick = (rowId) => {
-    console.log("delete click");
-    onDelete(rowId);
-  };
+
   const handleInputChange = () => {
     console.log("input change");
   };
@@ -63,10 +62,10 @@ export default function TableRow({
         key={rowId.toString()}
         rowId={rowId}
         cellValue="actions"
-        onEditClick={handleEditClick}
-        onCancelClick={handleCancelClick}
-        onSaveClick={handleSaveClick}
-        onDeleteClick={handleDeleteClick}
+        handleEditClick={handleEditClick}
+        handleCancelClick={handleCancelClick}
+        handleSaveClick={handleSaveClick}
+        handleDelete={handleDelete}
         isEditable={isRowEditable}
       />
     </tr>

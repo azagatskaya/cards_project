@@ -6,6 +6,7 @@ const Home = ({
   headers,
   cellPropNames,
   rows,
+  handleDelete,
   handleSetSelect,
   handleSaveChanges,
 }) => {
@@ -28,6 +29,7 @@ const Home = ({
         cellPropNames={cellPropNames}
         rows={rows}
         handleSaveChanges={handleSaveChanges}
+        handleDelete={handleDelete}
       />
     </>
   );

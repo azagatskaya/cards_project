@@ -40,6 +40,7 @@ function App() {
   }, [tableDataType]);
 
   useEffect(() => {
+    console.log("data", data);
     console.log("useEffect activeSetId");
     let items = null;
     if (activeSetId === null) {
@@ -64,16 +65,11 @@ function App() {
     });
     console.log("res", res);
     setRows(res);
-  }, [activeSetId]);
-
-  const handleSaveChanges = (rowId, values) => {
-    console.log("handleSaveChanges");
-    changeData(rowId, values);
-  };
+  }, [activeSetId, data]);
 
   const changeData = (rowId, values) => {
     setData((prevState) => {
-      const newData = prevState.map((set) => {
+      return prevState.map((set) => {
         let changedData = [];
         if (set.id === activeSetId) {
           changedData = set.data.map((row) => {
@@ -88,8 +84,41 @@ function App() {
           ? { ...set, ["data"]: [...changedData] }
           : { ...set };
       });
+    });
+  };
+
+  const deleteSet = (rowId) => {
+    console.log("deleteSet");
+    setData((prevState) => prevState.filter((set) => set.id !== rowId));
+  };
+
+  const deleteWord = (rowId) => {
+    console.log("deleteWord");
+    setData((prevState) => {
+      const newData = prevState.map((set) => {
+        let changedData = [];
+        if (set.id === activeSetId) {
+          changedData = set.data.filter((row) => row.id !== rowId);
+        }
+        return changedData !== []
+          ? { ...set, ["data"]: [...changedData] }
+          : { ...set };
+      });
       return newData;
     });
+  };
+  const deleteData = (rowId) => {
+    console.log("deleteData");
+    switch (tableDataType) {
+      case "sets":
+        deleteSet(rowId);
+        break;
+      case "words":
+        deleteWord(rowId);
+        break;
+      default:
+        throw new Error("Unknown table data type");
+    }
   };
 
   function getHeaders(tableDataType) {
@@ -176,7 +205,8 @@ function App() {
                   headers={headers}
                   cellPropNames={cellPropNames}
                   rows={rows}
-                  handleSaveChanges={handleSaveChanges}
+                  handleSaveChanges={changeData}
+                  handleDelete={deleteData}
                   handleSetSelect={handleSetSelect}
                 />
               }
@@ -189,7 +219,8 @@ function App() {
                   headers={headers}
                   cellPropNames={cellPropNames}
                   rows={rows}
-                  handleSaveChanges={handleSaveChanges}
+                  handleSaveChanges={changeData}
+                  handleDelete={deleteData}
                   activeWordId={activeWordId}
                   handleNextClick={handleNextClick}
                   handlePrevClick={handlePrevClick}

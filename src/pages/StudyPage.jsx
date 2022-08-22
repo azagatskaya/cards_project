@@ -10,6 +10,7 @@ const StudyPage = ({
   handleNextClick,
   handlePrevClick,
   handleSaveChanges,
+  handleDelete,
 }) => {
   return (
     <>
@@ -28,6 +29,7 @@ const StudyPage = ({
         cellPropNames={cellPropNames}
         rows={rows}
         handleSaveChanges={handleSaveChanges}
+        handleDelete={handleDelete}
       />
     </>
   );

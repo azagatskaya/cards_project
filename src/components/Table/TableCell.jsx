@@ -3,9 +3,7 @@ import styles from "./Table.module.scss";
 
 export default function TableCell({
   cellPropName,
-  // cellValue,
   initialValue,
-  onInputChange,
   handleInputBlur,
   isEditable,
   isCanceled,
@@ -22,7 +20,9 @@ export default function TableCell({
   const handleBlur = (e) => {
     console.log("new", newCellValue);
     console.log(handleInputBlur);
+    // if (!isCanceled) {
     handleInputBlur({ [cellPropName]: e.target.value });
+    // }
   };
   // const value = isCanceled ? initialValue : newCellValue;
   return (

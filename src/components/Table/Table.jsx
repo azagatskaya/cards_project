@@ -7,7 +7,7 @@ export default function Table({
   cellPropNames,
   rows,
   handleSaveChanges,
-  handleRowDelete,
+  handleDelete,
 }) {
   const TableHeader = () => {
     return (
@@ -42,7 +42,7 @@ export default function Table({
             row={row}
             key={row.id.toString()}
             rowId={row.id}
-            onDelete={handleRowDelete}
+            handleDelete={handleDelete}
             handleSaveChanges={handleSaveChanges}
             cellPropNames={cellPropNames}
           />
