@@ -6,7 +6,7 @@ function CardSetButton({ id, rus_name, handleSetSelect }) {
   return (
     <Link
       to="/study"
-      key={rus_name}
+      key={id}
       id={id}
       onClick={() => handleSetSelect(id)}
       className={styles.cardSetButton}

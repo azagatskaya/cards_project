@@ -12,6 +12,8 @@ const StudyPage = ({
   handleSaveChanges,
   handleDelete,
 }) => {
+  console.log("rows", rows);
+  console.log("activeWordId", activeWordId);
   return (
     <>
       <Card

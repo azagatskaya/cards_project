@@ -40,8 +40,8 @@ function App() {
   }, [tableDataType]);
 
   useEffect(() => {
-    console.log("data", data);
     console.log("useEffect activeSetId");
+    console.log("data", data);
     let items = null;
     if (activeSetId === null) {
       items = data;
@@ -61,13 +61,13 @@ function App() {
           newRow = { ...newRow, [cell]: initialValue };
         }
       });
-      res = [...res, newRow];
+      return (res = [...res, newRow]);
     });
-    console.log("res", res);
+    console.log("activeWordId", activeWordId);
     setRows(res);
   }, [activeSetId, data]);
 
-  const changeData = (rowId, values) => {
+  const changeWord = (rowId, values) => {
     setData((prevState) => {
       return prevState.map((set) => {
         let changedData = [];
@@ -80,11 +80,37 @@ function App() {
             return { ...row, ...changedRow };
           });
         }
-        return changedData !== []
-          ? { ...set, ["data"]: [...changedData] }
-          : { ...set };
+        // let setData = set.data;
+        // console.log("changedData", changedData);
+        return changedData.length === 0
+          ? { ...set } //, ["data"]: [...setData] }
+          : { ...set, ["data"]: [...changedData] };
       });
     });
+  };
+  const changeSet = (rowId, values) => {
+    setData((prevState) => {
+      return prevState.map((set) => {
+        let changedData = {};
+        if (set.id === rowId) {
+          changedData = { ...set, ...values };
+        }
+        return changedData !== {} ? { ...set, ...changedData } : { ...set };
+      });
+    });
+  };
+
+  const changeData = (rowId, values) => {
+    switch (tableDataType) {
+      case "sets":
+        changeSet(rowId, values);
+        break;
+      case "words":
+        changeWord(rowId, values);
+        break;
+      default:
+        throw new Error("Unknown table data type");
+    }
   };
 
   const deleteSet = (rowId) => {
@@ -191,6 +217,8 @@ function App() {
     setTableDataType("sets");
     setActiveWordId(0);
   };
+  // console.log("rows", rows);
+  // console.log("activeWordId", activeWordId);
   return (
     <div className={styles.App}>
       <Header onReturnToHomePage={onReturnToHomePage} />

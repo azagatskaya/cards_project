@@ -30,6 +30,7 @@ export default function TableRow({
     console.log("save click");
     setIsRowEditable((prevState) => !prevState);
     handleSaveChanges(rowId, cellValues);
+    setInitialCellValues(cellValues);
   };
 
   const handleInputChange = () => {
