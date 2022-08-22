@@ -9,7 +9,7 @@ const StudyPage = ({
   activeWordId,
   handleNextClick,
   handlePrevClick,
-  onSaveChanges,
+  handleSaveChanges,
 }) => {
   return (
     <>
@@ -27,7 +27,7 @@ const StudyPage = ({
         headers={headers}
         cellPropNames={cellPropNames}
         rows={rows}
-        onSaveChanges={onSaveChanges}
+        handleSaveChanges={handleSaveChanges}
       />
     </>
   );

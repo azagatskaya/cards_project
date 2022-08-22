@@ -2,8 +2,13 @@ import React from "react";
 import styles from "./Table.module.scss";
 import TableRow from "./TableRow.jsx";
 
-export default function Table({ headers, cellPropNames, rows, onSaveChanges }) {
-  const handleRowDelete = (rowId) => {};
+export default function Table({
+  headers,
+  cellPropNames,
+  rows,
+  handleSaveChanges,
+  handleRowDelete,
+}) {
   const TableHeader = () => {
     return (
       <thead>
@@ -38,7 +43,7 @@ export default function Table({ headers, cellPropNames, rows, onSaveChanges }) {
             key={row.id.toString()}
             rowId={row.id}
             onDelete={handleRowDelete}
-            onSaveChanges={onSaveChanges}
+            handleSaveChanges={handleSaveChanges}
             cellPropNames={cellPropNames}
           />
         ))}

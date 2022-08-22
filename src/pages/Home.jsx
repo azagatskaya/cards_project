@@ -7,7 +7,7 @@ const Home = ({
   cellPropNames,
   rows,
   handleSetSelect,
-  onSaveChanges,
+  handleSaveChanges,
 }) => {
   return (
     <>
@@ -27,7 +27,7 @@ const Home = ({
         headers={headers}
         cellPropNames={cellPropNames}
         rows={rows}
-        onSaveChanges={onSaveChanges}
+        handleSaveChanges={handleSaveChanges}
       />
     </>
   );

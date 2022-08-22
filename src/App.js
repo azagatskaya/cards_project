@@ -7,13 +7,16 @@ import Home from "./pages/Home.jsx";
 import StudyPage from "./pages/StudyPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
+import words from "./words.json";
+
 let url = "";
 
 function App() {
+  const [data, setData] = useState(words);
   const [rows, setRows] = useState([]);
+  const [tableDataType, setTableDataType] = useState("sets");
   const [activeSetId, setActiveSetId] = useState(null);
   const [activeWordId, setActiveWordId] = useState(0);
-  const [tableDataType, setTableDataType] = useState("sets");
   const [headers, setHeaders] = useState([]);
   const [cellPropNames, setCellPropNames] = useState([]);
 
@@ -29,55 +32,66 @@ function App() {
     }
     setActiveWordId(id);
   };
+
+  useEffect(() => {
+    console.log("useEffect tableDataType");
+    setHeaders(() => getHeaders(tableDataType));
+    setCellPropNames(() => getCellPropNames(tableDataType));
+  }, [tableDataType]);
+
   useEffect(() => {
     console.log("useEffect activeSetId");
-    url =
-      activeSetId === null
-        ? "https://62d2e89181cb1ecafa67c833.mockapi.io/setsOfWords/setsOfWords"
-        : "https://62d2e89181cb1ecafa67c833.mockapi.io/setsOfWords/setsOfWords?id=" +
-          activeSetId;
-    fetch(url)
-      .then((res) => res.json())
-      .then((arr) => {
-        const propNames = getCellPropNames(
-          activeSetId === null ? "sets" : "words"
-        );
-        let res = [];
-        let data = activeSetId === null ? arr : arr[0].data;
-        data.map((elem) => {
-          let newRow = {};
-          propNames.map((cell) => {
-            if (elem.hasOwnProperty(cell) || cell === "numberOfCards") {
-              const initialValue =
-                cell === "numberOfCards" ? elem.data.length : elem[cell];
-              newRow = { ...newRow, [cell]: initialValue };
-            }
-          });
-          res = [...res, newRow];
-        });
-        setRows(res);
-      });
-  }, [activeSetId]);
-  // const makeCounter = () => {
-  //   let count = 0;
-
-  //   return function () {
-  //     return count++;
-  //   };
-  // };
-  // let counter = makeCounter();
-
-  const onSaveChanges = (e) => {
-    console.log("onSaveChanges");
-    console.log(e);
-    const childCount = e.currentTarget.parentNode.parentNode.childElementCount;
-    console.log(childCount);
-    for (let i = 0; i < childCount - 1; i++) {
-      console.log(
-        e.target.parentNode.parentNode.childNodes[i].firstChild.value
-      );
+    let items = null;
+    if (activeSetId === null) {
+      items = data;
+    } else if (typeof activeSetId === "number") {
+      items = data.filter((el) => {
+        return el.id === activeSetId;
+      })[0].data;
     }
+    let res = [];
+    const propNames = getCellPropNames(activeSetId === null ? "sets" : "words");
+    items.map((elem) => {
+      let newRow = {};
+      propNames.map((cell) => {
+        if (elem.hasOwnProperty(cell) || cell === "numberOfCards") {
+          const initialValue =
+            cell === "numberOfCards" ? elem.data.length : elem[cell];
+          newRow = { ...newRow, [cell]: initialValue };
+        }
+      });
+      res = [...res, newRow];
+    });
+    console.log("res", res);
+    setRows(res);
+  }, [activeSetId]);
+
+  const handleSaveChanges = (rowId, values) => {
+    console.log("handleSaveChanges");
+    changeData(rowId, values);
   };
+
+  const changeData = (rowId, values) => {
+    setData((prevState) => {
+      const newData = prevState.map((set) => {
+        let changedData = [];
+        if (set.id === activeSetId) {
+          changedData = set.data.map((row) => {
+            let changedRow = {};
+            if (row.id === rowId) {
+              changedRow = { ...row, ...values };
+            }
+            return { ...row, ...changedRow };
+          });
+        }
+        return changedData !== []
+          ? { ...set, ["data"]: [...changedData] }
+          : { ...set };
+      });
+      return newData;
+    });
+  };
+
   function getHeaders(tableDataType) {
     let headCells = [];
     if (tableDataType === "sets") {
@@ -129,7 +143,6 @@ function App() {
   }
 
   function getCellPropNames(tableDataType) {
-    console.log(tableDataType);
     if (tableDataType === "sets") {
       return ["id", "rus_name", "numberOfCards", "date"];
     } else if (tableDataType === "words") {
@@ -140,15 +153,9 @@ function App() {
   }
   const handleSetSelect = (id) => {
     console.log("handleSetSelect");
-    setActiveSetId(id);
     setTableDataType("words");
+    setActiveSetId(id);
   };
-
-  useEffect(() => {
-    console.log("useEffect tableDataType");
-    setHeaders(() => getHeaders(tableDataType));
-    setCellPropNames(() => getCellPropNames(tableDataType));
-  }, [tableDataType]);
 
   const onReturnToHomePage = () => {
     setActiveSetId(null);
@@ -166,11 +173,10 @@ function App() {
               path="/"
               element={
                 <Home
-                  // items={items}
                   headers={headers}
                   cellPropNames={cellPropNames}
                   rows={rows}
-                  onSaveChanges={onSaveChanges}
+                  handleSaveChanges={handleSaveChanges}
                   handleSetSelect={handleSetSelect}
                 />
               }
@@ -180,11 +186,10 @@ function App() {
               path="/study"
               element={
                 <StudyPage
-                  // items={items}
                   headers={headers}
                   cellPropNames={cellPropNames}
                   rows={rows}
-                  onSaveChanges={onSaveChanges}
+                  handleSaveChanges={handleSaveChanges}
                   activeWordId={activeWordId}
                   handleNextClick={handleNextClick}
                   handlePrevClick={handlePrevClick}

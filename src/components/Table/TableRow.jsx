@@ -1,21 +1,19 @@
-import React from "react";
+import { useState } from "react";
 import styles from "./Table.module.scss";
 import TableCell from "./TableCell.jsx";
 import TableCellActions from "./TableCellActions.jsx";
 
 export default function TableRow({
-  // rows,
   row,
-  // tableType,
   rowId,
   onDelete,
-  onSaveChanges,
+  handleSaveChanges,
   cellPropNames,
 }) {
-  const [isRowEditable, setIsRowEditable] = React.useState(false);
-  const [isCanceled, setIsCanceled] = React.useState(false);
+  const [cellValues, setCellValues] = useState(row);
+  const [isRowEditable, setIsRowEditable] = useState(false);
+  const [isCanceled, setIsCanceled] = useState(false);
 
-  // console.log(cellValues);
   const handleEditClick = () => {
     console.log("edit click");
     setIsRowEditable(true);
@@ -26,29 +24,31 @@ export default function TableRow({
     setIsRowEditable(false);
     setIsCanceled(true);
   };
-  const handleSaveClick = (e) => {
+  const handleSaveClick = (newValue) => {
     console.log("save click");
     setIsRowEditable((prevState) => !prevState);
-    onSaveChanges(row);
+    handleSaveChanges(rowId, cellValues);
   };
   const handleDeleteClick = (rowId) => {
     console.log("delete click");
     onDelete(rowId);
   };
-  const handleInputChange = (newValue, header) => {
+  const handleInputChange = () => {
     console.log("input change");
   };
   const handleInputBlur = (newValue) => {
     console.log("input blur");
     console.log(newValue);
+    setCellValues((prevState) => {
+      return { ...prevState, ...newValue };
+    });
   };
-
   return (
     <tr className={styles.table__row}>
-      {Object.entries(row).map(([key, value]) => {
+      {Object.entries(cellValues).map(([key, value]) => {
         return (
           <TableCell
-            cellPropName={cellPropNames[key]}
+            cellPropName={key}
             key={value.toString()}
             initialValue={value}
             rowId={rowId}

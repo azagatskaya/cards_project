@@ -1,8 +1,8 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import styles from "./Table.module.scss";
 
 export default function TableCell({
-  header,
+  cellPropName,
   // cellValue,
   initialValue,
   onInputChange,
@@ -10,17 +10,19 @@ export default function TableCell({
   isEditable,
   isCanceled,
 }) {
-  const [newCellValue, setNewCellValue] = React.useState(initialValue);
+  const [newCellValue, setNewCellValue] = useState(initialValue);
   const handleInputChange = (e) => {
     setNewCellValue(e.target.value);
   };
-  React.useEffect(() => {
+
+  useEffect(() => {
     setNewCellValue(initialValue);
   }, [isCanceled]);
-  const handleBlur = () => {
+
+  const handleBlur = (e) => {
     console.log("new", newCellValue);
     console.log(handleInputBlur);
-    handleInputBlur(newCellValue);
+    handleInputBlur({ [cellPropName]: e.target.value });
   };
   // const value = isCanceled ? initialValue : newCellValue;
   return (

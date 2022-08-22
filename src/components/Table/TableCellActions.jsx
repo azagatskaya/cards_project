@@ -11,7 +11,7 @@ export default function TableCell({
   isEditable,
 }) {
   const handleSaveClick = (e) => {
-    onSaveClick(e);
+    onSaveClick();
   };
   const handleEditClick = (e) => {
     console.log(isEditable);
@@ -32,7 +32,7 @@ export default function TableCell({
     <td className={`${styles.table__cell} ${styles.table__cellButtons}`}>
       <button
         className={styles.button + " " + styles.button_save}
-        onClick={(e) => handleSaveClick(e, rowId)}
+        onClick={handleSaveClick}
         data-btn-action={"save"}
       ></button>
       <button
