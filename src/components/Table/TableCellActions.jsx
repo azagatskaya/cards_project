@@ -13,12 +13,10 @@ export default function TableCell({
     isEditable ? handleCancelClick() : handleEditClick();
   };
 
-  let editBtnClasses;
-  if (isEditable) {
-    editBtnClasses = `${styles.button} ${styles.button_cancel}`;
-  } else {
-    editBtnClasses = `${styles.button} ${styles.button_edit}`;
-  }
+  let editBtnClasses = `${styles.button}`;
+  editBtnClasses = isEditable
+    ? (editBtnClasses += ` ${styles.button_cancel}`)
+    : (editBtnClasses += ` ${styles.button_edit}`);
 
   return (
     <td className={`${styles.table__cell} ${styles.table__cellButtons}`}>

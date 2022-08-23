@@ -15,13 +15,13 @@ function Card({
     setIsRotated((prevState) => !prevState);
   };
 
-  const handlePrevClick = (event, id) => {
+  const handlePrevClick = (event) => {
     event.stopPropagation();
-    onPrevClick(id);
+    onPrevClick();
   };
-  const handleNextClick = (event, id) => {
+  const handleNextClick = (event) => {
     event.stopPropagation();
-    onNextClick(id);
+    onNextClick();
   };
 
   let cardClasses, backClasses;
@@ -38,7 +38,7 @@ function Card({
       <div className={cardClasses} onClick={handleRotateClick}>
         <button
           className={styles.prev}
-          onClick={(event) => handlePrevClick(event, id - 1)}
+          onClick={(event) => handlePrevClick(event)}
         ></button>
         <div>
           {id + 1}/{cardsCount}
@@ -50,7 +50,7 @@ function Card({
         <button className={styles.button_rotate}></button>
         <button
           className={styles.next}
-          onClick={(event) => handleNextClick(event, id + 1)}
+          onClick={(event) => handleNextClick(event)}
         ></button>
       </div>
       <div className={backClasses} onClick={handleRotateClick}>
