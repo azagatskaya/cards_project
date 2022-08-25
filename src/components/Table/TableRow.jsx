@@ -45,7 +45,7 @@ export default function TableRow({
             key={value.toString()}
             initialValue={value}
             rowId={rowId}
-            isEditable={isRowEditable}
+            isRowEditable={isRowEditable}
             isCanceled={isCanceled}
             handleInputBlur={handleInputBlur}
           />

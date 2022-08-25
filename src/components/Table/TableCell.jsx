@@ -6,7 +6,7 @@ export default function TableCell({
   initialValue,
   isFieldEditable,
   handleInputBlur,
-  isEditable,
+  isRowEditable,
   isCanceled,
 }) {
   const [newCellValue, setNewCellValue] = useState(initialValue);
@@ -23,15 +23,17 @@ export default function TableCell({
     handleInputBlur({ [cellPropName]: e.target.value });
   };
 
+  const isCellEditable =
+    isRowEditable &&
+    cellPropName !== "id" &&
+    cellPropName !== "numberOfCards" &&
+    cellPropName !== "date";
   return (
     <td className={styles.table__cell}>
       <input
-        disabled={!isEditable}
+        disabled={!isCellEditable}
         className={
-          // isEditable && !isNaN(newCellValue.length)
-          isEditable &&
-          cellPropName !== "id" &&
-          cellPropName !== "numberOfCards"
+          isCellEditable
             ? `${styles.input} ${styles.input__editable}`
             : styles.input
         }

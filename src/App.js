@@ -113,9 +113,7 @@ function App() {
   const changeWord = (set, rowId, values) => {
     return set.data.map((row) => {
       let newRow = {};
-      if (row.id === rowId) {
-        newRow = { ...row, ...values };
-      }
+      if (row.id === rowId) newRow = { ...row, ...values };
       return { ...row, ...newRow };
     });
   };
@@ -126,9 +124,7 @@ function App() {
       : setData((prevState) => {
           return prevState.map((set) => {
             let changedData = {};
-            if (set.id === rowId) {
-              changedData = { ...set, ...values };
-            }
+            if (set.id === rowId) changedData = { ...set, ...values };
             return Object.keys(changedData).length !== 0
               ? { ...set, ...changedData }
               : { ...set };
