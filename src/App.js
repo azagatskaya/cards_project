@@ -72,17 +72,22 @@ function App() {
     items.map((elem) => {
       let newRow = {};
       cellPropNames.map((cell) => {
-        if (elem.hasOwnProperty(cell) || cell === "numberOfCards") {
-          const initialValue =
-            cell === "numberOfCards" ? elem.data.length : elem[cell];
-          newRow = { ...newRow, [cell]: initialValue };
-        }
+        newRow = getCell(elem, cell, newRow);
         return newRow;
       });
       res = [...res, newRow];
       return res;
     });
     return res;
+  };
+
+  const getCell = (elem, cell, newRow) => {
+    if (elem.hasOwnProperty(cell) || cell === "numberOfCards") {
+      const initialValue =
+        cell === "numberOfCards" ? elem.data.length : elem[cell];
+      newRow = { ...newRow, [cell]: initialValue };
+    }
+    return newRow;
   };
 
   const changeData = (rowId, values) => {
@@ -94,31 +99,31 @@ function App() {
   const handleWordOperation = (rowId, values) => {
     setData((prevState) => {
       return prevState.map((set) => {
-        let changedData = [];
+        let newData = [];
         if (set.id === activeSetId) {
-          changedData =
+          newData =
             typeof values === "undefined"
-              ? deleteWrd(set, rowId)
+              ? deleteWord(set, rowId)
               : changeWord(set, rowId, values);
         }
-        return changedData.length === 0
+        return newData.length === 0
           ? { ...set }
-          : { ...set, ["data"]: [...changedData] };
+          : { ...set, ["data"]: [...newData] };
       });
     });
   };
 
-  const deleteWrd = (set, rowId) => {
+  const deleteWord = (set, rowId) => {
     return set.data.filter((row) => row.id !== rowId);
   };
 
   const changeWord = (set, rowId, values) => {
     return set.data.map((row) => {
-      let changedRow = {};
+      let newRow = {};
       if (row.id === rowId) {
-        changedRow = { ...row, ...values };
+        newRow = { ...row, ...values };
       }
-      return { ...row, ...changedRow };
+      return { ...row, ...newRow };
     });
   };
 
@@ -131,7 +136,9 @@ function App() {
             if (set.id === rowId) {
               changedData = { ...set, ...values };
             }
-            return changedData !== {} ? { ...set, ...changedData } : { ...set };
+            return Object.keys(changedData).length !== 0
+              ? { ...set, ...changedData }
+              : { ...set };
           });
         });
   };
