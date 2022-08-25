@@ -491,46 +491,16 @@ export const words = [
   },
 ];
 
-export const setHeader = [
-  {
-    id: "id",
-    label: "ID",
-  },
-  {
-    id: "rus_name",
-    label: "Название",
-  },
-  {
-    id: "numberOfCards",
-    label: "Колич.слов",
-  },
-  {
-    id: "date",
-    label: "Дата",
-  },
+export const groupCellNames = [
+  { id: "id", label: "ID", isEditable: false },
+  { id: "rus_name", label: "Название", isEditable: true },
+  { id: "numberOfCards", label: "Колич.слов", isEditable: false },
+  { id: "date", label: "Дата", isEditable: false },
 ];
-
-export const wordHeader = [
-  {
-    id: "id",
-    label: "ID",
-  },
-  {
-    id: "word",
-    label: "Слово",
-  },
-  {
-    id: "transcription",
-    label: "[...]",
-  },
-  {
-    id: "value",
-    label: "Значение",
-  },
-  {
-    id: "tags",
-    label: "Теги",
-  },
+export const wordCellNames = [
+  { id: "id", label: "ID", isEditable: false },
+  { id: "word", label: "Слово", isEditable: true },
+  { id: "transcription", label: "[...]", isEditable: true },
+  { id: "value", label: "Значение", isEditable: true },
+  { id: "tags", label: "Теги", isEditable: true },
 ];
-export const setCellNames = ["id", "rus_name", "numberOfCards", "date"];
-export const wordCellNames = ["id", "word", "transcription", "value", "tags"];

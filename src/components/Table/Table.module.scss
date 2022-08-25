@@ -24,6 +24,10 @@
 
 	&__headerCell {
 		background-color: $second_bg;
+
+		&:last-child {
+			text-align: right;
+		}
 	}
 
 	&__headerCell,
@@ -35,8 +39,6 @@
 	&__cell {
 		background-color: #ffffff;
 		font-size: 14px;
-
-
 
 		&Buttons {
 			// padding: 0;
@@ -78,6 +80,14 @@
 	&_delete {
 		background-image: url(../../../public/images/trash-can-solid.svg);
 		margin-right: 0;
+	}
+
+	&_add {
+		background-image: url(../../../public/images/plus-solid.svg);
+		margin-right: 0;
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
 	}
 }
 

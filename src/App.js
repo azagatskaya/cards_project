@@ -7,13 +7,7 @@ import Home from "./pages/Home.jsx";
 import StudyPage from "./pages/StudyPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
-import {
-  words,
-  setHeader,
-  wordHeader,
-  setCellNames,
-  wordCellNames,
-} from "./data.js";
+import { words, groupCellNames, wordCellNames } from "./data.js";
 
 function App() {
   const [data, setData] = useState(words);
@@ -21,14 +15,12 @@ function App() {
   const [tableDataType, setTableDataType] = useState("sets");
   const [activeSetId, setActiveSetId] = useState(null);
   const [activeWordId, setActiveWordId] = useState(0);
-  const [headers, setHeaders] = useState([]);
   const [cellPropNames, setCellPropNames] = useState(() =>
     getCellPropNames("sets")
   );
 
   useEffect(() => {
     setCellPropNames(() => getCellPropNames(tableDataType));
-    setHeaders(() => getHeaders(tableDataType));
   }, [tableDataType]);
 
   useEffect(() => {
@@ -71,8 +63,9 @@ function App() {
     let res = [];
     items.map((elem) => {
       let newRow = {};
+      console.log(cellPropNames);
       cellPropNames.map((cell) => {
-        newRow = getCell(elem, cell, newRow);
+        newRow = getCell(elem, cell.id, newRow);
         return newRow;
       });
       res = [...res, newRow];
@@ -147,12 +140,8 @@ function App() {
     setData((prevState) => prevState.filter((set) => set.id !== rowId));
   };
 
-  function getHeaders(tableDataType) {
-    return tableDataType === "sets" ? setHeader : wordHeader;
-  }
-
   function getCellPropNames(tableDataType) {
-    return tableDataType === "sets" ? setCellNames : wordCellNames;
+    return tableDataType === "sets" ? groupCellNames : wordCellNames;
   }
 
   return (
@@ -166,7 +155,7 @@ function App() {
               path="/"
               element={
                 <Home
-                  headers={headers}
+                  headers={cellPropNames}
                   cellPropNames={cellPropNames}
                   rows={rows}
                   handleSaveChanges={changeData}
@@ -180,7 +169,7 @@ function App() {
               path="/study"
               element={
                 <StudyPage
-                  headers={headers}
+                  headers={cellPropNames}
                   cellPropNames={cellPropNames}
                   rows={rows}
                   handleSaveChanges={changeData}

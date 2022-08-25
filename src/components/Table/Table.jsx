@@ -27,7 +27,11 @@ export default function Table({
             className={styles.table__headerCell}
             key={"actions"}
             id={"actions"}
-          ></td>
+          >
+            <button
+              className={styles.button + " " + styles.button_add}
+            ></button>
+          </td>
         </tr>
       </thead>
     );
