@@ -9,33 +9,33 @@ export default function Table({
   handleSaveChanges,
   handleDelete,
 }) {
-  const TableHeader = () => {
+  const renderHeaderCell = (id, label) => {
+    return (
+      <td className={styles.table__headerCell} key={id.toString()} id={id}>
+        {label}
+      </td>
+    );
+  };
+  const renderHeader = () => {
     return (
       <thead>
         <tr className={styles.table__headerRow}>
-          {headers.map((header) => (
-            <TableHeaderCell
-              key={header.id.toString()}
-              id={header.id}
-              label={header.label}
-            />
-          ))}
-          <TableHeaderCell key={"actions"} id="actions" />
+          {headers.map((header) => {
+            return renderHeaderCell(header.id, header.label);
+          })}
+          <td
+            className={styles.table__headerCell}
+            key={"actions"}
+            id={"actions"}
+          ></td>
         </tr>
       </thead>
     );
   };
 
-  const TableHeaderCell = ({ id, label }) => {
-    return (
-      <td className={styles.table__headerCell} id={id}>
-        {label}
-      </td>
-    );
-  };
   return (
     <table className={styles.table}>
-      <TableHeader key={"header"} />
+      {renderHeader()}
       <tbody>
         {rows.map((row) => (
           <TableRow

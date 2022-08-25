@@ -15,27 +15,20 @@ export default function TableRow({
   const [isCanceled, setIsCanceled] = useState(false);
 
   const handleEditClick = () => {
-    console.log("edit click");
     setIsRowEditable(true);
     setIsCanceled(false);
-    console.log("isCanceled", isCanceled);
   };
   const handleCancelClick = () => {
-    console.log("cancel click");
     setIsRowEditable(false);
     setIsCanceled(true);
     setCellValues({ ...initialCellValues });
   };
   const handleSaveClick = () => {
-    console.log("save click");
     setIsRowEditable((prevState) => !prevState);
     handleSaveChanges(rowId, cellValues);
     setInitialCellValues(cellValues);
   };
 
-  const handleInputChange = () => {
-    console.log("input change");
-  };
   const handleInputBlur = (newValue) => {
     console.log("input blur");
     console.log(newValue);
@@ -54,13 +47,12 @@ export default function TableRow({
             rowId={rowId}
             isEditable={isRowEditable}
             isCanceled={isCanceled}
-            onInputChange={handleInputChange}
             handleInputBlur={handleInputBlur}
           />
         );
       })}
       <TableCellActions
-        key={rowId.toString()}
+        key={"row " + rowId.toString()}
         rowId={rowId}
         cellValue="actions"
         handleEditClick={handleEditClick}
