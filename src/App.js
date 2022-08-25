@@ -16,7 +16,9 @@ function App() {
   const [activeSetId, setActiveSetId] = useState(null);
   const [activeWordId, setActiveWordId] = useState(0);
   const [headers, setHeaders] = useState([]);
-  const [cellPropNames, setCellPropNames] = useState([]);
+  const [cellPropNames, setCellPropNames] = useState(() =>
+    getCellPropNames("sets")
+  );
 
   const handleSetSelect = (id) => {
     console.log("handleSetSelect");
@@ -43,43 +45,43 @@ function App() {
 
   useEffect(() => {
     console.log("useEffect tableDataType");
-    setHeaders(() => getHeaders(tableDataType));
     setCellPropNames(() => getCellPropNames(tableDataType));
+    setHeaders(() => getHeaders(tableDataType));
   }, [tableDataType]);
 
-  useEffect(() => {
-    console.log("useEffect activeSetId");
-    console.log("data", data);
-    setCellPropNames(() => getCellPropNames(tableDataType));
-    // let items = null;
-    // if (activeSetId === null) {
-    //   items = data;
-    // } else if (typeof activeSetId === "number") {
-    //   items = data.filter((el) => {
-    //     return el.id === activeSetId;
-    //   })[0].data;
-    // }
-    // // const propNames = getCellPropNames(activeSetId === null ? "sets" : "words");
-    // let res = [];
-    // items.map((elem) => {
-    //   let newRow = {};
-    //   cellPropNames.map((cell) => {
-    //     if (elem.hasOwnProperty(cell) || cell === "numberOfCards") {
-    //       const initialValue =
-    //         cell === "numberOfCards" ? elem.data.length : elem[cell];
-    //       newRow = { ...newRow, [cell]: initialValue };
-    //     }
-    //     return newRow;
-    //   });
-    //   res = [...res, newRow];
-    //   return res;
-    // });
-    // console.log("activeWordId", activeWordId);
-    // setRows(res);
-  }, [activeSetId, data]);
+  // useEffect(() => {
+  // console.log("useEffect activeSetId");
+  // console.log("data", data);
+  // setCellPropNames(() => getCellPropNames(tableDataType));
+  // let items = null;
+  // if (activeSetId === null) {
+  //   items = data;
+  // } else if (typeof activeSetId === "number") {
+  //   items = data.filter((el) => {
+  //     return el.id === activeSetId;
+  //   })[0].data;
+  // }
+  // // const propNames = getCellPropNames(activeSetId === null ? "sets" : "words");
+  // let res = [];
+  // items.map((elem) => {
+  //   let newRow = {};
+  //   cellPropNames.map((cell) => {
+  //     if (elem.hasOwnProperty(cell) || cell === "numberOfCards") {
+  //       const initialValue =
+  //         cell === "numberOfCards" ? elem.data.length : elem[cell];
+  //       newRow = { ...newRow, [cell]: initialValue };
+  //     }
+  //     return newRow;
+  //   });
+  //   res = [...res, newRow];
+  //   return res;
+  // });
+  // console.log("activeWordId", activeWordId);
+  // setRows(res);
+  // }, [activeSetId, data]);
 
   useEffect(() => {
-    console.log("useEffect cellPropNames");
+    console.log("useEffect cellPropNames & data");
     console.log("cellPropNames", cellPropNames);
 
     let items = null;
@@ -106,7 +108,7 @@ function App() {
     });
     console.log("activeWordId", activeWordId);
     setRows(res);
-  }, [cellPropNames]);
+  }, [cellPropNames, data]);
 
   const changeWord = (rowId, values) => {
     setData((prevState) => {
