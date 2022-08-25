@@ -106,8 +106,14 @@ function App() {
     });
   };
 
+  const filterId = (data, id) => data.id !== id;
+
   const deleteWord = (set, rowId) => {
-    return set.data.filter((row) => row.id !== rowId);
+    return set.data.filter((row) => filterId(row, rowId));
+  };
+
+  const deleteSet = (rowId) => {
+    setData((prevState) => prevState.filter((set) => filterId(set, rowId)));
   };
 
   const changeWord = (set, rowId, values) => {
@@ -130,10 +136,6 @@ function App() {
               : { ...set };
           });
         });
-  };
-
-  const deleteSet = (rowId) => {
-    setData((prevState) => prevState.filter((set) => set.id !== rowId));
   };
 
   function getCellPropNames(tableDataType) {
