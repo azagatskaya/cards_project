@@ -10,7 +10,6 @@ const Home = ({
   handleSetSelect,
   handleSaveChanges,
 }) => {
-  console.log("Home rows", rows);
   return (
     <>
       <div className={styles.wrapper}>

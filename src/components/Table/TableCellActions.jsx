@@ -23,17 +23,17 @@ export default function TableCell({
       <button
         className={styles.button + " " + styles.button_save}
         onClick={handleSaveClick}
-        data-btn-action={"save"}
+        data-action={"save"}
       ></button>
       <button
         className={editBtnClasses}
         onClick={(e) => onEditClick(e)}
-        data-btn-action={"edit"}
+        data-action={"edit"}
       ></button>
       <button
         className={styles.button + " " + styles.button_delete}
-        onClick={() => handleDelete(rowId)}
-        data-btn-action={"delete"}
+        onClick={(e) => handleDelete(rowId)}
+        data-action={"delete"}
       ></button>
     </td>
   );

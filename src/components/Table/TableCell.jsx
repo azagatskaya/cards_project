@@ -4,11 +4,13 @@ import styles from "./Table.module.scss";
 export default function TableCell({
   cellPropName,
   initialValue,
+  isFieldEditable,
   handleInputBlur,
-  isEditable,
+  isRowEditable,
   isCanceled,
 }) {
   const [newCellValue, setNewCellValue] = useState(initialValue);
+
   const handleInputChange = (e) => {
     setNewCellValue(e.target.value);
   };
@@ -20,12 +22,18 @@ export default function TableCell({
   const handleBlur = (e) => {
     handleInputBlur({ [cellPropName]: e.target.value });
   };
+
+  const isCellEditable =
+    isRowEditable &&
+    cellPropName !== "id" &&
+    cellPropName !== "numberOfCards" &&
+    cellPropName !== "date";
   return (
     <td className={styles.table__cell}>
       <input
-        disabled={!isEditable}
+        disabled={!isCellEditable}
         className={
-          isEditable && !isNaN(newCellValue.length)
+          isCellEditable
             ? `${styles.input} ${styles.input__editable}`
             : styles.input
         }
