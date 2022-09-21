@@ -5,7 +5,7 @@ import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Home from "./pages/Home.jsx";
 import StudyPage from "./pages/StudyPage.jsx";
-import NotFound from "./pages/NotFound.jsx";
+import Page404 from "./pages/Page404.jsx";
 
 import { words, groupCellNames, wordCellNames } from "./data.js";
 
@@ -164,7 +164,7 @@ function App() {
             />
             <Route
               exact
-              path="/study"
+              path="/study/:id"
               element={
                 <StudyPage
                   headers={cellPropNames}
@@ -178,7 +178,7 @@ function App() {
                 />
               }
             />
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<Page404 />} />
           </Routes>
         </div>
       </main>

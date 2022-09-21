@@ -1,4 +1,4 @@
-import React from "react";
+import {useState} from "react";
 import styles from "./Table.module.scss";
 import TableRow from "./TableRow.jsx";
 
@@ -9,6 +9,10 @@ export default function Table({
   handleSaveChanges,
   handleDelete,
 }) {
+  const [isAddFieldVisible, setIsAddFieldVisible] = useState(false);
+  const showAddField = () => {
+    setIsAddFieldVisible(prevState => !prevState);
+  }
   const renderHeaderCell = (id, label) => {
     return (
       <td className={styles.table__headerCell} key={id.toString()} id={id}>
@@ -29,7 +33,7 @@ export default function Table({
             id={"actions"}
           >
             <button
-              className={styles.button + " " + styles.button_add}
+              className={styles.button + " " + styles.button_add} onClick={showAddField}
             ></button>
           </td>
         </tr>

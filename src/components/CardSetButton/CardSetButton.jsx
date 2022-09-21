@@ -5,7 +5,7 @@ import styles from "./CardSetButton.module.scss";
 function CardSetButton({ id, rus_name, handleSetSelect }) {
   return (
     <Link
-      to="/study"
+      to={`/study/${id}`}
       key={id}
       id={id}
       onClick={() => handleSetSelect(id)}
