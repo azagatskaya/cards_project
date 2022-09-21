@@ -1,3 +1,4 @@
+import { useParams, Link } from "react-router-dom";
 import styles from "./Home.module.scss";
 import Card from "../components/Card/Card.jsx";
 import Table from "../components/Table/Table.jsx";
@@ -12,6 +13,8 @@ const StudyPage = ({
   handleSaveChanges,
   handleDelete,
 }) => {
+  const { setId } = useParams();
+
   return (
     <>
       <Card
