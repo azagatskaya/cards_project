@@ -33,18 +33,30 @@ export default function Table({
             id={"actions"}
           >
             <button
-              className={styles.button + " " + styles.button_add} onClick={showAddField}
+              className={styles.button + " " + styles.button_showAddRow} onClick={showAddField}
             ></button>
           </td>
         </tr>
       </thead>
     );
   };
-
+  const renderEmptyRow = () => {
+    return (<TableRow
+        row={cellPropNames.length === 4 ? '    ' : '     '}
+        key={'add'}
+        rowId={'add'}
+        handleDelete={handleDelete}
+        handleSaveChanges={handleSaveChanges}
+        cellPropNames={cellPropNames}
+        isEditable={true}
+    />)
+  }
+  const emptyRow = isAddFieldVisible ? renderEmptyRow() : null;
   return (
     <table className={styles.table}>
       {renderHeader()}
       <tbody>
+      {emptyRow}
         {rows.map((row) => (
           <TableRow
             row={row}

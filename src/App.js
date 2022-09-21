@@ -63,7 +63,7 @@ function App() {
     let res = [];
     items.map((elem) => {
       let newRow = {};
-      console.log(cellPropNames);
+      // console.log(cellPropNames);
       cellPropNames.map((cell) => {
         newRow = getCell(elem, cell.id, newRow);
         return newRow;

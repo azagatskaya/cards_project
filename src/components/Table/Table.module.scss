@@ -41,7 +41,12 @@
 		font-size: 14px;
 
 		&Buttons {
-			// padding: 0;
+			min-width: 115px;
+		}
+		&AddButtons {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-end;
 			min-width: 115px;
 		}
 	}
@@ -82,12 +87,15 @@
 		margin-right: 0;
 	}
 
-	&_add {
+	&_showAddRow {
 		background-image: url(../../../public/images/plus-solid.svg);
 		margin-right: 0;
 		width: 32px;
 		height: 32px;
 		border-radius: 50%;
+	}
+	&_saveNewItem {
+		background-image: url(../../../public/images/add-new-item.svg);
 	}
 }
 

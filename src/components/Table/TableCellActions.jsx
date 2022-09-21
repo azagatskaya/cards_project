@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Table.module.scss";
 
-export default function TableCell({
+export default function TableCellActions({
   rowId,
   handleEditClick,
   handleCancelClick,
