@@ -18,6 +18,7 @@
   ],
   "rules": {
     "require-jsdoc": "off",
+    "camelcase": "off",
     "react/prop-types": "off"
   }
 }
