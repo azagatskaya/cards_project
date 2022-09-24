@@ -5,15 +5,14 @@
 
 ## Добавление нового слова:
 ![image](https://user-images.githubusercontent.com/61882557/192118916-8989a6d2-876b-4e37-b0c7-d67c02cfedf3.png)
-
-## Редактирование слов:
-![image](https://user-images.githubusercontent.com/61882557/192118978-8f879b93-54a0-41c9-beb9-c75ca20c6349.png)
-![image](https://user-images.githubusercontent.com/61882557/192119064-876b1d6b-b340-4cdc-87a0-4a23d2bb406d.png)
+![image](https://user-images.githubusercontent.com/61882557/192119141-1d2c59a9-7c9c-447c-ba36-ce96e6409659.png)
 
 ## Удаление: 
 ![image](https://user-images.githubusercontent.com/61882557/192118999-d099ecd9-16a5-4186-b301-c53f4b19a8fa.png)
 
-
+## Редактирование слов:
+![image](https://user-images.githubusercontent.com/61882557/192118978-8f879b93-54a0-41c9-beb9-c75ca20c6349.png)
+![image](https://user-images.githubusercontent.com/61882557/192119064-876b1d6b-b340-4cdc-87a0-4a23d2bb406d.png)
 
 # Getting Started with Create React App
 
