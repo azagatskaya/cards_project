@@ -9,7 +9,10 @@ function Header({ onReturnToHomePage }) {
       <Link to="/" onClick={onReturnToHomePage}>
         <div className={styles.logo}></div>
       </Link>
-      <Authentication />
+        <Link to="/" onClick={onReturnToHomePage}>
+            <div className={styles.header_link}>Home Page</div>
+        </Link>
+      {/*<Authentication />*/}
     </header>
   );
 }

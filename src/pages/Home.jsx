@@ -1,14 +1,14 @@
-import styles from "./Home.module.scss";
-import CardSetButton from "../components/CardSetButton/CardSetButton.jsx";
-import Table from "../components/Table/Table.jsx";
+import React from 'react';
+import styles from './Home.module.scss';
+import CardSetButton from '../components/CardSetButton/CardSetButton.jsx';
+import Table from '../components/Table/Table.jsx';
 
 const Home = ({
   headers,
-  cellPropNames,
   rows,
   handleDelete,
   handleSetSelect,
-  handleSaveChanges,
+  handleSaveChanges, handleAddNewItem,
 }) => {
   return (
     <>
@@ -24,12 +24,12 @@ const Home = ({
         </div>
       </div>
       <Table
-        key={"sets"}
+        key={'sets'}
         headers={headers}
-        cellPropNames={cellPropNames}
         rows={rows}
         handleSaveChanges={handleSaveChanges}
         handleDelete={handleDelete}
+        handleAddNewItem={handleAddNewItem}
       />
     </>
   );

@@ -2,18 +2,22 @@
 
 .wrapper {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  //display: flex;
+  //flex-direction: column;
+  //justify-content: center;
 }
 
 .buttons {
+  margin: 0 auto;
+  max-width: $table_width + 20px;
+  height: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
-.card_buttons__wrapper {}
+.card_buttons__wrapper {
+}

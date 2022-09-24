@@ -1,38 +1,39 @@
-import { useParams, Link } from "react-router-dom";
-import styles from "./Home.module.scss";
-import Card from "../components/Card/Card.jsx";
-import Table from "../components/Table/Table.jsx";
+import React from 'react';
+// import {useParams} from 'react-router-dom';
+import styles from './Home.module.scss';
+import Card from '../components/Card/Card.jsx';
+import Table from '../components/Table/Table.jsx';
 
 const StudyPage = ({
   headers,
-  cellPropNames,
   rows,
   activeWordId,
   handleNextClick,
   handlePrevClick,
   handleSaveChanges,
-  handleDelete,
-}) => {
-  const { setId } = useParams();
+  handleDelete, handleAddNewItem,
 
+}) => {
+  console.log('rows', rows.length);
+  const card = (rows.length === 0) ? null : <Card
+    {...rows[activeWordId]}
+    onNextClick={handleNextClick}
+    onPrevClick={handlePrevClick}
+    key={rows[activeWordId].id}
+    id={activeWordId}
+    cardsCount={rows.length}
+  />;
   return (
     <>
-      <Card
-        {...rows[activeWordId]}
-        onNextClick={handleNextClick}
-        onPrevClick={handlePrevClick}
-        key={rows[activeWordId].id}
-        id={activeWordId}
-        cardsCount={rows.length}
-      />
+      {card}
       <div className={styles.card_buttons__wrapper}></div>
       <Table
-        key={"words"}
+        key={'words'}
         headers={headers}
-        cellPropNames={cellPropNames}
         rows={rows}
         handleSaveChanges={handleSaveChanges}
         handleDelete={handleDelete}
+        handleAddNewItem={handleAddNewItem}
       />
     </>
   );

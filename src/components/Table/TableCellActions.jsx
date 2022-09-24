@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./Table.module.scss";
+import React from 'react';
+import styles from './Table.module.scss';
 
-export default function TableCell({
+export default function TableCellActions({
   rowId,
   handleEditClick,
   handleCancelClick,
@@ -10,30 +10,30 @@ export default function TableCell({
   isEditable,
 }) {
   const onEditClick = (e) => {
-    isEditable ? handleCancelClick() : handleEditClick();
+        isEditable ? handleCancelClick() : handleEditClick();
   };
 
   let editBtnClasses = `${styles.button}`;
-  editBtnClasses = isEditable
-    ? (editBtnClasses += ` ${styles.button_cancel}`)
-    : (editBtnClasses += ` ${styles.button_edit}`);
+  editBtnClasses = isEditable ?
+        (editBtnClasses += ` ${styles.button_cancel}`) :
+        (editBtnClasses += ` ${styles.button_edit}`);
 
   return (
-    <td className={`${styles.table__cell} ${styles.table__cellButtons}`}>
+    <td className={styles.table__cellButtons}>
       <button
-        className={styles.button + " " + styles.button_save}
+        className={styles.button + ' ' + styles.button_save}
         onClick={handleSaveClick}
-        data-action={"save"}
+        data-action={'save'}
       ></button>
       <button
         className={editBtnClasses}
         onClick={(e) => onEditClick(e)}
-        data-action={"edit"}
+        data-action={'edit'}
       ></button>
       <button
-        className={styles.button + " " + styles.button_delete}
+        className={styles.button + ' ' + styles.button_delete}
         onClick={(e) => handleDelete(rowId)}
-        data-action={"delete"}
+        data-action={'delete'}
       ></button>
     </td>
   );
