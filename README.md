@@ -1,3 +1,19 @@
+№ Проект для изучения иностранных слов по карточкам
+
+Группы слов для изучения:
+![image](https://user-images.githubusercontent.com/61882557/192118830-8c741766-cc8e-45f7-9af6-9893e3777f4f.png)
+
+Добавление нового слова:
+![image](https://user-images.githubusercontent.com/61882557/192118916-8989a6d2-876b-4e37-b0c7-d67c02cfedf3.png)
+
+Редактирование слов:
+![image](https://user-images.githubusercontent.com/61882557/192118978-8f879b93-54a0-41c9-beb9-c75ca20c6349.png)
+
+Удаление: 
+![image](https://user-images.githubusercontent.com/61882557/192118999-d099ecd9-16a5-4186-b301-c53f4b19a8fa.png)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
