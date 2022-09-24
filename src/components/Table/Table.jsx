@@ -13,7 +13,11 @@ export default function Table({
     setIsAddFieldVisible((prevState) => !prevState);
   };
   const renderHeaderCell = (id, label) => {
-    const cellClass = id === 'id' || id === 'numberOfCards' ? styles.table__header_cell_number : id === 'date' ? styles.table__header_cell_date : styles.table__header_cell;
+    const cellClass = id === 'id' || id === 'numberOfCards' ?
+        styles.table__header_cell_number :
+        id === 'date' ?
+            styles.table__header_cell_date :
+            styles.table__header_cell;
     return (
       <td className={cellClass} key={id.toString()} id={id}>
         {label}
@@ -41,9 +45,9 @@ export default function Table({
     >
       <button
         className={styles.button + ' ' + styles.button_addRow + ' ' +
-                    (isAddFieldVisible ?
-                        styles.button_addRow_close :
-                        styles.button_addRow_open)}
+              (isAddFieldVisible ?
+                  styles.button_addRow_close :
+                  styles.button_addRow_open)}
         onClick={showAddField}
       ></button>
     </td>);
@@ -53,8 +57,8 @@ export default function Table({
   const getTodayDate = () => {
     const date = new Date();
     const month = date.getMonth().length < 2 ?
-            date.getMonth() :
-            '0' + date.getMonth();
+        date.getMonth() :
+        '0' + date.getMonth();
     return `${date.getFullYear()}-${month}-${date.getDate()}`;
   };
   const renderEmptyRow = () => {

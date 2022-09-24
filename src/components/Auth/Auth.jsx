@@ -1,4 +1,5 @@
-import styles from "./Auth.module.scss";
+import React from 'react';
+import styles from './Auth.module.scss';
 
 const user = {
   isLoggedIn: false,
@@ -7,7 +8,7 @@ const user = {
 function Authentication() {
   return (
     <div className={styles.login_button}>
-      {user.isLoggedIn ? "Profile" : "Login"}
+      {user.isLoggedIn ? 'Profile' : 'Login'}
     </div>
   );
 }

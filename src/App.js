@@ -137,8 +137,7 @@ function App() {
     setData((prevState) => prevState.filter((set) => filterId(set, rowId)));
   };
   const addWord = (set, values) => {
-    const res = [...set.data, {...values, id: 888}];
-    return res;
+    return [...set.data, {...values, id: 888}];
   };
   const changeWord = (set, rowId, values) => {
     return set.data.map((row) => {
