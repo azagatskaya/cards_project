@@ -8,6 +8,7 @@
 
 ## Редактирование слов:
 ![image](https://user-images.githubusercontent.com/61882557/192118978-8f879b93-54a0-41c9-beb9-c75ca20c6349.png)
+![image](https://user-images.githubusercontent.com/61882557/192119064-876b1d6b-b340-4cdc-87a0-4a23d2bb406d.png)
 
 ## Удаление: 
 ![image](https://user-images.githubusercontent.com/61882557/192118999-d099ecd9-16a5-4186-b301-c53f4b19a8fa.png)
