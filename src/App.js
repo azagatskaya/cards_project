@@ -1,22 +1,22 @@
-import { Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
-import styles from "./App.module.scss";
-import Header from "./components/Header/Header.jsx";
-import Footer from "./components/Footer/Footer.jsx";
-import Home from "./pages/Home.jsx";
-import StudyPage from "./pages/StudyPage.jsx";
-import Page404 from "./pages/Page404.jsx";
+import {Routes, Route} from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import styles from './App.module.scss';
+import Header from './components/Header/Header.jsx';
+import Footer from './components/Footer/Footer.jsx';
+import Home from './pages/Home.jsx';
+import StudyPage from './pages/StudyPage.jsx';
+import Page404 from './pages/Page404.jsx';
 
-import { words, groupCellNames, wordCellNames } from "./data.js";
+import {words, groupCellNames, wordCellNames} from './data.js';
 
 function App() {
   const [data, setData] = useState(words);
   const [rows, setRows] = useState([]);
-  const [tableDataType, setTableDataType] = useState("sets");
+  const [tableDataType, setTableDataType] = useState('sets');
   const [activeSetId, setActiveSetId] = useState(null);
   const [activeWordId, setActiveWordId] = useState(0);
   const [cellPropNames, setCellPropNames] = useState(() =>
-    getCellPropNames("sets")
+    getCellPropNames('sets'),
   );
 
   useEffect(() => {
@@ -30,40 +30,40 @@ function App() {
   }, [cellPropNames, data]);
 
   const handleSetSelect = (id) => {
-    setTableDataType("words");
+    setTableDataType('words');
     setActiveSetId(id);
   };
 
   const onReturnToHomePage = () => {
     setActiveSetId(null);
-    setTableDataType("sets");
+    setTableDataType('sets');
     setActiveWordId(0);
   };
 
   const handleNextClick = () => {
     setActiveWordId((prevState) =>
-      prevState === rows.length - 1 ? 0 : prevState + 1
+            prevState === rows.length - 1 ? 0 : prevState + 1,
     );
   };
   const handlePrevClick = () => {
     setActiveWordId((prevState) =>
-      prevState === 0 ? rows.length - 1 : prevState - 1
+            prevState === 0 ? rows.length - 1 : prevState - 1,
     );
   };
 
   const getItems = () => {
-    return activeSetId === null
-      ? data
-      : data.filter((el) => {
-          return el.id === activeSetId;
-        })[0].data;
+    return activeSetId === null ?
+            data :
+            data.filter((el) => {
+              return el.id === activeSetId;
+            })[0].data;
   };
 
   const getRows = (items) => {
     let res = [];
+    // if (items.length > 0) {
     items.map((elem) => {
       let newRow = {};
-      // console.log(cellPropNames);
       cellPropNames.map((cell) => {
         newRow = getCell(elem, cell.id, newRow);
         return newRow;
@@ -75,18 +75,38 @@ function App() {
   };
 
   const getCell = (elem, cell, newRow) => {
-    if (elem.hasOwnProperty(cell) || cell === "numberOfCards") {
-      const initialValue =
-        cell === "numberOfCards" ? elem.data.length : elem[cell];
-      newRow = { ...newRow, [cell]: initialValue };
+    if (elem.hasOwnProperty(cell) || cell === 'numberOfCards') {
+      const initialValue = cell === 'numberOfCards' ?
+                elem.data.length :
+                elem[cell];
+      newRow = {...newRow, [cell]: initialValue};
     }
     return newRow;
   };
 
+  const addSet = (values) => {
+    console.log('values', values);
+    setData((prevState) => {
+      return [...prevState, {
+        data: [],
+        id: 777,
+        name: values.rus_name,
+        rus_name: values.rus_name,
+        date: values.date,
+      }];
+    });
+  };
+
+  const addData = (values) => {
+        tableDataType === 'words' ?
+            handleWordOperation(values) :
+            addSet(values);
+  };
+
   const changeData = (rowId, values) => {
-    tableDataType === "words"
-      ? handleWordOperation(rowId, values)
-      : changeSet(rowId, values);
+        tableDataType === 'words' ?
+            handleWordOperation(rowId, values) :
+            changeSet(rowId, values);
   };
 
   const handleWordOperation = (rowId, values) => {
@@ -94,14 +114,15 @@ function App() {
       return prevState.map((set) => {
         let newData = [];
         if (set.id === activeSetId) {
-          newData =
-            typeof values === "undefined"
-              ? deleteWord(set, rowId)
-              : changeWord(set, rowId, values);
+          newData = typeof rowId === 'object' ?
+                        addWord(set, rowId) :
+                        typeof values === 'undefined' ?
+                            deleteWord(set, rowId) :
+                            changeWord(set, rowId, values);
         }
-        return newData.length === 0
-          ? { ...set }
-          : { ...set, ["data"]: [...newData] };
+        return newData.length === 0 ?
+                    {...set} :
+                    {...set, ['data']: [...newData]};
       });
     });
   };
@@ -115,36 +136,39 @@ function App() {
   const deleteSet = (rowId) => {
     setData((prevState) => prevState.filter((set) => filterId(set, rowId)));
   };
-
+  const addWord = (set, values) => {
+    const res = [...set.data, {...values, id: 888}];
+    return res;
+  };
   const changeWord = (set, rowId, values) => {
     return set.data.map((row) => {
       let newRow = {};
-      if (row.id === rowId) newRow = { ...row, ...values };
-      return { ...row, ...newRow };
+      if (row.id === rowId) newRow = {...row, ...values};
+      return {...row, ...newRow};
     });
   };
 
   const changeSet = (rowId, values) => {
-    typeof values === "undefined"
-      ? deleteSet(rowId)
-      : setData((prevState) => {
-          return prevState.map((set) => {
-            let changedData = {};
-            if (set.id === rowId) changedData = { ...set, ...values };
-            return Object.keys(changedData).length !== 0
-              ? { ...set, ...changedData }
-              : { ...set };
-          });
-        });
+        typeof values === 'undefined' ?
+            deleteSet(rowId) :
+            setData((prevState) => {
+              return prevState.map((set) => {
+                let changedData = {};
+                if (set.id === rowId) changedData = {...set, ...values};
+                return Object.keys(changedData).length !== 0 ?
+                        {...set, ...changedData} :
+                        {...set};
+              });
+            });
   };
 
   function getCellPropNames(tableDataType) {
-    return tableDataType === "sets" ? groupCellNames : wordCellNames;
+    return tableDataType === 'sets' ? groupCellNames : wordCellNames;
   }
 
   return (
     <div className={styles.App}>
-      <Header onReturnToHomePage={onReturnToHomePage} />
+      <Header onReturnToHomePage={onReturnToHomePage}/>
       <main className={styles.main}>
         <div className={styles.main__wrapper}>
           <Routes>
@@ -154,11 +178,11 @@ function App() {
               element={
                 <Home
                   headers={cellPropNames}
-                  cellPropNames={cellPropNames}
                   rows={rows}
                   handleSaveChanges={changeData}
                   handleDelete={changeData}
                   handleSetSelect={handleSetSelect}
+                  handleAddNewItem={addData}
                 />
               }
             />
@@ -168,21 +192,21 @@ function App() {
               element={
                 <StudyPage
                   headers={cellPropNames}
-                  cellPropNames={cellPropNames}
                   rows={rows}
                   handleSaveChanges={changeData}
                   handleDelete={changeData}
                   activeWordId={activeWordId}
                   handleNextClick={handleNextClick}
                   handlePrevClick={handlePrevClick}
+                  handleAddNewItem={addData}
                 />
               }
             />
-            <Route path="*" element={<Page404 />} />
+            <Route path="*" element={<Page404/>}/>
           </Routes>
         </div>
       </main>
-      <Footer />
+      <Footer/>
     </div>
   );
 }

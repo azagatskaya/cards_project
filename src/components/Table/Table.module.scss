@@ -1,113 +1,144 @@
 @import '../Theme/variables';
 
 .table {
-	max-width: 650px;
-	text-align: left;
-	border: 1px solid grey;
-	border-collapse: collapse;
-	font-family: 'Segoe UI', sans-serif;
-	-webkit-box-shadow: 0px 0px 10px 1px rgba(172, 172, 172, 0.5);
-	-moz-box-shadow: 0px 0px 10px 1px rgba(172, 172, 172, 0.5);
-	box-shadow: 0px 0px 10px 1px rgba(172, 172, 172, 0.5);
+  width: $table_width;
+  text-align: left;
+  border: 1px solid grey;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', sans-serif;
+  -webkit-box-shadow: 0px 0px 10px 1px rgba(172, 172, 172, 0.5);
+  -moz-box-shadow: 0px 0px 10px 1px rgba(172, 172, 172, 0.5);
+  box-shadow: 0px 0px 10px 1px rgba(172, 172, 172, 0.5);
 
-	&__row {
-		border: 1px solid lightgrey;
-		border-collapse: collapse;
-	}
+  &__row {
+    border: 1px solid lightgrey;
+    border-collapse: collapse;
+  }
 
-	&__headerRow {
-		color: grey;
-		font-weight: 600;
+  &__header_row {
+    color: #808080;
+    font-weight: 600;
+    border: 1px solid lightgrey;
+    background-color: $second_bg;
+  }
 
-		border: 1px solid lightgrey;
-	}
+  &__header_cell {
+    width: auto;
+  }
 
-	&__headerCell {
-		background-color: $second_bg;
+  &__header_cell_number {
+    width: $id-column_width;
+    overflow-wrap: normal;
+    //text-align: center;
+  }
 
-		&:last-child {
-			text-align: right;
-		}
-	}
+  &__header_cell_date {
+    width: 86px;
+    text-align: center;
+  }
 
-	&__headerCell,
-	&__cell {
-		padding: 8px 6px;
-		border-collapse: collapse;
-	}
+  &__header_cell_last {
+    width: $btn-cell_min-width;
+    text-align: right;
+  }
 
-	&__cell {
-		background-color: #ffffff;
-		font-size: 14px;
+  &__header_cell,
+  &__header_cell_last,
+  &__cell, &__cellButtons, &__header_cell_number {
+    padding: 8px 6px;
+    border-collapse: collapse;
+  }
 
-		&Buttons {
-			min-width: 115px;
-		}
-		&AddButtons {
-			display: flex;
-			flex-direction: row;
-			justify-content: flex-end;
-			min-width: 115px;
-		}
-	}
+  &__cell {
+    background-color: #ffffff;
+    font-size: 14px;
+
+    &Buttons {
+      background-color: #ffffff;
+      width: $btn-cell_min-width;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+  }
+
 }
 
 .button {
-	width: 30px;
-	height: 30px;
-	margin-left: 3px;
-	margin-right: 3px;
-	border-radius: 2px;
-	border: none;
-	background-repeat: no-repeat;
-	background-size: 18px 18px;
-	background-position: center;
-	background-color: rgba(211, 211, 211, 0.5);
+  width: 30px;
+  height: 30px;
+  margin-left: 3px;
+  margin-right: 3px;
+  border-radius: 3px;
+  border: none;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  background-position: center;
+  background-color: #df68aa99;
 
-	&:hover {
-		cursor: pointer;
-		box-shadow: 0px 0px 4px 0px $first_bg;
-	}
+  &:hover {
+    cursor: pointer;
+    background-color: #e37daeff;
+  }
 
-	&_save {
-		margin-left: 0;
-		background-image: url(../../../public/images/check-solid.svg);
-	}
+  &_save {
+    margin-left: 0;
+    background-image: url(../../../public/images/check-solid_white.svg);
+  }
 
-	&_edit {
-		background-image: url(../../../public/images/pencil-solid.svg);
-	}
+  &_edit {
+    background-image: url(../../../public/images/pencil-solid_white.svg);
+  }
 
-	&_cancel {
-		background-image: url(../../../public/images/xmark-solid.svg);
-	}
+  &_cancel {
+    background-image: url(../../../public/images/xmark-solid_white.svg);
+  }
 
-	&_delete {
-		background-image: url(../../../public/images/trash-can-solid.svg);
-		margin-right: 0;
-	}
+  &_delete {
+    background-image: url(../../../public/images/trash-can-solid_white.svg);
+    margin-right: 0;
+  }
 
-	&_showAddRow {
-		background-image: url(../../../public/images/plus-solid.svg);
-		margin-right: 0;
-		width: 32px;
-		height: 32px;
-		border-radius: 50%;
-	}
-	&_saveNewItem {
-		background-image: url(../../../public/images/add-new-item.svg);
-	}
+  &_addRow {
+    background-image: url(../../../public/images/plus-solid_white.svg);
+    margin-right: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+
+    &_open {
+      transform: rotate(0deg);
+      transition: rotate;
+      transition-duration: 600ms;
+    }
+
+    &_close {
+      transform: rotate(-135deg);
+      transition: 600ms;
+    }
+  }
+
+  &_saveNewItem {
+    background-image: url(../../../public/images/add-new-item_white.svg);
+    margin-right: 0;
+  }
 }
 
 .input {
-	border: none;
-	font-family: 'Segoe UI', sans-serif;
+  border: none;
+  font-family: 'Segoe UI', sans-serif;
+  width: 100%;
+  background-color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
-	&__editable {
-		border-bottom: 1px solid grey;
-	}
 
-	&:disabled {
-		color: black;
-	}
+  &__editable {
+    border-radius: 2px;
+    border: 1px solid #dddddd;
+  }
+
+  &:disabled {
+    color: black;
+  }
 }

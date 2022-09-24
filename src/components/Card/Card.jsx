@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./Card.module.scss";
+import React from 'react';
+import styles from './Card.module.scss';
 
 function Card({
   word,
@@ -24,7 +24,7 @@ function Card({
     onNextClick();
   };
 
-  let cardClasses, backClasses;
+  let cardClasses; let backClasses;
 
   if (isRotated) {
     cardClasses = `${styles.card} ${styles.rotated}`;
@@ -54,9 +54,7 @@ function Card({
         ></button>
       </div>
       <div className={backClasses} onClick={handleRotateClick}>
-        <div>
-          {id + 1}/{cardsCount}
-        </div>
+        <div>{id + 1}/{cardsCount}</div>
         <div className={styles.card__text}>
           <div className={styles.value}>{value}</div>
         </div>
@@ -65,4 +63,5 @@ function Card({
     </div>
   );
 }
+
 export default Card;
