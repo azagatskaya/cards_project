@@ -9,14 +9,13 @@ export default function TableCellActions({
   handleDelete,
   isEditable,
 }) {
-  const onEditClick = (e) => {
+  const onEditClick = () => {
         isEditable ? handleCancelClick() : handleEditClick();
   };
 
-  let editBtnClasses = `${styles.button}`;
-  editBtnClasses = isEditable ?
-        (editBtnClasses += ` ${styles.button_cancel}`) :
-        (editBtnClasses += ` ${styles.button_edit}`);
+  const editBtnClasses = isEditable ?
+        (`${styles.button} ${styles.button_cancel}`) :
+        (`${styles.button} ${styles.button_edit}`);
 
   return (
     <td className={styles.table__cellButtons}>
@@ -32,7 +31,7 @@ export default function TableCellActions({
       ></button>
       <button
         className={styles.button + ' ' + styles.button_delete}
-        onClick={(e) => handleDelete(rowId)}
+        onClick={() => handleDelete(rowId)}
         data-action={'delete'}
       ></button>
     </td>

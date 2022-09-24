@@ -419,8 +419,8 @@ export const words = [
         transcription: '[ ˈniːɒn ]',
         value: 'неон',
         tags: 'химические элементы',
-        tags_json:
-                    '["u0445u0438u043cu0438u0447u0435u0441u043au0438u0435 u044du043bu0435u043cu0435u043du0442u044b"]',
+        tags_json: '["u0445u0438u043cu0438u0447u0435u0441u043au0438u0435 ' +
+                    'u044du043bu0435u043cu0435u043du0442u044b"]',
       },
       {
         id: '11950',
@@ -452,8 +452,8 @@ export const words = [
         transcription: '[ ˈsəʊdɪəm ]',
         value: 'натрий',
         tags: 'химические элементы',
-        tags_json:
-                    '["u0445u0438u043cu0438u0447u0435u0441u043au0438u0435 u044du043bu0435u043cu0435u043du0442u044b"]',
+        tags_json: '["u0445u0438u043cu0438u0447u0435u0441u043au0438u0435 ' +
+                    'u044du043bu0435u043cu0435u043du0442u044b"]',
       },
       {
         id: '11997',

@@ -8,8 +8,9 @@
   line-height: 1.6;
   border-radius: 5px;
   text-underline: none;
+
   &:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 2px 0px grey;
+    box-shadow: 0 0 2px 0 grey;
   }
 }

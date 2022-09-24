@@ -1,19 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styles from "./Header.module.scss";
-import Authentication from "../Auth/Auth.jsx";
+import React from 'react';
+import {Link} from 'react-router-dom';
+import styles from './Header.module.scss';
 
-function Header({ onReturnToHomePage }) {
+// import Authentication from '../Auth/Auth.jsx';
+
+function Header({onReturnToHomePage}) {
   return (
     <header className={styles.header}>
       <Link to="/" onClick={onReturnToHomePage}>
         <div className={styles.logo}></div>
       </Link>
-        <Link to="/" onClick={onReturnToHomePage}>
-            <div className={styles.header_link}>Home Page</div>
-        </Link>
-      {/*<Authentication />*/}
+      <Link to="/" onClick={onReturnToHomePage}>
+        <div className={styles.header_link}>Home Page</div>
+      </Link>
+      {/* <Authentication />*/}
     </header>
   );
 }
+
 export default Header;
