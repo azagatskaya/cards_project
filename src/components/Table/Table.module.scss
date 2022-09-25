@@ -19,7 +19,7 @@
     color: #808080;
     font-weight: 600;
     border: 1px solid lightgrey;
-    background-color: $second_bg;
+    background-color: $header_bg;
   }
 
   &__header_cell {
@@ -29,7 +29,6 @@
   &__header_cell_number {
     width: $id-column_width;
     overflow-wrap: normal;
-    //text-align: center;
   }
 
   &__header_cell_date {
@@ -69,42 +68,62 @@
   height: 30px;
   margin-left: 3px;
   margin-right: 3px;
-  border-radius: 3px;
+  border-radius: 2px;
   border: none;
   background-repeat: no-repeat;
   background-size: 18px 18px;
   background-position: center;
-  background-color: #df68aa99;
+  background-color: $btn-action_bg;
+  box-shadow: 0 0 1px 1px rgba(172, 172, 172, 0.5);
 
   &:hover {
     cursor: pointer;
-    background-color: #e37daeff;
+    box-shadow: 0 0 2px 1px $first_bg;
   }
 
   &_save {
     margin-left: 0;
-    background-image: url(../../../public/images/check-solid_white.svg);
+    background-image: url(../../../public/images/check-solid.svg);
   }
 
   &_edit {
-    background-image: url(../../../public/images/pencil-solid_white.svg);
+    background-image: url(../../../public/images/pencil-solid.svg);
   }
 
   &_cancel {
-    background-image: url(../../../public/images/xmark-solid_white.svg);
+    background-image: url(../../../public/images/xmark-solid.svg);
   }
 
   &_delete {
-    background-image: url(../../../public/images/trash-can-solid_white.svg);
+    background-image: url(../../../public/images/trash-can-solid.svg);
     margin-right: 0;
   }
 
-  &_addRow {
-    background-image: url(../../../public/images/plus-solid_white.svg);
+  &_cancel_add {
+    background-image: url(../../../public/images/xmark-solid_white.svg);
+
+  }
+
+  &_saveNewItem {
+    background-image: url(../../../public/images/add-new-item_white.svg);
     margin-right: 0;
-    width: 32px;
+  }
+
+  &_cancel_add,
+  &_saveNewItem {
+    background-color: #78b9eb;
+
+    &:hover {
+      background-color: #44a2dd;
+    }
+  }
+
+  &_addRow {
+    background-image: url(../../../public/images/plus-solid.svg);
     height: 32px;
+    width: 32px;
     border-radius: 50%;
+    border: none;
 
     &_open {
       transform: rotate(0deg);
@@ -116,11 +135,6 @@
       transform: rotate(-135deg);
       transition: 600ms;
     }
-  }
-
-  &_saveNewItem {
-    background-image: url(../../../public/images/add-new-item_white.svg);
-    margin-right: 0;
   }
 }
 
