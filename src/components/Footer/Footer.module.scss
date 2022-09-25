@@ -4,20 +4,20 @@
   width: 100%;
   height: $footer_height;
   padding: 5px 30px;
-  background-color: whitesmoke;
+  background-color: $footer_bg;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 
-  @media screen and (min-width: $small_screen_width) {
-    .logo {
-      width: 35px;
-      background-image: url("../../../public/images/flash-cards_colored.png");
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-  }
+  //@media screen and (min-width: $small_screen_width) {
+  //  .logo {
+  //    width: 35px;
+  //    background-image: url("../../../public/images/flash-cards_blue.png");
+  //    background-size: contain;
+  //    background-position: center;
+  //    background-repeat: no-repeat;
+  //  }
+  //}
 
   @media screen and (max-width: $small_screen_width) {
     height: $header_footer_small;

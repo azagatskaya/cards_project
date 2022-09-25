@@ -4,7 +4,7 @@
   width: 100%;
   height: $header_height;
   padding: 5px 30px;
-  background-color: $second_bg;
+  background-color: $header_bg;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -12,10 +12,12 @@
   @media screen and (max-width: $small_screen_width) {
     height: $header_footer_small;
   }
+
   &_link {
     height: $header_link_height;
     margin: ($header_height - $header_link_height)/2 0;
-    color: #ba55d3;
+
+    color: $header_font_color;
     line-height: 1.5;
     font-size: 22px;
 
@@ -32,7 +34,7 @@
 .logo {
   width: 70px;
   height: 70px;
-  background-image: url("../../../public/images/flash-cards_colored.png");
+  background-image: url("../../../public/images/card.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -47,5 +49,6 @@
     height: 32px;
   }
 }
+
 @import '../Theme/variables';
 

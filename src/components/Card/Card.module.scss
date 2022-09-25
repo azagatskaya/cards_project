@@ -94,7 +94,7 @@
 
 .transcription {
   font-size: 30px;
-  color: $first_bg;
+  color: #e84568;
 
   @media screen and (max-width: $small_screen_width) {
     font-size: 28px;
@@ -110,7 +110,7 @@
   align-self: center;
   width: $card_icon_size;
   height: $card_icon_size;
-  background-image: url("../../../public/images/redo.png");
+  background-image: url("../../../public/images/refresh_pale.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -145,10 +145,10 @@
 
 .prev {
   left: 0;
-  background-image: url(../../../public/images/backward.png);
+  background-image: url(../../../public/images/back.png);
 }
 
 .next {
   right: 0;
-  background-image: url(../../../public/images/forward.png);
+  background-image: url(../../../public/images/next.png);
 }
