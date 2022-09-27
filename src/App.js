@@ -203,6 +203,7 @@ function App() {
                                     handleDelete={changeData}
                                     handleSetSelect={handleSetSelect}
                                     handleAddNewItem={addData}
+                                    tableDataType={tableDataType}
                                 />
                             }
                         />
@@ -219,6 +220,7 @@ function App() {
                                     handleNextClick={handleNextClick}
                                     handlePrevClick={handlePrevClick}
                                     handleAddNewItem={addData}
+                                    tableDataType={tableDataType}
                                 />
                             }
                         />

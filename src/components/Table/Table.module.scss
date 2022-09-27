@@ -2,7 +2,6 @@
 
 .table {
   width: $table_width;
-  max-width: $table_max-width;
   text-align: left;
   border: 1px solid grey;
   border-collapse: collapse;
@@ -10,6 +9,14 @@
   -webkit-box-shadow: 0 0 10px 1px rgba(172, 172, 172, 0.5);
   -moz-box-shadow: 0 0 10px 1px rgba(172, 172, 172, 0.5);
   box-shadow: 0 0 10px 1px rgba(172, 172, 172, 0.5);
+
+  &__sets {
+    max-width: $table-sets_max-width;
+  }
+
+  &__words {
+    max-width: $table-words_max-width;
+  }
 
   &__row {
     border: 1px solid lightgrey;

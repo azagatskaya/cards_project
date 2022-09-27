@@ -11,7 +11,6 @@ export default function TableCell({
     const [newCellValue, setNewCellValue] = useState(initialValue);
 
     useEffect(() => {
-        // console.log('initialValue changed: setNewCellValue =', initialValue);
         setNewCellValue(initialValue);
     }, [initialValue, isCanceled]);
 
