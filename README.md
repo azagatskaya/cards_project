@@ -1,18 +1,22 @@
 # Проект для изучения иностранных слов по карточкам
 
-## Группы слов для изучения:
-![image](https://user-images.githubusercontent.com/61882557/192118830-8c741766-cc8e-45f7-9af6-9893e3777f4f.png)
+## Группы слов для изучения и добавление новой группы:
+![image](https://user-images.githubusercontent.com/61882557/192504063-512199c0-bcca-4a73-8b4b-79d28882c6eb.png)
 
-## Добавление нового слова:
-![image](https://user-images.githubusercontent.com/61882557/192118916-8989a6d2-876b-4e37-b0c7-d67c02cfedf3.png)
-![image](https://user-images.githubusercontent.com/61882557/192119141-1d2c59a9-7c9c-447c-ba36-ce96e6409659.png)
+## Изучение с помощью переворачиваемых карточкек, добавление нового слова:
+![image](https://user-images.githubusercontent.com/61882557/192504938-094f47c2-c77f-4c43-9e6b-f47b1705f130.png)
+![image](https://user-images.githubusercontent.com/61882557/192505186-84f51aad-50d5-420c-bd9d-53d4d4fb6574.png)
 
 ## Удаление: 
-![image](https://user-images.githubusercontent.com/61882557/192118999-d099ecd9-16a5-4186-b301-c53f4b19a8fa.png)
+До
+![image](https://user-images.githubusercontent.com/61882557/192505481-c65560fb-9d80-4820-b221-7fc37964dd4c.png)
+После
+![image](https://user-images.githubusercontent.com/61882557/192505543-14d381bc-e81f-4352-8da2-6a1e1b6241d6.png)
 
 ## Редактирование слов:
-![image](https://user-images.githubusercontent.com/61882557/192118978-8f879b93-54a0-41c9-beb9-c75ca20c6349.png)
-![image](https://user-images.githubusercontent.com/61882557/192119064-876b1d6b-b340-4cdc-87a0-4a23d2bb406d.png)
+![image](https://user-images.githubusercontent.com/61882557/192505932-ae174b73-75b2-44f8-9573-c18320ec8677.png)
+![image](https://user-images.githubusercontent.com/61882557/192506015-beb7bdb6-1b48-4fb1-8d71-1876529682e2.png)
+
 
 # Getting Started with Create React App
 
