@@ -38,17 +38,17 @@ function App() {
     }, [cellPropNames, data]);
 
     const getMaxSetId = () => {
-
         return data.map(set => set.id).sort((a, b) => b - a)[0] + 1;
     }
+
     const getMaxWordId = () => {
         const allWordId = [];
         data.map(set => {
             set.data.map(word => allWordId.push(word.id));
         });
-        console.log(allWordId.sort((a, b) => b - a))
         return allWordId.sort((a, b) => b - a)[0] + 1;
     }
+    
     const handleSetSelect = (id) => {
         setTableDataType('words');
         setActiveSetId(id);

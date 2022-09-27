@@ -9,6 +9,9 @@
   -webkit-box-shadow: 0 0 10px 1px rgba(172, 172, 172, 0.5);
   -moz-box-shadow: 0 0 10px 1px rgba(172, 172, 172, 0.5);
   box-shadow: 0 0 10px 1px rgba(172, 172, 172, 0.5);
+  @media screen and (max-width: $small_screen_width) {
+    width: 99%;
+  }
 
   &__sets {
     max-width: $table-sets_max-width;
@@ -19,14 +22,14 @@
   }
 
   &__row {
-    border: 1px solid lightgrey;
+    border: 1px solid #D3D3D3FF;
     border-collapse: collapse;
   }
 
   &__header_row {
     color: #808080;
     font-weight: 600;
-    border: 1px solid lightgrey;
+    border: 1px solid #D3D3D3FF;
     background-color: $header_bg;
   }
 
@@ -37,6 +40,9 @@
   &__header_cell_number {
     width: $id-column_width;
     overflow-wrap: normal;
+    @media screen and (max-width: $small_screen_width) {
+      width: 40px;
+    }
   }
 
   &__header_cell_date {
