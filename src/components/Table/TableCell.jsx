@@ -11,19 +11,13 @@ export default function TableCell({
     const [newCellValue, setNewCellValue] = useState(initialValue);
 
     useEffect(() => {
-        console.log('initialValue changed: setNewCellValue =', initialValue);
+        // console.log('initialValue changed: setNewCellValue =', initialValue);
         setNewCellValue(initialValue);
     }, [initialValue, isCanceled]);
 
-    console.log('updated cell', newCellValue);
     const handleInputChange = (e) => {
         setNewCellValue(e.target.value);
     };
-
-    // useEffect(() => {
-    //     console.log('isCanceled changed: setNewCellValue =', initialValue);
-    //     setNewCellValue(initialValue);
-    // }, [isCanceled]);
 
     const handleBlur = (e) => {
         handleInputBlur({[cellPropName]: e.target.value});

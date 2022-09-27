@@ -17,8 +17,6 @@ export default function TableRow({
     const [isRowEditable, setIsRowEditable] = useState(isEditable);
     const [isCanceled, setIsCanceled] = useState(false);
 
-    console.log('initialCellValues on start', initialCellValues);
-
     const handleEditClick = () => {
         setIsRowEditable(true);
         setIsCanceled(false);
@@ -29,7 +27,6 @@ export default function TableRow({
         setCellValues({...initialCellValues});
     };
     const handleClearAddField = () => {
-        console.log('handleClearAddField');
         setIsCanceled(true);
         setCellValues({...initialCellValues});
     };
@@ -47,8 +44,6 @@ export default function TableRow({
     };
 
     const handleAddClick = () => {
-        console.log('handleAddClick');
-        // setIsCanceled(false);
         handleAddNewItem(cellValues);
         handleClearAddField();
     };
@@ -78,7 +73,6 @@ export default function TableRow({
     return (
         <tr className={styles.table__row}>
             {Object.entries(cellValues).map(([key, value]) => {
-                console.log('initialValue', value);
                 return (
                     <TableCell
                         cellPropName={key}

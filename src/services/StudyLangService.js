@@ -1,15 +1,61 @@
-import {Routes, Route} from 'react-router-dom';
-import React, {useState, useEffect} from 'react';
-import styles from './App.module.scss';
-import Header from './components/Header/Header.jsx';
-import Footer from './components/Footer/Footer.jsx';
-import Home from './pages/Home.jsx';
-import StudyPage from './pages/StudyPage.jsx';
-import Page404 from './pages/Page404.jsx';
-
 import {words, groupCellNames, wordCellNames} from './data.js';
+import {useEffect, useState} from "react";
 
-function App() {
+const useStudyLangService = () => {
+    const {loading, request, error, clearError} = useHttp();
+
+    const _apiBase = 'https://gateway.marvel.com:443/v1/public/';
+    // ЗДЕСЬ БУДЕТ ВАШ КЛЮЧ, ЭТОТ КЛЮЧ МОЖЕТ НЕ РАБОТАТЬ
+    const _apiKey = 'apikey=c5d6fc8b83116d92ed468ce36bac6c62';
+    const _baseOffset = 210;
+
+    const getAllCharacters = async (offset = _baseOffset) => {
+        const res = await request(`${_apiBase}characters?limit=9&offset=${offset}&${_apiKey}`);
+        return res.data.results.map(_transformCharacter);
+    }
+
+    const getCharacter = async (id) => {
+        const res = await request(`${_apiBase}characters/${id}?${_apiKey}`);
+        return _transformCharacter(res.data.results[0]);
+    }
+
+    const getAllComics = async (offset = 0) => {
+        const res = await request(`${_apiBase}comics?orderBy=issueNumber&limit=8&offset=${offset}&${_apiKey}`);
+        return res.data.results.map(_transformComics);
+    }
+
+    const getComic = async (id) => {
+        const res = await request(`${_apiBase}comics/${id}?${_apiKey}`);
+        return _transformComics(res.data.results[0]);
+    }
+
+    const _transformCharacter = (char) => {
+        return {
+            id: char.id,
+            name: char.name,
+            description: char.description ? `${char.description.slice(0, 210)}...` : 'There is no description for this character',
+            thumbnail: char.thumbnail.path + '.' + char.thumbnail.extension,
+            homepage: char.urls[0].url,
+            wiki: char.urls[1].url,
+            comics: char.comics.items
+        }
+    }
+
+    const _transformComics = (comics) => {
+        return {
+            id: comics.id,
+            title: comics.title,
+            description: comics.description || 'There is no description',
+            pageCount: comics.pageCount ? `${comics.pageCount} p.` : 'No information about the number of pages',
+            thumbnail: comics.thumbnail.path + '.' + comics.thumbnail.extension,
+            language: comics.textObjects.language || 'en-us',
+            price: comics.prices[0].price ? `${comics.prices[0].price}$` : 'not available'
+        }
+    }
+
+
+    //-----------------------
+
     const [data, setData] = useState(words);
     const [rows, setRows] = useState([]);
     const [tableDataType, setTableDataType] = useState('sets');
@@ -38,7 +84,6 @@ function App() {
     }, [cellPropNames, data]);
 
     const getMaxSetId = () => {
-
         return data.map(set => set.id).sort((a, b) => b - a)[0] + 1;
     }
     const getMaxWordId = () => {
@@ -46,7 +91,7 @@ function App() {
         data.map(set => {
             set.data.map(word => allWordId.push(word.id));
         });
-        console.log(allWordId.sort((a, b) => b - a))
+        console.log('allWordId', allWordId)
         return allWordId.sort((a, b) => b - a)[0] + 1;
     }
     const handleSetSelect = (id) => {
@@ -186,49 +231,11 @@ function App() {
         return tableDataType === 'sets' ? groupCellNames : wordCellNames;
     }
 
-    return (
-        <div className={styles.App}>
-            <Header onReturnToHomePage={onReturnToHomePage}/>
-            <main className={styles.main}>
-                <div className={styles.main__wrapper}>
-                    <Routes>
-                        <Route
-                            exact
-                            path="/"
-                            element={
-                                <Home
-                                    headers={cellPropNames}
-                                    rows={rows}
-                                    handleSaveChanges={changeData}
-                                    handleDelete={changeData}
-                                    handleSetSelect={handleSetSelect}
-                                    handleAddNewItem={addData}
-                                />
-                            }
-                        />
-                        <Route
-                            exact
-                            path="/study/:id"
-                            element={
-                                <StudyPage
-                                    headers={cellPropNames}
-                                    rows={rows}
-                                    handleSaveChanges={changeData}
-                                    handleDelete={changeData}
-                                    activeWordId={activeWordId}
-                                    handleNextClick={handleNextClick}
-                                    handlePrevClick={handlePrevClick}
-                                    handleAddNewItem={addData}
-                                />
-                            }
-                        />
-                        <Route path="*" element={<Page404/>}/>
-                    </Routes>
-                </div>
-            </main>
-            <Footer/>
-        </div>
-    );
+
+    //-----------------------
+
+
+    return {loading, error, clearError, getAllCharacters, getCharacter, getAllComics, getComic}
 }
 
-export default App;
+export default useMarvelService;
