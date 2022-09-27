@@ -11,7 +11,7 @@ const StudyPage = ({
                        handlePrevClick,
                        handleSaveChanges,
                        handleDelete, handleAddNewItem,
-
+                       tableDataType
                    }) => {
     // const {id} = useParams();
     // const [activeSetId, setActiveSetId] = useState(null);
@@ -49,6 +49,7 @@ const StudyPage = ({
                 handleSaveChanges={handleSaveChanges}
                 handleDelete={handleDelete}
                 handleAddNewItem={handleAddNewItem}
+                tableDataType={tableDataType}
             />
         </>
     );

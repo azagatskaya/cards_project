@@ -9,11 +9,11 @@ const Home = ({
                   handleDelete,
                   handleSetSelect,
                   handleSaveChanges, handleAddNewItem,
+                  tableDataType
               }) => {
     return (
         <>
             <div className={styles.buttons_block}>
-                {/*<div className={styles.buttons_block}>*/}
                 {rows.map((el) => (
                     <CardSetButton
                         {...el}
@@ -21,7 +21,6 @@ const Home = ({
                         handleSetSelect={handleSetSelect}
                     />
                 ))}
-                {/*</div>*/}
             </div>
             <Table
                 key={'sets'}
@@ -30,6 +29,7 @@ const Home = ({
                 handleSaveChanges={handleSaveChanges}
                 handleDelete={handleDelete}
                 handleAddNewItem={handleAddNewItem}
+                tableDataType={tableDataType}
             />
         </>
     );

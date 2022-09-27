@@ -7,6 +7,7 @@ export default function Table({
                                   rows,
                                   handleSaveChanges,
                                   handleDelete, handleAddNewItem,
+                                  tableDataType
                               }) {
     const [isAddFieldVisible, setIsAddFieldVisible] = useState(false);
     const showAddField = () => {
@@ -82,8 +83,11 @@ export default function Table({
         />);
     };
     const emptyRow = isAddFieldVisible ? renderEmptyRow() : null;
+    const tableClass = tableDataType === 'sets' ?
+        (`${styles.table} ${styles.table__sets}`) :
+        (`${styles.table} ${styles.table__words}`);
     return (
-        <table className={styles.table}>
+        <table className={tableClass}>
             {renderHeader()}
             <tbody>
             {emptyRow}
