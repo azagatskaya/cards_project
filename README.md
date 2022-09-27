@@ -3,7 +3,7 @@
 ## Группы слов для изучения и добавление новой группы:
 ![image](https://user-images.githubusercontent.com/61882557/192504063-512199c0-bcca-4a73-8b4b-79d28882c6eb.png)
 
-## Изучение с помощью переворачиваемых карточкек, добавление нового слова:
+## Изучение с помощью переворачиваемых карточек, добавление нового слова:
 ![image](https://user-images.githubusercontent.com/61882557/192504938-094f47c2-c77f-4c43-9e6b-f47b1705f130.png)
 ![image](https://user-images.githubusercontent.com/61882557/192505186-84f51aad-50d5-420c-bd9d-53d4d4fb6574.png)
 
