@@ -2,6 +2,7 @@
 
 .table {
   width: $table_width;
+  max-width: $table_max-width;
   text-align: left;
   border: 1px solid grey;
   border-collapse: collapse;
@@ -39,6 +40,10 @@
   &__header_cell_last {
     width: $btn-cell_min-width;
     text-align: right;
+
+    @media screen and (max-width: $small_screen_width) {
+      width: 80px;
+    }
   }
 
   &__header_cell,
@@ -46,6 +51,9 @@
   &__cell, &__cellButtons, &__header_cell_number {
     padding: 8px 6px;
     border-collapse: collapse;
+    @media screen and (max-width: $small_screen_width) {
+      padding: 6px 4px;
+    }
   }
 
   &__cell {
@@ -55,12 +63,17 @@
     &Buttons {
       background-color: #ffffff;
       width: $btn-cell_min-width;
+      margin: auto;
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
+      align-items: center;
+
+      @media screen and (max-width: $small_screen_width) {
+        width: 80px;
+      }
     }
   }
-
 }
 
 .button {
@@ -75,6 +88,12 @@
   background-position: center;
   background-color: $btn-action_bg;
   box-shadow: 0 0 1px 1px rgba(172, 172, 172, 0.5);
+
+  @media screen and (max-width: $small_screen_width) {
+    width: 20px;
+    height: 20px;
+    background-size: 16px 16px;
+  }
 
   &:hover {
     cursor: pointer;
@@ -142,10 +161,16 @@
   border: none;
   font-family: 'Segoe UI', sans-serif;
   width: 100%;
+  height: auto;
   background-color: #ffffff;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  //resize: none;
+  //height: auto;
+  //min-height: 30px;
 
+  //overflow: hidden;
+  //text-overflow: ellipsis;
+  //word-wrap: break-word;
+  //word-break: break-all;
 
   &__editable {
     border-radius: 2px;
