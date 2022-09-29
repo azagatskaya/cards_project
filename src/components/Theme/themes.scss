@@ -1,3 +1,4 @@
+//pink theme
 $first_bg_light: rgba(194, 90, 212, 0.21);
 $first_bg: #af52bf;
 $second_bg: #f5f5f5;
@@ -23,4 +24,30 @@ $btn-action_bg: #df68aa99;
 $btn-action_bg_hover: #e37daeff;
 $btn-add-block_bg: $btn-action_bg;
 $btn-add-block_bg_hover: $btn-action_bg_hover;
+// blue-grey theme
+$first_bg_light: #ffffff;
+$first_bg: #659DBD;
+$second_bg: #f3e5f599;
 
+$header_bg: #F5F5F5FF;
+$header_height: 80px;
+$header_link_height: 40px;
+$header_font_color: #222222;
+$header_footer_small: 40px;
+$footer_bg: #F5F5F5FF;
+$footer_height: 80px;
+
+$small_screen_width: 450px;
+$card_icon_size: 28px;
+
+$table_width: 85%;
+$table-sets_max-width: 600px;
+$table-words_max-width: 900px;
+$id-column_width: 80px;
+
+$btn-cell_min-width: 115px;
+$btn-action_bg: #ffffff;
+$btn-action_bg_hover: #94a162;
+
+$btn-add-block_bg: #78b9eb;
+$btn-add-block_bg_hover: #44a2dd;

@@ -2,7 +2,7 @@
 
 .table {
   width: $table_width;
-  text-align: left;
+  //text-align: left;
   border: 1px solid grey;
   border-collapse: collapse;
   font-family: 'Segoe UI', sans-serif;
@@ -72,15 +72,18 @@
   &__cell {
     background-color: #ffffff;
     font-size: 14px;
+    width: auto;
 
     &Buttons {
+      //box-sizing: content-box;
       background-color: #ffffff;
-      width: $btn-cell_min-width;
-      margin: auto;
+      width: 100%;
+      height: 100%;
+      //margin: auto;
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
-      align-items: center;
+      //align-items: center;
 
       @media screen and (max-width: $small_screen_width) {
         width: 80px;
@@ -94,13 +97,13 @@
   height: 30px;
   margin-left: 3px;
   margin-right: 3px;
-  border-radius: 2px;
+  border-radius: 3px;
   border: none;
   background-repeat: no-repeat;
   background-size: 18px 18px;
   background-position: center;
   background-color: $btn-action_bg;
-  box-shadow: 0 0 1px 1px rgba(172, 172, 172, 0.5);
+  //box-shadow: 0 0 1px 1px rgba(172, 172, 172, 0.5);
 
   @media screen and (max-width: $small_screen_width) {
     width: 20px;
@@ -110,24 +113,25 @@
 
   &:hover {
     cursor: pointer;
-    box-shadow: 0 0 2px 1px $first_bg;
+    background-color: $btn-action_bg_hover;
+    //box-shadow: 0 0 2px 1px $first_bg;
   }
 
   &_save {
     margin-left: 0;
-    background-image: url(../../../public/images/check-solid.svg);
+    background-image: url(../../../public/images/check-solid_white.svg);
   }
 
   &_edit {
-    background-image: url(../../../public/images/pencil-solid.svg);
+    background-image: url(../../../public/images/pencil-solid_white.svg);
   }
 
   &_cancel {
-    background-image: url(../../../public/images/xmark-solid.svg);
+    background-image: url(../../../public/images/xmark-solid_white.svg);
   }
 
   &_delete {
-    background-image: url(../../../public/images/trash-can-solid.svg);
+    background-image: url(../../../public/images/trash-can-solid_white.svg);
     margin-right: 0;
   }
 
@@ -143,15 +147,15 @@
 
   &_cancel_add,
   &_saveNewItem {
-    background-color: #78b9eb;
+    background-color: $btn-add-block_bg;
 
     &:hover {
-      background-color: #44a2dd;
+      background-color: $btn-add-block_bg_hover;
     }
   }
 
   &_addRow {
-    background-image: url(../../../public/images/plus-solid.svg);
+    background-image: url(../../../public/images/plus-solid_white.svg);
     height: 32px;
     width: 32px;
     border-radius: 50%;
