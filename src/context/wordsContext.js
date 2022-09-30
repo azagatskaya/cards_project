@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {words, groupCellNames, wordCellNames} from '../_data';
+import {words, groupCellNames, wordCellNames} from '../data';
 
 const WordsContext = React.createContext();
 
@@ -65,12 +65,11 @@ function WordsContextProvider(props) {
     };
 
     const getItems = () => {
-        const res = activeSetId === null ?
+        return activeSetId === null ?
             data :
             data.filter((el) => {
                 return el.id === Number(activeSetId);
             })[0].data;
-        return res;
     };
 
     const getRows = (items) => {
@@ -117,16 +116,20 @@ function WordsContextProvider(props) {
     };
 
     const changeData = (rowId, values) => {
+        console.log('rowId, values', rowId, values)
+        console.log('tableDataType', tableDataType)
         tableDataType === 'words' ?
             handleWordOperation(rowId, values) :
             changeSet(rowId, values);
     };
 
     const handleWordOperation = (rowId, values) => {
+        console.log('handleWordOperation');
+        console.log(typeof rowId, typeof values);
         setData((prevState) => {
             return prevState.map((set) => {
                 let newData = [];
-                if (set.id === activeSetId) {
+                if (set.id === Number(activeSetId)) {
                     newData = typeof rowId === 'object' ?
                         addWord(set, rowId) :
                         typeof values === 'undefined' ?
@@ -143,6 +146,7 @@ function WordsContextProvider(props) {
     const filterId = (data, id) => data.id !== id;
 
     const deleteWord = (set, rowId) => {
+        console.log('delete word')
         return set.data.filter((row) => filterId(row, rowId));
     };
 
@@ -190,7 +194,7 @@ function WordsContextProvider(props) {
                 changeData,
                 addData,
                 handleSetSelect,
-                onReturnToHomePage, handleNextClick, handlePrevClick, setActiveSetId
+                onReturnToHomePage, handleNextClick, handlePrevClick,
 
             }}
         >
