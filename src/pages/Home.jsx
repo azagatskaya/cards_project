@@ -14,6 +14,7 @@ const Home = () => {
         handleSetSelect(null);
     }, [])
     useEffect(() => {
+        console.log('setVR');
         setVisibleRows(rows);
     }, [rows])
 

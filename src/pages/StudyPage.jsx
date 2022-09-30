@@ -20,6 +20,8 @@ const StudyPage = () => {
         handleSetSelect(id);
     }, [id])
     useEffect(() => {
+        console.log('setVR');
+        console.log(rows);
         setVisibleRows(rows);
     }, [rows])
 

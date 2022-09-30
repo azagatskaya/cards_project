@@ -14,11 +14,13 @@ export default function Table({
         setIsAddFieldVisible((prevState) => !prevState);
     };
     const renderHeaderCell = (id, label) => {
-        const cellClass = id === 'id' || id === 'numberOfCards' ?
-            styles.table__header_cell_number :
-            id === 'date' ?
-                styles.table__header_cell_date :
-                styles.table__header_cell;
+        const cellClass = id === 'id' ?
+            (styles.table__header_cell_number + ' ' + styles.table__header_cell_id) :
+            id === 'numberOfCards' ?
+                styles.table__header_cell_number :
+                id === 'date' ?
+                    styles.table__header_cell_date :
+                    styles.table__header_cell;
         return (
             <td className={cellClass} key={id.toString()} id={id}>
                 {label}

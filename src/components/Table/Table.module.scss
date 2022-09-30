@@ -2,6 +2,7 @@
 
 .table {
   width: $table_width;
+  table-layout: fixed;
   //text-align: left;
   border: 1px solid grey;
   border-collapse: collapse;
@@ -13,6 +14,34 @@
     width: 99%;
   }
 
+  &__cell {
+    word-wrap: break-word;
+    background-color: #ffffff;
+    font-size: 14px;
+    width: auto;
+    height: auto;
+
+    &_id {
+      @media screen and (max-width: $small_screen_width) {
+        display: none;
+      }
+    }
+
+    &_buttons {
+      background-color: #ffffff;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      vertical-align: center;
+
+      @media screen and (max-width: $small_screen_width) {
+        width: 80px;
+      }
+    }
+  }
+
   &__sets {
     max-width: $table-sets_max-width;
   }
@@ -22,46 +51,59 @@
   }
 
   &__row {
+
+    background-color: #fff;
     border: 1px solid #D3D3D3FF;
     border-collapse: collapse;
   }
 
-  &__header_row {
-    color: #808080;
-    font-weight: 600;
-    border: 1px solid #D3D3D3FF;
-    background-color: $header_bg;
-  }
+  &__header {
+    &_row {
+      color: #808080;
+      font-weight: 600;
+      border: 1px solid #D3D3D3FF;
+      background-color: $header_bg;
+      word-wrap: break-word;
+    }
 
-  &__header_cell {
-    width: auto;
-  }
+    &_cell {
+      width: auto;
 
-  &__header_cell_number {
-    width: $id-column_width;
-    overflow-wrap: normal;
-    @media screen and (max-width: $small_screen_width) {
-      width: 40px;
+      &_id {
+        @media screen and (max-width: $small_screen_width) {
+          display: none;
+        }
+      }
+
+      &_date {
+        width: 86px;
+        text-align: center;
+      }
+
+      &_number {
+        width: $id-column_width;
+        overflow-wrap: normal;
+        @media screen and (max-width: $small_screen_width) {
+          width: 40px;
+        }
+      }
+
+      &_last {
+        width: $btn-cell_min-width;
+        text-align: right;
+
+        @media screen and (max-width: $small_screen_width) {
+          width: 80px;
+        }
+      }
     }
   }
 
-  &__header_cell_date {
-    width: 86px;
-    text-align: center;
-  }
 
-  &__header_cell_last {
-    width: $btn-cell_min-width;
-    text-align: right;
-
-    @media screen and (max-width: $small_screen_width) {
-      width: 80px;
-    }
-  }
-
+  &__header_cell
   &__header_cell,
   &__header_cell_last,
-  &__cell, &__cellButtons, &__header_cell_number {
+  &__cell, &__cell_buttons, &__header_cell_number {
     padding: 8px 6px;
     border-collapse: collapse;
     @media screen and (max-width: $small_screen_width) {
@@ -69,27 +111,7 @@
     }
   }
 
-  &__cell {
-    background-color: #ffffff;
-    font-size: 14px;
-    width: auto;
 
-    &Buttons {
-      //box-sizing: content-box;
-      background-color: #ffffff;
-      width: 100%;
-      height: 100%;
-      //margin: auto;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      //align-items: center;
-
-      @media screen and (max-width: $small_screen_width) {
-        width: 80px;
-      }
-    }
-  }
 }
 
 .button {
@@ -175,11 +197,15 @@
 }
 
 .input {
+
+  padding: 1px 2px;
   border: none;
   font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
   width: 100%;
   height: auto;
   background-color: #ffffff;
+  text-align: center;
   //resize: none;
   //height: auto;
   //min-height: 30px;
@@ -190,6 +216,8 @@
   //word-break: break-all;
 
   &__editable {
+    width: 100%;
+    height: 100%;
     border-radius: 2px;
     border: 1px solid #dddddd;
   }

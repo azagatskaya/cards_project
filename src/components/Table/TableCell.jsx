@@ -19,7 +19,9 @@ export default function TableCell({
     };
 
     const handleBlur = (e) => {
-        handleInputBlur({[cellPropName]: e.target.value});
+        handleInputBlur({
+            [cellPropName]: e.target.value
+        });
     };
 
     const isCellEditable =
@@ -28,19 +30,18 @@ export default function TableCell({
         cellPropName !== 'numberOfCards' &&
         cellPropName !== 'date';
 
+    const content = isCellEditable ?
+        <input
+            className={`${styles.input} ${styles.input__editable}`}
+            onChange={handleInputChange}
+            onBlur={handleBlur}
+            value={newCellValue}
+            type='text'
+        /> : newCellValue;
+
     return (
-        <td className={styles.table__cell}>
-            <input
-                disabled={!isCellEditable}
-                className={isCellEditable ?
-                    `${styles.input} ${styles.input__editable}` :
-                    styles.input
-                }
-                onChange={handleInputChange}
-                onBlur={handleBlur}
-                value={newCellValue}
-                type="text"
-            />
+        <td className={cellPropName === 'id' ? styles.table__cell + ' ' + styles.table__cell_id : styles.table__cell}>
+            {content}
         </td>
     );
 }

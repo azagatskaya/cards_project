@@ -5,7 +5,7 @@ function TableButtonsOnAdd({
                                handleAddNewItem, handleClearAddField,
                            }) {
     return (
-        <td className={styles.table__cellButtons}>
+        <td className={styles.table__cell_buttons}>
             <button
                 className={`${styles.button} ${styles.button_cancel_add}`}
                 onClick={handleClearAddField}

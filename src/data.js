@@ -8,7 +8,7 @@ export const words = [
             {
                 id: 11350,
                 word: 'arm',
-                transcription: '[ ɑ:m ]',
+                transcription: '[ɑ:m]',
                 value: 'рука',
                 tags: 'часть тела',
                 tags_json: '["u0447u0430u0441u0442u044c u0442u0435u043bu0430"]',
@@ -16,7 +16,7 @@ export const words = [
             {
                 id: 12087,
                 word: 'abdomen',
-                transcription: '[ ˈæbdəmən ]',
+                transcription: '[ˈæbdəmən]',
                 value: 'живот',
                 tags: 'анатомия',
                 tags_json: '["u0430u043du0430u0442u043eu043cu0438u044f"]',
@@ -24,7 +24,7 @@ export const words = [
             {
                 id: 12088,
                 word: 'ankle',
-                transcription: '[ ˈæŋkl̩ ]',
+                transcription: '[ˈæŋkl̩]',
                 value: 'голеностоп',
                 tags: 'анатомия',
                 tags_json: '["u0430u043du0430u0442u043eu043cu0438u044f"]',
@@ -32,7 +32,7 @@ export const words = [
             {
                 id: 12089,
                 word: 'appendix',
-                transcription: '[ əˈpendɪks ]',
+                transcription: '[əˈpendɪks]',
                 value: 'аппендикс',
                 tags: 'анатомия',
                 tags_json: '["u0430u043du0430u0442u043eu043cu0438u044f"]',
@@ -40,7 +40,7 @@ export const words = [
             {
                 id: 12091,
                 word: 'artery',
-                transcription: '[ ˈɑːtəri ]',
+                transcription: '[ˈɑːtəri]',
                 value: 'артерия',
                 tags: 'анатомия',
                 tags_json: '["u0430u043du0430u0442u043eu043cu0438u044f"]',
@@ -48,7 +48,7 @@ export const words = [
             {
                 id: 12092,
                 word: 'backbone',
-                transcription: '[ ˈbækbəʊn ]',
+                transcription: '[ˈbækbəʊn]',
                 value: 'позвоночник',
                 tags: 'анатомия',
                 tags_json: '["u0430u043du0430u0442u043eu043cu0438u044f"]',
@@ -56,7 +56,7 @@ export const words = [
             {
                 id: 12093,
                 word: 'biceps',
-                transcription: '[ ˈbaɪseps ]',
+                transcription: '[ˈbaɪseps]',
                 value: 'бицепс',
                 tags: 'анатомия',
                 tags_json: '["u0430u043du0430u0442u043eu043cu0438u044f"]',
@@ -64,7 +64,7 @@ export const words = [
             {
                 id: 12094,
                 word: 'bowels',
-                transcription: '[ ˈbaʊəlz ]',
+                transcription: '[ˈbaʊəlz]',
                 value: 'кишечник',
                 tags: 'анатомия',
                 tags_json: '["u0430u043du0430u0442u043eu043cu0438u044f"]',
@@ -72,7 +72,7 @@ export const words = [
             {
                 id: 12095,
                 word: 'brain',
-                transcription: '[ breɪn ]',
+                transcription: '[breɪn]',
                 value: 'мозг',
                 tags: 'анатомия',
                 tags_json: '["u0430u043du0430u0442u043eu043cu0438u044f"]',
@@ -282,7 +282,7 @@ export const words = [
             {
                 id: 11949,
                 word: 'neon',
-                transcription: '[ ˈniːɒn ]',
+                transcription: '[ˈniːɒn]',
                 value: 'неон',
                 tags: 'химические элементы',
                 tags_json: '["u0445u0438u043cu0438u0447u0435u0441u043au0438u0435 ' +
@@ -291,7 +291,7 @@ export const words = [
             {
                 id: 11950,
                 word: 'domestic market',
-                transcription: '[ dəˈmestɪk ˈmɑːkɪt ]',
+                transcription: '[dəˈmestɪk ˈmɑːkɪt]',
                 value: 'внутренний рынок',
                 tags: 'экономика',
                 tags_json: '["u044du043au043eu043du043eu043cu0438u043au0430"]',
@@ -299,7 +299,7 @@ export const words = [
             {
                 id: 11995,
                 word: 'mortgage',
-                transcription: '[ ˈmɔːɡɪdʒ ]',
+                transcription: '[ˈmɔːɡɪdʒ]',
                 value: 'ипотека',
                 tags: 'экономика',
                 tags_json: '["u044du043au043eu043du043eu043cu0438u043au0430"]',
@@ -307,7 +307,7 @@ export const words = [
             {
                 id: 11996,
                 word: 'sodium',
-                transcription: '[ ˈsəʊdɪəm ]',
+                transcription: '[ˈsəʊdɪəm]',
                 value: 'натрий',
                 tags: 'химические элементы',
                 tags_json: '["u0445u0438u043cu0438u0447u0435u0441u043au0438u0435 ' +
@@ -404,7 +404,7 @@ export const words = [
             {
                 id: 12074,
                 word: 'turquoise',
-                transcription: '[ ˈtɜːkwɔɪz ]',
+                transcription: '[ˈtɜːkwɔɪz]',
                 value: 'бирюзовый',
                 tags: 'цвета',
                 tags_json: 'null',
