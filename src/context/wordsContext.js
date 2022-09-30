@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {words, groupCellNames, wordCellNames} from './data.js';
+import {words, groupCellNames, wordCellNames} from '../data';
 
 const WordsContext = React.createContext();
 
@@ -14,13 +14,12 @@ function WordsContextProvider(props) {
     );
     const [maxSetId, setMaxSetId] = useState();
     const [maxWordId, setMaxWordId] = useState();
-
     useEffect(() => {
         const maxSet = getMaxSetId();
         setMaxSetId(maxSet);
         const maxWord = getMaxWordId();
         setMaxWordId(maxWord);
-    })
+    }, [])
     useEffect(() => {
         setCellPropNames(() => getCellPropNames(tableDataType));
     }, [tableDataType]);
@@ -182,7 +181,17 @@ function WordsContextProvider(props) {
 
     return (
         <WordsContext.Provider
-            value={{words, loading, error, editWords, deleteWords}}
+            value={{
+                tableDataType,
+                cellPropNames,
+                rows,
+                activeWordId,
+                changeData,
+                addData,
+                handleSetSelect,
+                onReturnToHomePage, handleNextClick, handlePrevClick
+
+            }}
         >
             {props.children}
         </WordsContext.Provider>
