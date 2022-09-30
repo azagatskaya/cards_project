@@ -1,8 +1,7 @@
-// import React, {useParams, useState} from 'react';
-// import {useParams} from 'react-router-dom';
+import React, {useEffect, useState, useContext} from 'react';
+import {useParams} from 'react-router-dom';
 import Card from '../components/Card/Card.jsx';
 import Table from '../components/Table/Table.jsx';
-import {useContext} from "react";
 import {WordsContext} from "../context/wordsContext";
 
 const StudyPage = () => {
@@ -12,32 +11,25 @@ const StudyPage = () => {
         tableDataType,
         activeWordId,
         changeData,
-        addData, handleNextClick, handlePrevClick
+        addData, handleNextClick, handlePrevClick, handleSetSelect
     } = useContext(WordsContext);
-    // const {id} = useParams();
-    // const [activeSetId, setActiveSetId] = useState(null);
-    //
-    // useEffect(() => {
-    //     updateActiveSetId();
-    // }, [id])
-    //
-    // const updateActiveSetId = () => {
-    //     clearError();
-    //     getRows(id) //getWords
-    //         .then(onRowsLoaded);
-    // }
-    //
-    // const onRowsLoaded = () => {
-    //
-    // }
+    const {id} = useParams();
+    const [visibleRows, setVisibleRows] = useState(rows)
 
-    const card = (rows.length === 0) ? null : <Card
-        {...rows[activeWordId]}
+    useEffect(() => {
+        handleSetSelect(id);
+    }, [id])
+    useEffect(() => {
+        setVisibleRows(rows);
+    }, [rows])
+
+    const card = (visibleRows.length === 0) ? null : <Card
+        {...visibleRows[activeWordId]}
         onNextClick={handleNextClick}
         onPrevClick={handlePrevClick}
-        key={rows[activeWordId].id}
+        key={visibleRows[activeWordId].id}
         id={activeWordId}
-        cardsCount={rows.length}
+        cardsCount={visibleRows.length}
     />;
     return (
         <>
@@ -45,7 +37,7 @@ const StudyPage = () => {
             <Table
                 key={'words'}
                 headers={cellPropNames}
-                rows={rows}
+                rows={visibleRows}
                 handleSaveChanges={changeData}
                 handleDelete={changeData}
                 handleAddNewItem={addData}

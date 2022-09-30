@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {words, groupCellNames, wordCellNames} from '../data';
+import {words, groupCellNames, wordCellNames} from '../_data';
 
 const WordsContext = React.createContext();
 
@@ -43,7 +43,7 @@ function WordsContextProvider(props) {
     }
 
     const handleSetSelect = (id) => {
-        setTableDataType('words');
+        setTableDataType(id === null ? 'sets' : 'words');
         setActiveSetId(id);
     };
 
@@ -65,11 +65,12 @@ function WordsContextProvider(props) {
     };
 
     const getItems = () => {
-        return activeSetId === null ?
+        const res = activeSetId === null ?
             data :
             data.filter((el) => {
-                return el.id === activeSetId;
+                return el.id === Number(activeSetId);
             })[0].data;
+        return res;
     };
 
     const getRows = (items) => {
@@ -189,7 +190,7 @@ function WordsContextProvider(props) {
                 changeData,
                 addData,
                 handleSetSelect,
-                onReturnToHomePage, handleNextClick, handlePrevClick
+                onReturnToHomePage, handleNextClick, handlePrevClick, setActiveSetId
 
             }}
         >
