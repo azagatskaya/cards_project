@@ -37,7 +37,6 @@ export default function TableRow({
     };
 
     const handleInputBlur = (newValue) => {
-        console.log('input blur');
         setCellValues((prevState) => {
             return {...prevState, ...newValue};
         });

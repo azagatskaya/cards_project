@@ -1,16 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from './Home.module.scss';
 import CardSetButton from '../components/CardSetButton/CardSetButton.jsx';
 import Table from '../components/Table/Table.jsx';
+import {WordsContext} from "../context/wordsContext";
 
-const Home = ({
-                  headers,
-                  rows,
-                  handleDelete,
-                  handleSetSelect,
-                  handleSaveChanges, handleAddNewItem,
-                  tableDataType
-              }) => {
+
+const Home = () => {
+    const {rows, cellPropNames, tableDataType, handleSetSelect, changeData, addData} = useContext(WordsContext);
     return (
         <>
             <div className={styles.buttons_block}>
@@ -24,11 +20,11 @@ const Home = ({
             </div>
             <Table
                 key={'sets'}
-                headers={headers}
+                headers={cellPropNames}
                 rows={rows}
-                handleSaveChanges={handleSaveChanges}
-                handleDelete={handleDelete}
-                handleAddNewItem={handleAddNewItem}
+                handleSaveChanges={changeData}
+                handleDelete={changeData}
+                handleAddNewItem={addData}
                 tableDataType={tableDataType}
             />
         </>
