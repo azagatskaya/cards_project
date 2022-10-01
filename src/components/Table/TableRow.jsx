@@ -11,6 +11,7 @@ export default function TableRow({row, rowId, isEditable}) {
     const [cellValues, setCellValues] = useState(row);
     const [isRowEditable, setIsRowEditable] = useState(isEditable);
     const [isCanceled, setIsCanceled] = useState(false);
+    const [isValid, setIsValid] = useState(true);
 
     useEffect(() => {
         setCellValues(initialCellValues);
@@ -23,11 +24,13 @@ export default function TableRow({row, rowId, isEditable}) {
     const handleCancelClick = () => {
         setIsRowEditable(false);
         setIsCanceled(true);
+        setIsValid(true);
         setCellValues({...initialCellValues});
     };
     const handleClearAddField = () => {
         setIsCanceled(true);
         setCellValues({...initialCellValues});
+        setIsValid(true);
     };
     const handleSaveClick = () => {
         const validCellValues = validateRow(cellValues);
@@ -35,6 +38,7 @@ export default function TableRow({row, rowId, isEditable}) {
             setIsRowEditable((prevState) => !prevState);
             changeData(rowId, cellValues);
             setInitialCellValues(validCellValues);
+            setIsValid(true);
         }
     };
 
@@ -46,9 +50,13 @@ export default function TableRow({row, rowId, isEditable}) {
 
     const handleAddClick = () => {
         const validCellValues = validateRow(cellValues);
+        setIsCanceled(false);
         if (validCellValues !== false && typeof validCellValues === 'object') {
             addData(validCellValues);
             handleClearAddField();
+            setIsValid(true);
+        } else {
+            setIsValid(false);
         }
     };
 
@@ -84,6 +92,7 @@ export default function TableRow({row, rowId, isEditable}) {
                         rowId={rowId}
                         isRowEditable={isRowEditable}
                         isCanceled={isCanceled}
+                        isValid={isValid}
                         handleInputBlur={handleInputBlur}
                     />
                 );

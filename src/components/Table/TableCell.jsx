@@ -7,10 +7,15 @@ export default function TableCell({
                                       handleInputBlur,
                                       isRowEditable,
                                       isCanceled,
+                                      isValid
                                   }) {
     const [newCellValue, setNewCellValue] = useState(initialValue);
     const [isEmpty, setIsEmpty] = useState(false);
     const [style, setStyle] = useState();
+
+    useEffect(() => {
+        if (!isValid && newCellValue === '') setIsEmpty(true);
+    }, [isValid])
 
     useEffect(() => {
         setStyle(!isEmpty ?

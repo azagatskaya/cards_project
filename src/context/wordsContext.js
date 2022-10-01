@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {words, groupCellNames, wordCellNames} from '../data';
+import {words, groupCellNames, wordCellNames} from '../data.js';
 
 const WordsContext = React.createContext();
 
