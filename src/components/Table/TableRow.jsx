@@ -1,21 +1,20 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import styles from './Table.module.scss';
 import TableCell from './TableCell.jsx';
 import TableCellActions from './TableCellActions.jsx';
 import TableButtonsOnAdd from './TableButtonsOnAdd';
+import {WordsContext} from "../../context/wordsContext";
 
-export default function TableRow({
-                                     row,
-                                     rowId,
-                                     handleDelete,
-                                     handleSaveChanges,
-                                     isEditable,
-                                     handleAddNewItem,
-                                 }) {
+export default function TableRow({row, rowId, isEditable}) {
+    const {validateRow, changeData, addData} = useContext(WordsContext);
     const [initialCellValues, setInitialCellValues] = useState(row);
     const [cellValues, setCellValues] = useState(row);
     const [isRowEditable, setIsRowEditable] = useState(isEditable);
     const [isCanceled, setIsCanceled] = useState(false);
+
+    useEffect(() => {
+        setCellValues(initialCellValues);
+    }, [initialCellValues])
 
     const handleEditClick = () => {
         setIsRowEditable(true);
@@ -31,9 +30,12 @@ export default function TableRow({
         setCellValues({...initialCellValues});
     };
     const handleSaveClick = () => {
-        setIsRowEditable((prevState) => !prevState);
-        handleSaveChanges(rowId, cellValues);
-        setInitialCellValues(cellValues);
+        const validCellValues = validateRow(cellValues);
+        if (validCellValues !== false && typeof validCellValues === 'object') {
+            setIsRowEditable((prevState) => !prevState);
+            changeData(rowId, cellValues);
+            setInitialCellValues(validCellValues);
+        }
     };
 
     const handleInputBlur = (newValue) => {
@@ -43,8 +45,11 @@ export default function TableRow({
     };
 
     const handleAddClick = () => {
-        handleAddNewItem(cellValues);
-        handleClearAddField();
+        const validCellValues = validateRow(cellValues);
+        if (validCellValues !== false && typeof validCellValues === 'object') {
+            addData(validCellValues);
+            handleClearAddField();
+        }
     };
 
     const renderEditButtons = () => {
@@ -55,7 +60,6 @@ export default function TableRow({
             handleEditClick={handleEditClick}
             handleCancelClick={handleCancelClick}
             handleSaveClick={handleSaveClick}
-            handleDelete={handleDelete}
             isEditable={isRowEditable}
         />);
     };

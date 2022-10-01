@@ -9,12 +9,22 @@ export default function TableCell({
                                       isCanceled,
                                   }) {
     const [newCellValue, setNewCellValue] = useState(initialValue);
+    const [isEmpty, setIsEmpty] = useState(false);
+    const [style, setStyle] = useState();
+
+    useEffect(() => {
+        setStyle(!isEmpty ?
+            `${styles.input} ${styles.input__editable}` :
+            `${styles.input} ${styles.input__editable} ${styles.input__alarmed}`);
+    }, [isEmpty])
 
     useEffect(() => {
         setNewCellValue(initialValue);
+        isCanceled ? setIsEmpty(false) : null;
     }, [initialValue, isCanceled]);
 
     const handleInputChange = (e) => {
+        setIsEmpty(e.target.value.trim() === '' ? true : false);
         setNewCellValue(e.target.value);
     };
 
@@ -22,6 +32,7 @@ export default function TableCell({
         handleInputBlur({
             [cellPropName]: e.target.value
         });
+        setIsEmpty(e.target.value.trim() === '' ? true : false);
     };
 
     const isCellEditable =
@@ -32,7 +43,7 @@ export default function TableCell({
 
     const content = isCellEditable ?
         <input
-            className={`${styles.input} ${styles.input__editable}`}
+            className={style}
             onChange={handleInputChange}
             onBlur={handleBlur}
             value={newCellValue}

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {words, groupCellNames, wordCellNames} from '../data';
 
 const WordsContext = React.createContext();
@@ -14,21 +15,39 @@ function WordsContextProvider(props) {
     );
     const [maxSetId, setMaxSetId] = useState();
     const [maxWordId, setMaxWordId] = useState();
+    const [cardsCount, setCardsCount] = useState(rows.length);
+    const [error, setError] = useState(false);
+    const navigate = useNavigate();
+
     useEffect(() => {
         const maxSet = getMaxSetId();
         setMaxSetId(maxSet);
         const maxWord = getMaxWordId();
         setMaxWordId(maxWord);
     }, [])
+
+    useEffect(() => {
+        if (error) navigate("/*");
+        setError(false);
+    }, [error])
+
     useEffect(() => {
         setCellPropNames(() => getCellPropNames(tableDataType));
     }, [tableDataType]);
 
     useEffect(() => {
-        const items = getItems();
-        const visibleRows = getRows(items);
-        setRows(visibleRows);
+        try {
+            const items = getItems();
+            const visibleRows = getRows(items);
+            setRows(visibleRows);
+        } catch (err) {
+            setError(true);
+        }
     }, [cellPropNames, data]);
+
+    useEffect(() => {
+        setCardsCount(rows.length);
+    }, [rows])
 
     const getMaxSetId = () => {
         return data.map(set => set.id).sort((a, b) => b - a)[0] + 1;
@@ -116,16 +135,12 @@ function WordsContextProvider(props) {
     };
 
     const changeData = (rowId, values) => {
-        console.log('rowId, values', rowId, values)
-        console.log('tableDataType', tableDataType)
         tableDataType === 'words' ?
             handleWordOperation(rowId, values) :
             changeSet(rowId, values);
     };
 
     const handleWordOperation = (rowId, values) => {
-        console.log('handleWordOperation');
-        console.log(typeof rowId, typeof values);
         setData((prevState) => {
             return prevState.map((set) => {
                 let newData = [];
@@ -146,7 +161,6 @@ function WordsContextProvider(props) {
     const filterId = (data, id) => data.id !== id;
 
     const deleteWord = (set, rowId) => {
-        console.log('delete word')
         return set.data.filter((row) => filterId(row, rowId));
     };
 
@@ -184,6 +198,22 @@ function WordsContextProvider(props) {
         return tableDataType === 'sets' ? groupCellNames : wordCellNames;
     }
 
+    const validateRow = (obj) => {
+        return Object.keys(obj).reduce((res, key) => {
+            if (key === 'id' && obj[key] === '') return res;
+            let cellValRes = validateCell(obj[key]);
+            return (cellValRes !== false && res !== false) ?
+                {...res, [key]: cellValRes} :
+                false;
+        }, {});
+    }
+
+    const validateCell = (val) => {
+        if (typeof val === 'number') return val;
+        else if (typeof val === 'string' && val.trim() !== '') return String(val).trim();
+        else return false;
+    }
+
     return (
         <WordsContext.Provider
             value={{
@@ -191,11 +221,12 @@ function WordsContextProvider(props) {
                 cellPropNames,
                 rows,
                 activeWordId,
+                cardsCount,
                 changeData,
                 addData,
                 handleSetSelect,
                 onReturnToHomePage, handleNextClick, handlePrevClick,
-
+                validateRow, validateCell
             }}
         >
             {props.children}

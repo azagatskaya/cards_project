@@ -1,27 +1,22 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from './Card.module.scss';
+import {WordsContext} from "../../context/wordsContext";
 
-function Card({
-                  word,
-                  transcription,
-                  value,
-                  onPrevClick,
-                  onNextClick,
-                  id,
-                  cardsCount,
-              }) {
+function Card() {
+    const {rows, activeWordId, handleNextClick, handlePrevClick, cardsCount} = useContext(WordsContext);
+    const {word, transcription, value} = rows[activeWordId];
     const [isRotated, setIsRotated] = React.useState(false);
     const handleRotateClick = () => {
         setIsRotated((prevState) => !prevState);
     };
 
-    const handlePrevClick = (event) => {
+    const handlePrev = (event) => {
         event.stopPropagation();
-        onPrevClick();
+        handlePrevClick();
     };
-    const handleNextClick = (event) => {
+    const handleNext = (event) => {
         event.stopPropagation();
-        onNextClick();
+        handleNextClick();
     };
 
     let cardClasses;
@@ -39,9 +34,9 @@ function Card({
             <div className={cardClasses} onClick={handleRotateClick}>
                 <button
                     className={styles.prev}
-                    onClick={(event) => handlePrevClick(event)}
+                    onClick={(event) => handlePrev(event)}
                 ></button>
-                <div>{id + 1}/{cardsCount}</div>
+                <div>{activeWordId + 1}/{cardsCount}</div>
                 <div className={styles.card__text}>
                     <div className={styles.word}>{word}</div>
                     <div className={styles.transcription}>{transcription}</div>
@@ -49,11 +44,11 @@ function Card({
                 <button className={styles.button_rotate}></button>
                 <button
                     className={styles.next}
-                    onClick={(event) => handleNextClick(event)}
+                    onClick={(event) => handleNext(event)}
                 ></button>
             </div>
             <div className={backClasses} onClick={handleRotateClick}>
-                <div>{id + 1}/{cardsCount}</div>
+                <div>{activeWordId + 1}/{cardsCount}</div>
                 <div className={styles.card__text}>
                     <div className={styles.value}>{value}</div>
                 </div>
