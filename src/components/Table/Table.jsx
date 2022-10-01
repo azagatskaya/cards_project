@@ -14,10 +14,15 @@ export default function Table() {
     const [isAddFieldVisible, setIsAddFieldVisible] = useState(false);
 
     useEffect(() => {
-        if (tableDataType === 'words' && rows.length === 0) {
-            setIsAddFieldVisible(true)
-        }
+        if (tableDataType === 'words' && rows.length === 0) setIsAddFieldVisible(true);
     }, [rows])
+
+    useEffect(() => {
+        console.log('tableDataType', tableDataType);
+        console.log('rows.length', rows.length);
+        console.log('isAddFieldVisible', isAddFieldVisible);
+        if (tableDataType === 'sets') setIsAddFieldVisible(false);
+    }, [tableDataType])
 
     const showAddField = () => {
         setIsAddFieldVisible((prevState) => !prevState);

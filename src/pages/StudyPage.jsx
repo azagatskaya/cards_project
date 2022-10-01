@@ -12,8 +12,7 @@ const StudyPage = () => {
         handleSetSelect(id);
     }, [id])
 
-    const card = (rows.length === 0) ? null :
-        <Card/>;
+    const card = rows.length !== 0 ? <Card/> : null;
 
     return (
         <>
