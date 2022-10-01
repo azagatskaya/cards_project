@@ -3,7 +3,6 @@
 .table {
   width: $table_width;
   table-layout: fixed;
-  //text-align: left;
   border: 1px solid grey;
   border-collapse: collapse;
   font-family: 'Segoe UI', sans-serif;
@@ -28,18 +27,22 @@
     }
 
     &_buttons {
-      background-color: #ffffff;
       width: 100%;
       height: 100%;
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
       vertical-align: center;
-
       @media screen and (max-width: $small_screen_width) {
         width: 80px;
       }
     }
+
+    &_wrapper {
+      padding: 0;
+    }
+
+
   }
 
   &__sets {
@@ -51,7 +54,6 @@
   }
 
   &__row {
-
     background-color: #fff;
     border: 1px solid #D3D3D3FF;
     border-collapse: collapse;
@@ -99,7 +101,6 @@
     }
   }
 
-
   &__header_cell
   &__header_cell,
   &__header_cell_last,
@@ -110,8 +111,6 @@
       padding: 6px 4px;
     }
   }
-
-
 }
 
 .button {
@@ -128,9 +127,11 @@
   //box-shadow: 0 0 1px 1px rgba(172, 172, 172, 0.5);
 
   @media screen and (max-width: $small_screen_width) {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     background-size: 16px 16px;
+    margin-left: 2px;
+    margin-right: 2px;
   }
 
   &:hover {
@@ -206,20 +207,16 @@
   height: auto;
   background-color: #ffffff;
   text-align: center;
-  //resize: none;
-  //height: auto;
-  //min-height: 30px;
-
-  //overflow: hidden;
-  //text-overflow: ellipsis;
-  //word-wrap: break-word;
-  //word-break: break-all;
 
   &__editable {
     width: 100%;
     height: 100%;
     border-radius: 2px;
     border: 1px solid #dddddd;
+  }
+
+  &__alarmed {
+    border: 2px solid #e84568;
   }
 
   &:disabled {

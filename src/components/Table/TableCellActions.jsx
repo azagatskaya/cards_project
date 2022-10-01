@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {WordsContext} from "../../context/wordsContext";
 import styles from './Table.module.scss';
 
 export default function TableCellActions({
@@ -6,19 +7,19 @@ export default function TableCellActions({
                                              handleEditClick,
                                              handleCancelClick,
                                              handleSaveClick,
-                                             handleDelete,
                                              isEditable,
                                          }) {
-    const onEditClick = () => {
-        isEditable ? handleCancelClick() : handleEditClick();
-    };
-
+    const {changeData} = useContext(WordsContext);
     const editBtnClasses = isEditable ?
         (`${styles.button} ${styles.button_cancel}`) :
         (`${styles.button} ${styles.button_edit}`);
 
+    const onEditClick = () => {
+        isEditable ? handleCancelClick() : handleEditClick();
+    };
+
     return (
-        <td>
+        <td className={styles.table__cell_wrapper}>
             <div className={styles.table__cell_buttons}>
                 <button
                     className={styles.button + ' ' + styles.button_save}
@@ -32,7 +33,7 @@ export default function TableCellActions({
                 ></button>
                 <button
                     className={styles.button + ' ' + styles.button_delete}
-                    onClick={() => handleDelete(rowId)}
+                    onClick={() => changeData(rowId)}
                     data-action={'delete'}
                 ></button>
             </div>

@@ -1,9 +1,7 @@
 import React from 'react';
 import styles from './Table.module.scss';
 
-function TableButtonsOnAdd({
-                               handleAddNewItem, handleClearAddField,
-                           }) {
+function TableButtonsOnAdd({handleAddNewItem, handleClearAddField}) {
     return (
         <td className={styles.table__cell_buttons}>
             <button
@@ -14,7 +12,7 @@ function TableButtonsOnAdd({
             <button
                 className={styles.button + ' ' + styles.button_saveNewItem}
                 onClick={handleAddNewItem}
-                data-action={'delete'}
+                data-action={'add'}
             ></button>
         </td>
     );
