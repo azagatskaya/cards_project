@@ -11,10 +11,14 @@ export default function Table() {
         addData
     } = useContext(WordsContext);
 
-    const [isAddFieldVisible, setIsAddFieldVisible] = useState();
+    const [isAddFieldVisible, setIsAddFieldVisible] = useState(false);
+
     useEffect(() => {
-        setIsAddFieldVisible((rows.length === 0 || isAddFieldVisible) ? true : false)
+        if (tableDataType === 'words' && rows.length === 0) {
+            setIsAddFieldVisible(true)
+        }
     }, [rows])
+
     const showAddField = () => {
         setIsAddFieldVisible((prevState) => !prevState);
     };
