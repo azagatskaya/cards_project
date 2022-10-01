@@ -142,7 +142,7 @@ function WordsContextProvider(props) {
 
     const handleWordOperation = (rowId, values) => {
         setData((prevState) => {
-            return prevState.map((set) => {
+            return prevState.reduce((res, set) => {
                 let newData = [];
                 if (set.id === Number(activeSetId)) {
                     newData = typeof rowId === 'object' ?
@@ -150,11 +150,12 @@ function WordsContextProvider(props) {
                         typeof values === 'undefined' ?
                             deleteWord(set, rowId) :
                             changeWord(set, rowId, values);
+                    if (newData.length === 0) return [...res, {...set, ['data']: [...newData]}];
                 }
-                return newData.length === 0 ?
-                    {...set} :
-                    {...set, ['data']: [...newData]};
-            });
+                return (newData.length === 0) ?
+                    [...res, {...set}] :
+                    [...res, {...set, ['data']: [...newData]}];
+            }, []);
         });
     };
 

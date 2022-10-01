@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import styles from './Table.module.scss';
 import TableRow from './TableRow.jsx';
 import {WordsContext} from "../../context/wordsContext";
@@ -11,8 +11,10 @@ export default function Table() {
         addData
     } = useContext(WordsContext);
 
-    const [isAddFieldVisible, setIsAddFieldVisible] = useState(false);
-
+    const [isAddFieldVisible, setIsAddFieldVisible] = useState();
+    useEffect(() => {
+        setIsAddFieldVisible((rows.length === 0 || isAddFieldVisible) ? true : false)
+    }, [rows])
     const showAddField = () => {
         setIsAddFieldVisible((prevState) => !prevState);
     };
